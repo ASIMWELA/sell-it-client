@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sell-It</string>
     <string name="app_welcome_msg">\t\t\ Welcome To Sell-It</string>
-    <string name="app_slogan">\t\t\Welcome to Sell-It.\n Discover, Request, Buy.\n \t\Register as a provider and \nadd services. Register as customer and buy services</string>
+    <string name="app_slogan">Discover, Request, Buy. Register as a provider and \nadd services. </string>
     <string name="customer_welcome_msg">\t\t\Welcome to Sell-It.\n Discover, Request, Buy.\n \t\Register as a provider and \nadd services. Register as customer and buy services</string>
     <string name="provider_welcome_msg">\t\t\Welcome to Sell-It.\n Discover, Request, Buy.\n \t\Register as a provider and \nadd services. Register as customer and buy services</string>
     </resources>
