@@ -1,9 +1,12 @@
- package com.main.sellit;
+ package com.main.sellit.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-public class Welcome extends AppCompatActivity {
+
+import com.main.sellit.R;
+
+ public class Welcome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
