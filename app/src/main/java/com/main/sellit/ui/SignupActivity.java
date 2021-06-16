@@ -1,5 +1,6 @@
 package com.main.sellit.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -11,15 +12,21 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.main.sellit.R;
 import com.main.sellit.ui.customer.SignUpCustomerFragment;
-import com.main.sellit.ui.provider.SignupProviderFragment;
+import com.main.sellit.ui.provider.CapturePersonalInfoFragment;
+import com.main.sellit.ui.provider.CaptureProviderDetailsFragment;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class SignupActivity extends AppCompatActivity {
     Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        fragment = new SignupProviderFragment();
+
+
+        fragment = new CaptureProviderDetailsFragment();
         loadFragment(fragment);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,7 +38,7 @@ public class SignupActivity extends AppCompatActivity {
                         loadFragment(fragment);
                         return true;
                     case R.id.navigation_provider:
-                        fragment = new SignupProviderFragment();
+                        fragment = new CapturePersonalInfoFragment();
                         loadFragment(fragment);
                         return true;
                 }

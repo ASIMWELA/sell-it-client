@@ -9,15 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.main.sellit.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SignupProviderFragment#newInstance} factory method to
+ * Use the {@link CapturePersonalInfoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SignupProviderFragment extends Fragment {
+public class CapturePersonalInfoFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +31,12 @@ public class SignupProviderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SignupProviderFragment() {
+    public CapturePersonalInfoFragment() {
         // Required empty public constructor
     }
 
-    public static SignupProviderFragment newInstance(String param1, String param2) {
-        SignupProviderFragment fragment = new SignupProviderFragment();
+    public static CapturePersonalInfoFragment newInstance(String param1, String param2) {
+        CapturePersonalInfoFragment fragment = new CapturePersonalInfoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -56,14 +57,16 @@ public class SignupProviderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View view = inflater.inflate(R.layout.fragment_signup_provider, container, false);
-        captureProviderUserInfo = (Button)view.findViewById(R.id.btnCaptureProviderInfo);
+         View view = inflater.inflate(R.layout.fragment_capture_personal_info, container, false);
+        captureProviderUserInfo = (Button)view.findViewById(R.id.btnSubmitProviderInfo);
+        TextView view1 = (TextView)view.findViewById(R.id.editTextTextPersonName);
         captureProviderUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fragment = new CaptureProviderDetailsFragment();
                 loadFragment(fragment);
-                //TODO: swap frags
+
+                            //TODO: swap frags
             }
         });
 

@@ -6,21 +6,21 @@
  import androidx.appcompat.app.AppCompatActivity;
 
  import com.main.sellit.R;
- import com.main.sellit.contract.WelcomeContract;
- import com.main.sellit.presenter.WelcomePresenter;
+ import com.main.sellit.contract.MainActivityContract;
+ import com.main.sellit.presenter.MainActivityPresenter;
 
  import lombok.AccessLevel;
  import lombok.experimental.FieldDefaults;
 
  @FieldDefaults(level = AccessLevel.PRIVATE)
- public class WelcomeActivity extends AppCompatActivity implements WelcomeContract.View {
-    WelcomePresenter presenter;
+ public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
+    MainActivityPresenter presenter;
     Button btnLogin, btnSignup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        presenter = new WelcomePresenter(this, this);
+        presenter = new MainActivityPresenter(this, this);
         btnSignup = (Button)findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
 
