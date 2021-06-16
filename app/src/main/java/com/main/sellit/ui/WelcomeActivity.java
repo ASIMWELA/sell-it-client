@@ -1,17 +1,16 @@
  package com.main.sellit.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
+ import android.os.Bundle;
+ import android.widget.Button;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+ import androidx.appcompat.app.AppCompatActivity;
 
-import com.main.sellit.R;
-import com.main.sellit.contract.WelcomeContract;
-import com.main.sellit.presenter.WelcomePresenter;
+ import com.main.sellit.R;
+ import com.main.sellit.contract.WelcomeContract;
+ import com.main.sellit.presenter.WelcomePresenter;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
+ import lombok.AccessLevel;
+ import lombok.experimental.FieldDefaults;
 
  @FieldDefaults(level = AccessLevel.PRIVATE)
  public class WelcomeActivity extends AppCompatActivity implements WelcomeContract.View {

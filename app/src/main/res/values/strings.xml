@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Sell-It</string>
     <string name="app_welcome_msg">Welcome To Sell-It.</string>
+    <string name="title_provider">Provider Sign Up.</string>
+    <string name="title_customer">Customer Sign up.</string>
+    <string name="sign_provider">Provider Sign Up.</string>
     <string name="app_slogan">Discover, Request, Buy. Register as a provider and add services.  Register as customer and buy services.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="boolean_values">
+        <item>true</item>
+        <item>false</item>
+    </string-array>
 </resources>
