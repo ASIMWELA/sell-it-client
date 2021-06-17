@@ -1,5 +1,6 @@
 package com.main.sellit.ui.provider;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.main.sellit.R;
 
@@ -24,6 +26,12 @@ public class CaptureProviderDetailsFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     Button submitProviderInfo;
+    ImageView backArrow;
+    Context ctx;
+
+    public CaptureProviderDetailsFragment(Context ctx) {
+        this.ctx = ctx;
+    }
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,7 +73,9 @@ public class CaptureProviderDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_capture_provider_details, container, false);
+        backArrow = view.findViewById(R.id.imv_back_arrow_user_info);
 
+        //back button event
         submitProviderInfo = (Button)view.findViewById(R.id.btnSubmitProviderInfo);
         return view;
     }
