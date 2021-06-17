@@ -60,6 +60,7 @@ public class CapturePersonalInfoFragment extends Fragment {
          View view = inflater.inflate(R.layout.fragment_capture_personal_info, container, false);
         captureProviderUserInfo = (Button)view.findViewById(R.id.btnSubmitProviderInfo);
         TextView view1 = (TextView)view.findViewById(R.id.editTextTextPersonName);
+
         captureProviderUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
