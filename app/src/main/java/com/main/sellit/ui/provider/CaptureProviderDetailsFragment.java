@@ -9,13 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
-import com.main.sellit.ui.customer.SignUpCustomerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,7 +83,7 @@ public class CaptureProviderDetailsFragment extends Fragment {
         });
 
         //back button event
-        submitProviderInfo = (LoadingButton) view.findViewById(R.id.btnSubmitProviderInfo);
+        submitProviderInfo = (LoadingButton) view.findViewById(R.id.btn_capture_user_info);
         submitProviderInfo.setCornerRadius(100);
         submitProviderInfo.setShadowHeight(0);
         submitProviderInfo.setOnClickListener(new View.OnClickListener() {
