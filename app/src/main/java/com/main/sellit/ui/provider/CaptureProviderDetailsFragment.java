@@ -83,7 +83,7 @@ public class CaptureProviderDetailsFragment extends Fragment {
         });
 
         //back button event
-        submitProviderInfo = (LoadingButton) view.findViewById(R.id.btnSubmitProviderInfo);
+        submitProviderInfo = (LoadingButton) view.findViewById(R.id.btn_capture_user_info);
         submitProviderInfo.setCornerRadius(100);
         submitProviderInfo.setShadowHeight(0);
         submitProviderInfo.setOnClickListener(new View.OnClickListener() {

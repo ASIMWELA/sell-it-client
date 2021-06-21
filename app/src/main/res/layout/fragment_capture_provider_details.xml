@@ -51,7 +51,7 @@
                 </RelativeLayout>
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/edtx_user_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -72,7 +72,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName2"
+                    android:id="@+id/edtx_first_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -90,10 +90,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtx_user_name" />
 
                 <com.kusu.loadingbutton.LoadingButton
-                    android:id="@+id/btnSubmitProviderInfo"
+                    android:id="@+id/btn_capture_user_info"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="32dp"
@@ -118,7 +118,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtx_first_name" />
 
                 <Spinner
                     android:id="@+id/spinner2"

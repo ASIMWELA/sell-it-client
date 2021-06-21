@@ -1,12 +1,13 @@
 package com.main.sellit.contract;
 
-import android.view.View;
+
+import org.json.JSONObject;
 
 public interface ProviderContract {
     interface View{
 
     }
     interface Presenter{
-        void getPersonalDetailsObject();
+        JSONObject createPersonalDetailsObject(android.view.View view);
     }
 }
