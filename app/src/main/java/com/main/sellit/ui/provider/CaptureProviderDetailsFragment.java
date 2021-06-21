@@ -9,13 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
-import com.main.sellit.ui.customer.SignUpCustomerFragment;
 
 /**
  * A simple {@link Fragment} subclass.

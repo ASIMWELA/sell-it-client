@@ -1,11 +1,8 @@
 package com.main.sellit.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.main.sellit.R;
 import com.main.sellit.ui.customer.SignUpCustomerFragment;
 import com.main.sellit.ui.provider.CapturePersonalInfoFragment;
-import com.main.sellit.ui.provider.CaptureProviderDetailsFragment;
 
 import lombok.NoArgsConstructor;
 
