@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 
 import com.main.sellit.R;
 import com.main.sellit.contract.ProviderContract;
+import com.main.sellit.helper.TextValidator;
 
 import org.json.JSONObject;
 
@@ -46,6 +47,12 @@ public class ProviderPresenter implements ProviderContract.Presenter {
         EditText editTextPhoneNumber= (EditText)view.findViewById(R.id.edtx_phone_number);
         EditText editTextPassword= (EditText)view.findViewById(R.id.edtx_password);
 
+        editTextEmail.addTextChangedListener(new TextValidator(editTextEmail) {
+            @Override
+            public void validate(int stringLength, boolean isEmail) {
+
+            }
+        });
         //TODO:validate inputs
         userName = editTextUserName.getText().toString().trim();
         firstName = editTextFirstName.getText().toString().trim();

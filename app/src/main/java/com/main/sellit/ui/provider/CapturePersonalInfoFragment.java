@@ -1,8 +1,10 @@
 package com.main.sellit.ui.provider;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -79,6 +81,7 @@ public class CapturePersonalInfoFragment extends Fragment implements ProviderCon
         providerPresenter = new ProviderPresenter(this, ctx);
 
         captureProviderUserInfo.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
 //                fragment = new CaptureProviderDetailsFragment();
