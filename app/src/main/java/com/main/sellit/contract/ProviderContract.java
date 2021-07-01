@@ -1,13 +1,13 @@
 package com.main.sellit.contract;
 
 
-import org.json.JSONObject;
+import android.widget.EditText;
 
 public interface ProviderContract {
     interface View{
 
     }
     interface Presenter{
-        JSONObject createPersonalDetailsObject(android.view.View view);
+        boolean validateUserInput(EditText editText, int minLength,boolean isEmail);
     }
 }
