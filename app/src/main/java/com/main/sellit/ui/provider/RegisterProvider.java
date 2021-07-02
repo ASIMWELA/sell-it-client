@@ -154,7 +154,7 @@ public class RegisterProvider extends AppCompatActivity{
                     btnSubmitProviderData.setEnabled(true);
                     Intent intent = new Intent(RegisterProvider.this, LoginActivity.class);
                     //TODO: clear the signup  tasks
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
             }

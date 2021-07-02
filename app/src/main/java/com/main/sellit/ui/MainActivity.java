@@ -21,8 +21,8 @@
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         presenter = new MainActivityPresenter(this, this);
-        btnSignup = (Button)findViewById(R.id.btn_signup);
-        btnLogin = (Button) findViewById(R.id.btn_login);
+        btnSignup = (Button)findViewById(R.id.btn_welcome_signup);
+        btnLogin = (Button) findViewById(R.id.btn_welcome_login);
 
         //navigate to login and signup activities
         btnSignup.setOnClickListener(v -> navigateToSignUp());
