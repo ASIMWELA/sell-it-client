@@ -58,7 +58,6 @@ public class RegisterProvider extends AppCompatActivity{
 
         validateInputs();
 
-
     }
 
     private void initViews(){
@@ -86,7 +85,6 @@ public class RegisterProvider extends AppCompatActivity{
 
             }
         });
-
 
     }
 
@@ -155,10 +153,10 @@ public class RegisterProvider extends AppCompatActivity{
                     btnSubmitProviderData.hideLoading();
                     btnSubmitProviderData.setEnabled(true);
                     Intent intent = new Intent(RegisterProvider.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    //TODO: clear the signup  tasks
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -176,7 +174,6 @@ public class RegisterProvider extends AppCompatActivity{
                     String message = errorObject.getString("message");
                     txVErrorMessage.setText(message);
                     txVErrorMessage.setVisibility(View.VISIBLE);
-                    Log.e("APICALLERROR", body);
                 } catch (UnsupportedEncodingException | JSONException e) {
                     // exception
                 }
