@@ -18,6 +18,11 @@ public class ProviderPresenter implements ProviderContract.Presenter {
     }
     @Override
     public boolean validateUserInput(EditText editText, int minLength,boolean isEmail) {
-        return Validator.inputHasErrors(editText, minLength, isEmail);
+        return false;
+    }
+
+    @Override
+    public void flagError(EditText editText, String message) {
+       // Validator.flagInputError(editText, message);
     }
 }

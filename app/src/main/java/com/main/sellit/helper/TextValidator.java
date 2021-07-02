@@ -7,17 +7,15 @@ import android.widget.EditText;
 
 public abstract class TextValidator implements TextWatcher {
     private final EditText editText;
-
     public TextValidator(EditText editText) {
         this.editText = editText;
     }
-
-    public abstract void validate(int stringLength, boolean isEmail);
+    public abstract void validate();
 
     @Override
     final public void afterTextChanged(Editable s) {
-        String text = editText.getText().toString();
-        validate(text.length(), false);
+
+        validate();
     }
 
     @Override

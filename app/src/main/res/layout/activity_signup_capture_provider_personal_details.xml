@@ -2,22 +2,26 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/capture_provider_details_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ScrollView
+        android:id="@+id/activity_provider_signup_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/edtx_user_name"
+                    android:id="@+id/edt_txt_user_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -38,7 +42,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/edtx_first_name"
+                    android:id="@+id/edtx_firt_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -56,7 +60,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtx_user_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/edt_txt_user_name" />
 
                 <EditText
                     android:id="@+id/edtx_last_name"
@@ -77,7 +81,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edtx_first_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtx_firt_name" />
 
                 <EditText
                     android:id="@+id/edtx_email"
@@ -143,7 +147,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/edtx_phone_number" />
 
                 <android.widget.Button
-                    android:id="@+id/btn_capture_user_info"
+                    android:id="@+id/btn_submit_provider_details"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="32dp"

@@ -2,13 +2,19 @@
     <string name="app_name">Sell-It</string>
     <string name="app_welcome_msg">Welcome To Sell-It.</string>
     <string name="title_provider">Provider Sign Up.</string>
+    <string name="email_error">Invalid email.</string>
     <string name="title_customer">Customer Sign up.</string>
     <string name="sign_provider">Provider Sign Up.</string>
     <string name="app_slogan">Discover, Request, Buy. Register as a provider and add services.  Register as customer and buy services.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_name_error">User name too short</string>
+    <string name="password_error">Passord too short</string>
+    <string name="last_name_error">Last name too short</string>
+    <string name="user_first_name_error">First name too short</string>
+    <string name="phone_number_error">Phone number not valid</string>
     <string-array name="boolean_values">
-        <item>true</item>
         <item>false</item>
+        <item>true</item>
     </string-array>
 </resources>

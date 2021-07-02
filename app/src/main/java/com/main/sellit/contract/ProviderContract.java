@@ -9,5 +9,6 @@ public interface ProviderContract {
     }
     interface Presenter{
         boolean validateUserInput(EditText editText, int minLength,boolean isEmail);
+        void flagError(EditText editText, String message);
     }
 }
