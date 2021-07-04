@@ -3,10 +3,7 @@ package com.main.sellit.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,27 +13,26 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.basgeekball.awesomevalidation.AwesomeValidation;
-import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.material.snackbar.Snackbar;
 import com.main.sellit.R;
-import com.main.sellit.contract.ProviderContract;
+import com.main.sellit.contract.SignupContract;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
-import com.main.sellit.presenter.ProviderPresenter;
-import com.main.sellit.ui.provider.RegisterProvider;
+import com.main.sellit.presenter.SignupPresenter;
+import com.main.sellit.ui.provider.RegisterProviderActivity;
 
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @NoArgsConstructor
-public class SignupActivity extends AppCompatActivity implements ProviderContract.View {
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class SignupActivity extends AppCompatActivity implements SignupContract.View {
 
     Context ctx;
     TextView activityTitle;
-    ProviderPresenter providerPresenter;
+    SignupPresenter signupPresenter;
     Button captureProviderInfo;
-    private AwesomeValidation validator;
-
     EditText editTxtUserName,
             editTxtEmail,
             editTxtPassword,
@@ -58,25 +54,19 @@ public class SignupActivity extends AppCompatActivity implements ProviderContrac
         setContentView(R.layout.activity_signup_capture_provider_personal_details);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_layout);
-
-        //initialize objects
-        providerPresenter = new ProviderPresenter(this, ctx);
-        validator = new AwesomeValidation(ValidationStyle.BASIC);
-
-      //  validator = new Validator();
+        signupPresenter = new SignupPresenter(this);
 
         //initialize views
         initViews();
 
-        validateInputs();
-
-
-
-
-
-
-
-
+        //activate validations
+        validateInput();
+        captureProviderInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signupPresenter.captureProviderPersonaDetails();
+            }
+        });
     }
 
     private void initViews(){
@@ -93,8 +83,8 @@ public class SignupActivity extends AppCompatActivity implements ProviderContrac
         editTxtUserName = (EditText)findViewById(R.id.edt_txt_user_name);
 
     }
-    private void validateInputs() {
-
+    @Override
+    public boolean validateInput() {
         editTxtUserName.addTextChangedListener(new TextValidator(editTxtUserName) {
             @Override
             public void validate() {
@@ -178,31 +168,31 @@ public class SignupActivity extends AppCompatActivity implements ProviderContrac
 
             }
         });
-        captureProviderInfo.setOnClickListener(v->{
-            if((userName==null)
-                    || (phoneNumber==null)
-                    || (password == null)
-                    || (firstName == null)
-                    || (lastName == null)
-                    || (email==null) ){
-                Snackbar.make(findViewById(R.id.capture_provider_details_container), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
-            }
-            else{
-                     UserDetailsModel userDetailsModel = UserDetailsModel.builder()
-                        .firstName(firstName)
-                        .lastName(lastName)
-                        .userName(userName)
-                        .email(email)
-                        .phoneNumber(phoneNumber)
-                        .password(password)
-                        .build();
-                     Intent intent = new Intent(this, RegisterProvider.class);
-                     intent.putExtra(USER_DETAILS, userDetailsModel);
-                     startActivity(intent);
-            }
-
-        });
-
+        return (userName != null)
+                && (phoneNumber != null)
+                && (password != null)
+                && (firstName != null)
+                && (lastName != null)
+                && (email != null);
     }
 
+    @Override
+    public void onValidateSuccess() {
+        UserDetailsModel userDetailsModel = UserDetailsModel.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .userName(userName)
+                .email(email)
+                .phoneNumber(phoneNumber)
+                .password(password)
+                .build();
+        Intent intent = new Intent(this, RegisterProviderActivity.class);
+        intent.putExtra(USER_DETAILS, userDetailsModel);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onFailedValidation() {
+        Snackbar.make(findViewById(R.id.capture_provider_details_container), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
+    }
 }

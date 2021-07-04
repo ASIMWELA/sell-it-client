@@ -34,18 +34,21 @@ public class LoginPresenter implements LoginContract.Presenter {
     @SneakyThrows
     @Override
     public void login(String userName, String password){
+            view.startLoadingButton();
             JSONObject loginObject = new JSONObject();
             loginObject.put("userName", userName);
             loginObject.put("password", password);
             JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL + "/auth/login", loginObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                    view.stopLoadingButton();
                     view.onLoginSuccess(response);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     if (error == null || error.networkResponse == null) {
+                        view.stopLoadingButton();
                         return;
                     }
                     String body;
@@ -53,15 +56,16 @@ public class LoginPresenter implements LoginContract.Presenter {
                         body = new String(error.networkResponse.data,"UTF-8");
                         JSONObject errorObject = new JSONObject(body);
                         view.onLoginFailure(errorObject);
+                        view.stopLoadingButton();
 
                     } catch (UnsupportedEncodingException | JSONException e) {
                         // exception
+                        view.stopLoadingButton();
                     }
                 }
             });
 
             VolleyController.getInstance(context).addToRequestQueue(loginRequest);
-
 
     }
 

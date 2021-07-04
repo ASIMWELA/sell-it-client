@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,10 +19,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
+import com.main.sellit.contract.RegisterProviderContract;
 import com.main.sellit.helper.ApiUrls;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.network.VolleyController;
+import com.main.sellit.presenter.RegisterProviderPresenter;
 import com.main.sellit.ui.LoginActivity;
 
 import org.json.JSONException;
@@ -33,30 +34,40 @@ import java.io.UnsupportedEncodingException;
 
 import lombok.SneakyThrows;
 
-public class RegisterProvider extends AppCompatActivity{
-    private static final String USER_DETAILS = "userDetails";
+public class RegisterProviderActivity extends AppCompatActivity implements RegisterProviderContract.View {
+    static final String USER_DETAILS = "userDetails";
     Spinner spnProviderIsAnIndividual;
     EditText editTxtBusinessDesc, editTxtOfficeAddress;
     boolean  boolProviderIsAnIndividual;
     String officeAddress, providerDescription;
     LoadingButton btnSubmitProviderData;
     UserDetailsModel userDetailsModel;
+    RegisterProviderPresenter registerProviderPresenter;
     TextView txVErrorMessage;
     JSONObject providerSignupRequest = new JSONObject();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_provider);
+        registerProviderPresenter = new RegisterProviderPresenter(this);
+
+        //initialize views
         initViews();
 
+        //activate validations
+        validateInput();
         //get associated data
         Intent intent = getIntent();
         userDetailsModel= intent.getParcelableExtra(USER_DETAILS);
 
-        //populate the spinners
-
-        validateInputs();
+        btnSubmitProviderData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerProviderPresenter.signUp();
+            }
+        });
 
     }
 
@@ -71,6 +82,8 @@ public class RegisterProvider extends AppCompatActivity{
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.boolean_values, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //populate spinner
         spnProviderIsAnIndividual.setAdapter(adapter);
         spnProviderIsAnIndividual.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @SneakyThrows
@@ -88,7 +101,8 @@ public class RegisterProvider extends AppCompatActivity{
 
     }
 
-    private void validateInputs(){
+    @Override
+    public boolean validateInput() {
         editTxtBusinessDesc.addTextChangedListener(new TextValidator(editTxtBusinessDesc) {
             @Override
             public void validate() {
@@ -103,43 +117,42 @@ public class RegisterProvider extends AppCompatActivity{
             }
         });
         editTxtOfficeAddress.addTextChangedListener(new TextValidator(editTxtOfficeAddress) {
-                @Override
-                public void validate() {
-                    if(editTxtOfficeAddress.getText().toString().trim().length()<15){
-                        officeAddress = null;
-                        editTxtOfficeAddress.setBackgroundResource(R.drawable.rounded_boaders_error);
-                        editTxtOfficeAddress.setError("Office address too short");
-                    }else {
-                        officeAddress = editTxtOfficeAddress.getText().toString().trim();
-                        editTxtOfficeAddress.setBackgroundResource(R.drawable.rounded_boaders);
-                    }
+            @Override
+            public void validate() {
+                if(editTxtOfficeAddress.getText().toString().trim().length()<15){
+                    officeAddress = null;
+                    editTxtOfficeAddress.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    editTxtOfficeAddress.setError("Office address too short");
+                }else {
+                    officeAddress = editTxtOfficeAddress.getText().toString().trim();
+                    editTxtOfficeAddress.setBackgroundResource(R.drawable.rounded_boaders);
                 }
-            });
+            }
+        });
 
-            btnSubmitProviderData.setOnClickListener(new View.OnClickListener() {
-                @SneakyThrows
-                @Override
-                public void onClick(View v) {
-                    txVErrorMessage.setText(null);
-                    txVErrorMessage.setVisibility(View.GONE);
-                    if(officeAddress==null || providerDescription==null){
-                        Snackbar.make(findViewById(R.id.cnst_send_provider_details_container), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
-                    }else {
-                        providerSignupRequest.put("firstName", userDetailsModel.getFirstName());
-                        providerSignupRequest.put("lastName", userDetailsModel.getLastName());
-                        providerSignupRequest.put("email", userDetailsModel.getEmail());
-                        providerSignupRequest.put("password", userDetailsModel.getPassword());
-                        providerSignupRequest.put("mobileNumber", userDetailsModel.getPhoneNumber());
-                        providerSignupRequest.put("userName", userDetailsModel.getUserName());
-                        providerSignupRequest.put("providerDescription", providerDescription);
-                        providerSignupRequest.put("registeredOffice", true);
-                        providerSignupRequest.put("officeAddress", officeAddress);
-                        signUpProvider(providerSignupRequest);
-                    }
-                }
-            });
-
+        return officeAddress != null && providerDescription != null;
     }
+
+    @Override
+    @SneakyThrows
+    public void onValidationSuccess() {
+        providerSignupRequest.put("firstName", userDetailsModel.getFirstName());
+        providerSignupRequest.put("lastName", userDetailsModel.getLastName());
+        providerSignupRequest.put("email", userDetailsModel.getEmail());
+        providerSignupRequest.put("password", userDetailsModel.getPassword());
+        providerSignupRequest.put("mobileNumber", userDetailsModel.getPhoneNumber());
+        providerSignupRequest.put("userName", userDetailsModel.getUserName());
+        providerSignupRequest.put("providerDescription", providerDescription);
+        providerSignupRequest.put("registeredOffice", true);
+        providerSignupRequest.put("officeAddress", officeAddress);
+        signUpProvider(providerSignupRequest);
+    }
+
+    @Override
+    public void onFailedValidation() {
+        Snackbar.make(findViewById(R.id.cnst_send_provider_details_container), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
+    }
+
     private void signUpProvider(JSONObject jsonObject){
         btnSubmitProviderData.showLoading();
         btnSubmitProviderData.setEnabled(false);
@@ -147,41 +160,38 @@ public class RegisterProvider extends AppCompatActivity{
             @SneakyThrows
             @Override
             public void onResponse(JSONObject response) {
-                boolean success = response.getBoolean("success");
-                if(success){
-                    Toast.makeText(RegisterProvider.this, "Sign up success", Toast.LENGTH_SHORT).show();
+               // boolean success = response.getBoolean("success");
+                    Toast.makeText(RegisterProviderActivity.this, "Sign up success", Toast.LENGTH_SHORT).show();
                     btnSubmitProviderData.hideLoading();
                     btnSubmitProviderData.setEnabled(true);
-                    Intent intent = new Intent(RegisterProvider.this, LoginActivity.class);
+                    Intent intent = new Intent(RegisterProviderActivity.this, LoginActivity.class);
                     //TODO: clear the signup  tasks
                     //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                }
+
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error == null || error.networkResponse == null) {
-                    return;
-                }
-                String body;
-                //get status code here
-                final String statusCode = String.valueOf(error.networkResponse.statusCode);
-                //get response body and parse with appropriate encoding
-                try {
-                    body = new String(error.networkResponse.data,"UTF-8");
-                    JSONObject errorObject = new JSONObject(body);
-                    String message = errorObject.getString("message");
-                    txVErrorMessage.setText(message);
-                    txVErrorMessage.setVisibility(View.VISIBLE);
-                } catch (UnsupportedEncodingException | JSONException e) {
-                    // exception
-                }
-                btnSubmitProviderData.hideLoading();
-                btnSubmitProviderData.setEnabled(true);
+        }, error -> {
+            if (error == null || error.networkResponse == null) {
+                return;
             }
+            String body;
+            //get status code here
+            final String statusCode = String.valueOf(error.networkResponse.statusCode);
+            //get response body and parse with appropriate encoding
+            try {
+                body = new String(error.networkResponse.data,"UTF-8");
+                JSONObject errorObject = new JSONObject(body);
+                String message = errorObject.getString("message");
+                txVErrorMessage.setText(message);
+                txVErrorMessage.setVisibility(View.VISIBLE);
+            } catch (UnsupportedEncodingException | JSONException e) {
+                // exception
+            }
+            btnSubmitProviderData.hideLoading();
+            btnSubmitProviderData.setEnabled(true);
         });
         VolleyController.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
 
 }
+

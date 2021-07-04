@@ -25,6 +25,7 @@ public class VolleyController    {
             // getApplicationContext() is key. It should not be activity context,
             // or else RequestQueue won’t last for the lifetime of your app
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+
         }
         return mRequestQueue;
     }

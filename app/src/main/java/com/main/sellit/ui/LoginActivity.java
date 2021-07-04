@@ -13,6 +13,7 @@ import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.LoginContract;
 import com.main.sellit.helper.TextValidator;
+import com.main.sellit.network.VolleyController;
 import com.main.sellit.presenter.LoginPresenter;
 
 import org.json.JSONObject;
@@ -28,9 +29,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         loginPresenter = new LoginPresenter(this, this);
-
-
         initViews();
 
         //validate initial values
@@ -39,13 +39,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     }
 
+
     private void LoginUser() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(validateInput()){
-                    btnLogin.showLoading();
-                    btnLogin.setEnabled(false);
                     loginPresenter.login(userName, password);
                 }else {
                     onFailedValidation();
@@ -62,18 +61,27 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onLoginSuccess(JSONObject jsonObject) {
-        btnLogin.hideLoading();
-        btnLogin.setEnabled(true);
         Toast.makeText(this, "Login success :"+jsonObject, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLoginFailure(JSONObject errorObject) {
         //TODO: resolve class after second click
-        btnLogin.setEnabled(true);
-        btnLogin.hideLoading();
         Toast.makeText(this, "Login Failed : "+errorObject, Toast.LENGTH_SHORT).show();
 
+
+    }
+
+    @Override
+    public void startLoadingButton() {
+        btnLogin.setEnabled(false);
+        btnLogin.showLoading();
+    }
+
+    @Override
+    public void stopLoadingButton() {
+        btnLogin.setEnabled(true);
+        btnLogin.hideLoading();
     }
 
     @Override
@@ -109,7 +117,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onFailedValidation() {
-        btnLogin.hideLoading();
         Snackbar.make(findViewById(R.id.scrl_login_conatiner), "There are errors on your inputs", Snackbar.LENGTH_LONG).show();
     }
 }
