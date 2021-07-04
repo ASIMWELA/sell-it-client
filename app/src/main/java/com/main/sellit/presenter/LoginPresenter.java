@@ -44,25 +44,21 @@ public class LoginPresenter implements LoginContract.Presenter {
                     view.stopLoadingButton();
                     view.onLoginSuccess(response);
                 }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    if (error == null || error.networkResponse == null) {
-                        view.stopLoadingButton();
-                        return;
-                    }
-                    String body;
-                    try {
-                        body = new String(error.networkResponse.data,"UTF-8");
-                        JSONObject errorObject = new JSONObject(body);
-                        view.onLoginFailure(errorObject);
-                        view.stopLoadingButton();
-
-                    } catch (UnsupportedEncodingException | JSONException e) {
-                        // exception
-                        view.stopLoadingButton();
-                    }
+            }, error -> {
+                if (error == null || error.networkResponse == null) {
+                    view.stopLoadingButton();
+                    return;
                 }
+                String body;
+                try {
+                    body = new String(error.networkResponse.data,"UTF-8");
+                    view.onLoginFailure(body);
+                    view.stopLoadingButton();
+                } catch (UnsupportedEncodingException e) {
+                    view.onLoginFailure(e.toString());
+                    e.printStackTrace();
+                }
+
             });
 
             VolleyController.getInstance(context).addToRequestQueue(loginRequest);

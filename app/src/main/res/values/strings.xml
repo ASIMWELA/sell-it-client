@@ -13,6 +13,7 @@
     <string name="last_name_error">Last name too short</string>
     <string name="user_first_name_error">First name too short</string>
     <string name="phone_number_error">Phone number not valid</string>
+    <string name="auth_error">Authentication Failed</string>
     <string-array name="boolean_values">
         <item>false</item>
         <item>true</item>

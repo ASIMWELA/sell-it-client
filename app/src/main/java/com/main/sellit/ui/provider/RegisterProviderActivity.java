@@ -1,7 +1,5 @@
 package com.main.sellit.ui.provider;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +10,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
@@ -32,8 +31,11 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
+import lombok.AccessLevel;
 import lombok.SneakyThrows;
+import lombok.experimental.FieldDefaults;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RegisterProviderActivity extends AppCompatActivity implements RegisterProviderContract.View {
     static final String USER_DETAILS = "userDetails";
     Spinner spnProviderIsAnIndividual;

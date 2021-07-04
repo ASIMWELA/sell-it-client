@@ -5,7 +5,7 @@ import org.json.JSONObject;
 public interface LoginContract {
     interface LoginView{
         void onLoginSuccess(JSONObject jsonObject);
-        void onLoginFailure(JSONObject errorObject);
+        void onLoginFailure(String errorMessage);
         void startLoadingButton();
         void stopLoadingButton();
         boolean validateInput();
