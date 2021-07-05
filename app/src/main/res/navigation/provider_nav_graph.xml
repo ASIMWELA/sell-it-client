@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/provider_nav_graph"
+    app:startDestination="@id/provider_navigation_request">
+
+    <fragment
+        android:id="@+id/provider_navigation_request"
+        android:name="com.main.sellit.ui.provider.ProviderRequestFragment"
+        android:label="fragment_provider_request"
+        tools:layout="@layout/fragment_provider_request" />
+    <fragment
+        android:id="@+id/provider_navigation_profile"
+        android:name="com.main.sellit.ui.provider.ProviderProfileFragment"
+        android:label="fragment_provider_profile"
+        tools:layout="@layout/fragment_provider_profile" />
+    <fragment
+        android:id="@+id/provider_navigation_services"
+        android:name="com.main.sellit.ui.provider.ProviderServicesFragment"
+        android:label="fragment_provider_services"
+        tools:layout="@layout/fragment_provider_services" />
+</navigation>

@@ -14,6 +14,9 @@
     <string name="user_first_name_error">First name too short</string>
     <string name="phone_number_error">Phone number not valid</string>
     <string name="auth_error">Authentication Failed</string>
+    <string name="provider_profile">Profile</string>
+    <string name="provider_services">Services</string>
+    <string name="provider_requests">Requests</string>
     <string-array name="boolean_values">
         <item>false</item>
         <item>true</item>

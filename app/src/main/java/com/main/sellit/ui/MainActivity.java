@@ -1,5 +1,6 @@
  package com.main.sellit.ui;
 
+ import android.content.Intent;
  import android.os.Bundle;
  import android.widget.Button;
 
@@ -15,27 +16,29 @@
  @FieldDefaults(level = AccessLevel.PRIVATE)
  public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
     MainActivityPresenter presenter;
-    Button btnLogin, btnSignup;
-    @Override
+
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        presenter = new MainActivityPresenter(this, this);
-        btnSignup = (Button)findViewById(R.id.btn_welcome_signup);
-        btnLogin = (Button) findViewById(R.id.btn_welcome_login);
+        presenter = new MainActivityPresenter(this);
+         Button btnSignup = (Button) findViewById(R.id.btn_welcome_signup);
+        Button btnLogin = (Button) findViewById(R.id.btn_welcome_login);
 
         //navigate to login and signup activities
-        btnSignup.setOnClickListener(v -> navigateToSignUp());
-        btnLogin.setOnClickListener(v->navigateToLogin());
+        btnSignup.setOnClickListener(v -> presenter.signUpButtonClicked());
+        btnLogin.setOnClickListener(v->presenter.loginButtonClicked());
     }
 
      @Override
      public void navigateToSignUp() {
-        presenter.signUpButtonClicked();
+        Intent i = new Intent(this, SignupActivity.class);
+        startActivity(i);
      }
 
      @Override
      public void navigateToLogin() {
-        presenter.loginButtonClicked();
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
      }
  }

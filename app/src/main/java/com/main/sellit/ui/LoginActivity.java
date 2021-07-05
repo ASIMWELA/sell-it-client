@@ -84,7 +84,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     @SneakyThrows
     public void onLoginSuccess(JSONObject jsonObject) {
-
         //TODO:
         String role = jsonObject.getJSONObject("userData").getJSONArray("roles").getJSONObject(0).getString("name");
        // JSONArray ar = jsonObject.getJSONArray("roles");
@@ -94,17 +93,19 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             if(role.equals(UserRoles.ROLE_PROVIDER.name())){
                 Intent providerIntent = new Intent(this, ProviderHomeActivity.class);
                 startActivity(providerIntent);
+
             }
             if(role.equals(UserRoles.ROLE_ADMIN.name())){
                 Intent adminIntent = new Intent(this, AdminHomeActivity.class);
                 startActivity(adminIntent);
+
             }
             if(role.equals(UserRoles.ROLE_CUSTOMER)){
                 Intent customerIntent = new Intent(this, CustomerHomeActivity.class);
                 startActivity(customerIntent);
+                edtTextPassword.setText("");
+                edtTxtUserName.setText("");
             }
-
-
         }
 
     }

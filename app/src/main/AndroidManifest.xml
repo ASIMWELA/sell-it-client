@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SellIt">
         <activity android:name=".ui.customer.CustomerHomeActivity"></activity>
         <activity android:name=".ui.admin.AdminHomeActivity" />
-        <activity android:name=".ui.provider.ProviderHomeActivity" />
+        <activity android:name=".ui.provider.ProviderHomeActivity" android:theme="@style/Action.Bar" />
         <activity android:name=".ui.provider.RegisterProviderActivity" />
         <activity android:name=".ui.LoginActivity" />
         <activity

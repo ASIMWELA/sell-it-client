@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 import lombok.SneakyThrows;
 
@@ -41,6 +42,10 @@ public class LoginPresenter implements LoginContract.Presenter {
             JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL + "/auth/login", loginObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                    if(response == null){
+                        Toast.makeText(context, "We could not authenticate. Try again", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     view.stopLoadingButton();
                     view.onLoginSuccess(response);
                 }
@@ -50,14 +55,9 @@ public class LoginPresenter implements LoginContract.Presenter {
                     return;
                 }
                 String body;
-                try {
-                    body = new String(error.networkResponse.data,"UTF-8");
-                    view.onLoginFailure(body);
-                    view.stopLoadingButton();
-                } catch (UnsupportedEncodingException e) {
-                    view.onLoginFailure(e.toString());
-                    e.printStackTrace();
-                }
+                body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                view.onLoginFailure(body);
+                view.stopLoadingButton();
 
             });
 
