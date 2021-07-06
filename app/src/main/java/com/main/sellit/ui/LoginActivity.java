@@ -93,14 +93,16 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             if(role.equals(UserRoles.ROLE_PROVIDER.name())){
                 Intent providerIntent = new Intent(this, ProviderHomeActivity.class);
                 startActivity(providerIntent);
+                finish();
 
             }
             if(role.equals(UserRoles.ROLE_ADMIN.name())){
                 Intent adminIntent = new Intent(this, AdminHomeActivity.class);
                 startActivity(adminIntent);
 
+
             }
-            if(role.equals(UserRoles.ROLE_CUSTOMER)){
+            if(role.equals(UserRoles.ROLE_CUSTOMER.name())){
                 Intent customerIntent = new Intent(this, CustomerHomeActivity.class);
                 startActivity(customerIntent);
                 edtTextPassword.setText("");

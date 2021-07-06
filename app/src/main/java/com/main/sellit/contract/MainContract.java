@@ -1,6 +1,6 @@
 package com.main.sellit.contract;
 
-public interface MainActivityContract {
+public interface MainContract {
     interface View{
        void navigateToSignUp();
        void navigateToLogin();

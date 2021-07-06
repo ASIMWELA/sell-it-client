@@ -1,5 +1,7 @@
 package com.main.sellit.network;
 import android.content.Context;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -30,6 +32,11 @@ public class VolleyController    {
         return mRequestQueue;
     }
     public <T> void addToRequestQueue(Request<T> req) {
+
+        req.setRetryPolicy((new DefaultRetryPolicy(
+                        30000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)));
         getRequestQueue().add(req);
     }
 

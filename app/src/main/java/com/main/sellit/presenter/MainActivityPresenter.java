@@ -1,20 +1,15 @@
 package com.main.sellit.presenter;
 
-import android.content.Context;
-import android.content.Intent;
-
-import com.main.sellit.contract.MainActivityContract;
-import com.main.sellit.ui.LoginActivity;
-import com.main.sellit.ui.SignupActivity;
+import com.main.sellit.contract.MainContract;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MainActivityPresenter implements MainActivityContract.Presenter {
-    final MainActivityContract.View view;
+public class MainActivityPresenter implements MainContract.Presenter {
+    final MainContract.View view;
 
-    public MainActivityPresenter(MainActivityContract.View view) {
+    public MainActivityPresenter(MainContract.View view) {
         this.view = view;
     }
 

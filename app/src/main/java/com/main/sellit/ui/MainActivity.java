@@ -7,14 +7,14 @@
  import androidx.appcompat.app.AppCompatActivity;
 
  import com.main.sellit.R;
- import com.main.sellit.contract.MainActivityContract;
+ import com.main.sellit.contract.MainContract;
  import com.main.sellit.presenter.MainActivityPresenter;
 
  import lombok.AccessLevel;
  import lombok.experimental.FieldDefaults;
 
  @FieldDefaults(level = AccessLevel.PRIVATE)
- public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
+ public class MainActivity extends AppCompatActivity implements MainContract.View {
     MainActivityPresenter presenter;
 
      @Override
