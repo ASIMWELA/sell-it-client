@@ -16,7 +16,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/provider_nav_graph" />
+        app:navGraph="@navigation/provider_nav_graph"
+        tools:ignore="MissingClass" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/provider_bottom_navigation_view"
