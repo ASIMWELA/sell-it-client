@@ -6,10 +6,10 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MainActivityPresenter implements MainContract.Presenter {
+public class MainPresenter implements MainContract.Presenter {
     final MainContract.View view;
 
-    public MainActivityPresenter(MainContract.View view) {
+    public MainPresenter(MainContract.View view) {
         this.view = view;
     }
 

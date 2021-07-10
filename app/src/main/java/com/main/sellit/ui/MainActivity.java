@@ -8,20 +8,20 @@
 
  import com.main.sellit.R;
  import com.main.sellit.contract.MainContract;
- import com.main.sellit.presenter.MainActivityPresenter;
+ import com.main.sellit.presenter.MainPresenter;
 
  import lombok.AccessLevel;
  import lombok.experimental.FieldDefaults;
 
  @FieldDefaults(level = AccessLevel.PRIVATE)
  public class MainActivity extends AppCompatActivity implements MainContract.View {
-    MainActivityPresenter presenter;
+    MainPresenter presenter;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        presenter = new MainActivityPresenter(this);
+        setContentView(R.layout.activity_main);
+        presenter = new MainPresenter(this);
          Button btnSignup = (Button) findViewById(R.id.btn_welcome_signup);
         Button btnLogin = (Button) findViewById(R.id.btn_welcome_login);
 
