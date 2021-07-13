@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginModel implements Parcelable {
-    String token,
-            userName,
+    String  userName,
             lastName,
             firstName,
             email,
@@ -24,7 +23,6 @@ public class LoginModel implements Parcelable {
 
 
     protected LoginModel(Parcel in) {
-        token = in.readString();
         userName = in.readString();
         lastName = in.readString();
         firstName = in.readString();
@@ -53,7 +51,6 @@ public class LoginModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(token);
         dest.writeString(userName);
         dest.writeString(lastName);
         dest.writeString(firstName);

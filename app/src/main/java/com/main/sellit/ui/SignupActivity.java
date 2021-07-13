@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.snackbar.Snackbar;
 import com.main.sellit.R;
 import com.main.sellit.contract.SignupContract;
+import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.presenter.SignupPresenter;
@@ -47,7 +48,6 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
             firstName,
             lastName;
 
-    private static final String USER_DETAILS = "userDetails";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -187,7 +187,7 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
                 .password(password)
                 .build();
         Intent intent = new Intent(this, RegisterProviderActivity.class);
-        intent.putExtra(USER_DETAILS, userDetailsModel);
+        intent.putExtra(AppConstants.USER_DETAILS, userDetailsModel);
         startActivity(intent);
     }
 

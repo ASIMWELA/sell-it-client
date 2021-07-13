@@ -2,7 +2,7 @@ package com.main.sellit.contract;
 
 import org.json.JSONObject;
 
-public interface AddCategoryContract {
+public interface AddProductCategoryContract {
     interface View{
         boolean validateInput();
         void onFailedValidation();
@@ -12,6 +12,6 @@ public interface AddCategoryContract {
         void stopLoadingButton();
     }
     interface Presenter{
-        void submitData(JSONObject data);
+        void submitData(JSONObject data, String token);
     }
 }

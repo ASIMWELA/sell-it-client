@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SellIt">
-        <activity android:name=".ui.AddCategoryActivity"></activity>
+        <activity android:name=".ui.AddService"></activity>
+        <activity android:name=".ui.AddProductCategoryActivity" />
         <activity android:name=".ui.customer.CustomerHomeActivity" />
         <activity android:name=".ui.admin.AdminHomeActivity" />
         <activity

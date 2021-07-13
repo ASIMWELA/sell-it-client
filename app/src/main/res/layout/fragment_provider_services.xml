@@ -27,7 +27,7 @@
             android:backgroundTint="@color/color_primary_blend"
             android:clickable="true"
             android:src="@drawable/add"
-            android:tint="@color/white"
+            app:tint="@color/white"
             app:backgroundTint="@color/color_primary_blend"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.ProviderServiceContract;
 import com.main.sellit.presenter.ProviderServicePresenter;
-import com.main.sellit.ui.AddCategoryActivity;
+import com.main.sellit.ui.AddProductCategoryActivity;
 
 import lombok.NoArgsConstructor;
 
@@ -55,7 +55,7 @@ public class ProviderServicesFragment extends Fragment implements ProviderServic
 
     @Override
     public void openAddCategoryActivity() {
-        Intent intent = new Intent(getActivity(), AddCategoryActivity.class);
+        Intent intent = new Intent(getActivity(), AddProductCategoryActivity.class);
         startActivity(intent);
     }
 

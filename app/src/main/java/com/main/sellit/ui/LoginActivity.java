@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.LoginContract;
+import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.helper.UserRoles;
 import com.main.sellit.presenter.LoginPresenter;
@@ -34,19 +35,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     EditText edtTxtUserName, edtTextPassword;
     String userName, password;
     TextView txvErrorMessage;
-    Context context;
-
-    public LoginActivity(Context context) {
-        this.context = context;
-    }
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        loginPresenter = new LoginPresenter(this, this);
         initViews();
+        sessionManager = new SessionManager(this);
+        loginPresenter = new LoginPresenter(this, this);
 
         //validate initial values
         validateInput();
@@ -91,10 +88,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             Toast.makeText(this, "Error: No role assigned login failed", Toast.LENGTH_SHORT).show();
         }else {
             if(role.equals(UserRoles.ROLE_PROVIDER.name())){
+                //get token and set it to session
+                String token = jsonObject.getJSONObject("tokenPayload").getString("accessToken");
                 Intent providerIntent = new Intent(this, ProviderHomeActivity.class);
+                sessionManager.setAccessToken(token);
                 startActivity(providerIntent);
                 finish();
-
             }
             if(role.equals(UserRoles.ROLE_ADMIN.name())){
                 Intent adminIntent = new Intent(this, AdminHomeActivity.class);

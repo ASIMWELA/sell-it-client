@@ -2,9 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_category_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AddCategoryActivity">
+    tools:context=".ui.AddProductCategoryActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,6 +36,7 @@
             android:id="@+id/tv_add_category_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
             android:text="Add Product Category"
             android:textColor="@color/color_primary_blend"
             android:textSize="18sp"
@@ -44,14 +46,13 @@
             app:layout_constraintHorizontal_bias="0.137"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.358" />
+            app:layout_constraintVertical_bias="0.275" />
 
         <EditText
             android:id="@+id/et_add_category_cate_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_boaders"
             android:ems="10"
@@ -59,26 +60,76 @@
             android:inputType="textPersonName"
             android:padding="10dp"
             android:textColorHighlight="@color/black"
+            android:textColorLink="@color/color_primary_blend"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_category_submit_success" />
 
         <com.kusu.loadingbutton.LoadingButton
             android:id="@+id/btn_add_category_send_data"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="32dp"
-            android:textColor="@color/white"
-            app:lb_isShadowEnable="false"
-            app:lb_cornerRadius="30dp"
             android:height="40dp"
             android:text="Add Category"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_add_category_cate_name" />
+            app:layout_constraintTop_toBottomOf="@+id/et_add_category_cate_name"
+            app:lb_cornerRadius="30dp"
+            app:lb_isShadowEnable="false" />
+
+        <TextView
+            android:id="@+id/tv_add_category_submit_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/holo_green_dark"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+        <TextView
+            android:id="@+id/tv_add_category_err_msg"
+            android:layout_width="29dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/red"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_category_send_data" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_category_err_msg">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="77dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_weight="1"
+                android:text="Already Have Categories ?" />
+
+            <TextView
+                android:id="@+id/tv_add_category_open_add_service_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add Services"
+                android:textColor="@color/color_primary_blend"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
