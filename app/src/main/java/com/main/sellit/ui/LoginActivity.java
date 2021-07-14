@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     LoadingButton btnLogin;
     EditText edtTxtUserName, edtTextPassword;
     String userName, password;
-    TextView txvErrorMessage;
+    TextView txvErrorMessage, tvOpenSignupActivity;
     SessionManager sessionManager;
 
     @Override
@@ -47,15 +47,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
         //validate initial values
         validateInput();
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         loginUser();
-    }
+        tvOpenSignupActivity.setOnClickListener(v->{
+            startActivity(new Intent(this, SignupActivity.class));
+            finish();
+        });
 
+    }
     private void loginUser() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         edtTextPassword = (EditText)findViewById(R.id.edtx_login_password);
         edtTxtUserName = (EditText)findViewById(R.id.edt_txt_login_user_name);
         txvErrorMessage = (TextView)findViewById(R.id.txv_login_error_message);
+        tvOpenSignupActivity = (TextView)findViewById(R.id.tv_login_open_signup_activity);
     }
 
     @Override

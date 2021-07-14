@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -48,6 +49,8 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
             firstName,
             lastName;
 
+    ImageView ivBackArrow;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,10 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
                 signupPresenter.captureProviderPersonaDetails();
             }
         });
+
+        ivBackArrow.setOnClickListener(v->{
+            onBackPressed();
+        });
     }
 
     private void initViews(){
@@ -81,6 +88,7 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         editTxtPassword = (EditText)findViewById(R.id.edtx_password);
         editTxtPhoneNumber = (EditText)findViewById(R.id.edtx_phone_number);
         editTxtUserName = (EditText)findViewById(R.id.edt_txt_user_name);
+        ivBackArrow = (ImageView)findViewById(R.id.imv_back_arrow_provider_info);
 
     }
     @Override
@@ -189,6 +197,11 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         Intent intent = new Intent(this, RegisterProviderActivity.class);
         intent.putExtra(AppConstants.USER_DETAILS, userDetailsModel);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     @Override
