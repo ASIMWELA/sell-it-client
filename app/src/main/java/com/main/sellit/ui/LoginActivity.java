@@ -47,14 +47,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
         //validate initial values
         validateInput();
-        loginUser();
+
         tvOpenSignupActivity.setOnClickListener(v->{
             startActivity(new Intent(this, SignupActivity.class));
             finish();
         });
 
-    }
-    private void loginUser() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +65,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 }
             }
         });
+
+    }
+    private void loginUser() {
+
     }
 
     private void initViews(){

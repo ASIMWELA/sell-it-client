@@ -10,6 +10,7 @@ public interface AddProductCategoryContract {
         void onSubmitError(String apiError);
         void startLoadingButton();
         void stopLoadingButton();
+
     }
     interface Presenter{
         void submitData(JSONObject data, String token);
