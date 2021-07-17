@@ -64,7 +64,6 @@ public class AddServicePresenter implements AddServiceContract.Presenter{
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     if (error == null || error.networkResponse == null) {
-                        Log.e("ERRORHERE", error.toString());
                         view.hideLoadingButton();
                         return;
                     }
@@ -72,7 +71,6 @@ public class AddServicePresenter implements AddServiceContract.Presenter{
                     body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
                     view.hideLoadingButton();
                     view.onSubmitServiceError(body);
-                    Log.e("ERRORHERE", error.toString());
                 }
             }){
                 @Override

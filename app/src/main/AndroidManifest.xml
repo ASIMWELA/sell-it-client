@@ -3,8 +3,8 @@
     package="com.main.sellit">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SellIt">
-        <activity android:name=".ui.AddService"></activity>
+        <activity android:name=".ui.MapServiceToProvider"></activity>
+        <activity android:name=".ui.AddService" />
         <activity android:name=".ui.AddProductCategoryActivity" />
         <activity android:name=".ui.customer.CustomerHomeActivity" />
         <activity android:name=".ui.admin.AdminHomeActivity" />

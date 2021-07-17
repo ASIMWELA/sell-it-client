@@ -26,6 +26,7 @@
                 android:layout_height="150dp"
                 android:background="@drawable/add_category_bg"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/rounded_boaders"
                 android:ems="10"
@@ -44,17 +45,19 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_add_service_title" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_add_service_error_success_meg" />
 
             <Spinner
                 android:id="@+id/spn_service_category"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="38dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="100dp"
+                android:background="@drawable/spinner_bg"
                 android:drawSelectorOnTop="true"
-                android:padding="10dp"
+                android:padding="6dp"
+                android:spinnerMode="dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -98,20 +101,76 @@
                 android:textColor="@color/color_primary_blend"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_add_service_service_name" />
+
+            <TextView
+                android:id="@+id/tv_add_service_error_success_meg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_add_service_title" />
+
+            <ImageView
+                android:id="@+id/iv_add_service_back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                app:tint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back_arrow_icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_service_save_service">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="54dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_weight="1"
+                    android:text="Aleady Have Services?" />
+
+                <TextView
+                    android:id="@+id/tv_add_services_open_map_service_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Map Services"
+                    android:textColor="@color/color_primary_blend"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/progress_overlay_holder_add_service"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
         android:alpha="1.0"
+        android:animateLayoutChanges="true"
         android:background="@color/white"
         android:clickable="true"
+        android:focusable="true"
         android:visibility="gone"
-        android:focusable="true">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
@@ -119,9 +178,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="110dp"
             android:indeterminate="true"
-            android:indeterminateTintMode="src_atop"
             android:indeterminateTint="@color/color_primary_blend"
-            />
+            android:indeterminateTintMode="src_atop" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

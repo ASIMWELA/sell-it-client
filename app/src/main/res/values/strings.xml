@@ -18,6 +18,9 @@
     <string name="provider_services">Services</string>
     <string name="provider_requests">Requests</string>
     <string name="add_category_submit_error">Server could not process your request</string>
+    <string name="no_category_added_error">No Categories Added</string>
+    <string name="add_service_error_msg">Request processing failed</string>
+    <string name="add_service_succes_msg">Service added successfully</string>
     <string-array name="boolean_values">
         <item>false</item>
         <item>true</item>

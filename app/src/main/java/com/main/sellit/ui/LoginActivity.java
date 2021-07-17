@@ -99,8 +99,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             if(role.equals(UserRoles.ROLE_ADMIN.name())){
                 Intent adminIntent = new Intent(this, AdminHomeActivity.class);
                 startActivity(adminIntent);
-
-
             }
             if(role.equals(UserRoles.ROLE_CUSTOMER.name())){
                 Intent customerIntent = new Intent(this, CustomerHomeActivity.class);
@@ -126,7 +124,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             txvErrorMessage.setVisibility(View.VISIBLE);
             Toast.makeText(this, "Login Failed :"+message, Toast.LENGTH_SHORT).show();
         }
-
        // startActivity(getIntent());
     }
 
