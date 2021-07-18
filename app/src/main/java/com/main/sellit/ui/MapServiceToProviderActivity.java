@@ -13,9 +13,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.MapServiceToProviderContract;
+import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.Service;
 import com.main.sellit.presenter.MapServiceToProviderPresenter;
 
@@ -38,6 +40,9 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
     Spinner spinnerServicesHolder;
     ArrayList<String> serviceNames;
     ArrayList<Service> services;
+    String offerDesc;
+    int experienceInMonths;
+    double billingPerHour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +66,6 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
                 for(int x = 0 ; x < services.size(); x++){
                     if(serviceName.equalsIgnoreCase(services.get(x).getServiceName())){
                         serviceUuid = services.get(x).getUuid();
-
-                        Toast.makeText(MapServiceToProviderActivity.this, serviceUuid, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -131,22 +134,76 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
 
     @Override
     public boolean validateInput() {
-        return false;
+        etServiceOfferDescription.addTextChangedListener(new TextValidator(etServiceOfferDescription) {
+            @Override
+            public void validate() {
+                if(etServiceOfferDescription.getText().toString().trim().length()<10){
+                    etServiceOfferDescription.setError("Service offer too short");
+                    etServiceOfferDescription.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    offerDesc = null;
+                }else {
+                    etServiceOfferDescription.setError(null);
+                    etServiceOfferDescription.setBackgroundResource(R.drawable.rounded_boaders);
+                    offerDesc = etServiceOfferDescription.getText().toString().trim();
+                }
+            }
+        });
+
+        etExperienceInMonths.addTextChangedListener(new TextValidator(etExperienceInMonths) {
+            @Override
+            public void validate() {
+                int expInMonths = Integer.parseInt(etExperienceInMonths.getText().toString().trim());
+                if(expInMonths < 0){
+                    etExperienceInMonths.setError("Invalid experience in Months");
+                    etExperienceInMonths.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    experienceInMonths = -1;
+                }else {
+                    etExperienceInMonths.setError(null);
+                    etExperienceInMonths.setBackgroundResource(R.drawable.rounded_boaders);
+                    experienceInMonths = Integer.parseInt(etExperienceInMonths.getText().toString().trim());
+                }
+            }
+        });
+
+        etBillingPerHour.addTextChangedListener(new TextValidator(etBillingPerHour) {
+            @Override
+            public void validate() {
+                double billHour = Double.parseDouble(etBillingPerHour.getText().toString().trim());
+                if(billHour<0.0){
+                    etBillingPerHour.setError("Invalid billing rate");
+                    etBillingPerHour.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    billingPerHour = -1.0;
+                }else {
+                    etBillingPerHour.setError(null);
+                    etBillingPerHour.setBackgroundResource(R.drawable.rounded_boaders);
+                    billingPerHour = Double.parseDouble(etBillingPerHour.getText().toString().trim());
+                }
+
+            }
+        });
+        return billingPerHour != -1.0
+                && experienceInMonths != -1
+                && offerDesc != null
+                && serviceUuid != null;
     }
 
     @Override
     public void onFailedValidation() {
-
+        Snackbar.make(findViewById(R.id.map_service_to_provider_base_view), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void showLoadingButton() {
-
+        btnSendProviderDetails.setEnabled(false);
+        btnSendProviderDetails.showLoading();
     }
 
     @Override
     public void hideLoadingButton() {
-
+        btnSendProviderDetails.setEnabled(true);
+        btnSendProviderDetails.hideLoading();
+        btnSendProviderDetails.refresh();
+        btnSendProviderDetails.setOnClickListener(null);
     }
 
     @Override

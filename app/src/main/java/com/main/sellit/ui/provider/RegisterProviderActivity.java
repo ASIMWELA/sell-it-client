@@ -74,7 +74,7 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
     }
 
     private void initViews(){
-        editTxtBusinessDesc = (EditText)findViewById(R.id.et_register_provider_bussiness_desc);
+        editTxtBusinessDesc = (EditText) findViewById(R.id.et_register_provider_bussiness_desc);
         editTxtOfficeAddress = (EditText)findViewById(R.id.edtx_office_address);
         spnProviderIsAnIndividual = (Spinner)findViewById(R.id.spn_is_individual);
         btnSubmitProviderData = (LoadingButton)findViewById(R.id.btn_submit_provider_details);
