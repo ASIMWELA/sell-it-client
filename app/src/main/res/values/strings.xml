@@ -21,6 +21,7 @@
     <string name="no_category_added_error">No Categories Added</string>
     <string name="add_service_error_msg">Request processing failed</string>
     <string name="add_service_succes_msg">Service added successfully</string>
+    <string name="map_service_2_provider_empty_services_error_msg">No Services Found</string>
     <string-array name="boolean_values">
         <item>false</item>
         <item>true</item>

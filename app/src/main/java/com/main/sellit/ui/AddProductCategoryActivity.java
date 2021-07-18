@@ -61,7 +61,7 @@ public class AddProductCategoryActivity extends AppCompatActivity implements Add
         });
 
         tvAddService.setOnClickListener(v->{
-            startActivity(new Intent(AddProductCategoryActivity.this, AddService.class));
+            startActivity(new Intent(AddProductCategoryActivity.this, AddServiceActivity.class));
         });
 
     }

@@ -67,9 +67,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         });
 
     }
-    private void loginUser() {
-
-    }
 
     private void initViews(){
         btnLogin = (LoadingButton)findViewById(R.id.btn_login_send_request);

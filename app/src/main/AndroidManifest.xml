@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SellIt">
-        <activity android:name=".ui.MapServiceToProvider"></activity>
-        <activity android:name=".ui.AddService" />
+        <activity android:name=".ui.MapServiceToProviderActivity"></activity>
+        <activity android:name=".ui.AddServiceActivity" />
         <activity android:name=".ui.AddProductCategoryActivity" />
         <activity android:name=".ui.customer.CustomerHomeActivity" />
         <activity android:name=".ui.admin.AdminHomeActivity" />

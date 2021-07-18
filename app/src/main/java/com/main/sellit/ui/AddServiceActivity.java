@@ -2,12 +2,12 @@ package com.main.sellit.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -34,7 +34,7 @@ import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AddService extends AppCompatActivity implements AddServiceContract.View {
+public class AddServiceActivity extends AppCompatActivity implements AddServiceContract.View {
 
     FrameLayout progressBarHolder;
     AddServicePresenter addServicePresenter;
@@ -93,6 +93,9 @@ public class AddService extends AppCompatActivity implements AddServiceContract.
         });
         ivBackArrow.setOnClickListener(v->{
             onBackPressed();
+        });
+        tvOpenMapServiceActivity.setOnClickListener(v->{
+            startActivity(new Intent(getApplicationContext(), MapServiceToProviderActivity.class));
         });
 
     }
