@@ -15,6 +15,14 @@ public class SessionManager {
     public void setLoggedInUser(String userObject){
         editor.putString(AppConstants.LOGGED_IN_USER_SESSION_KEY, userObject).commit();
     }
+
+    public void setProviderUuid(String providerUuid){
+        editor.putString(AppConstants.SET_PROVIDER_UUID, providerUuid).commit();
+    }
+
+    public String getProviderUUid(){
+        return sharedPreferences.getString(AppConstants.SET_PROVIDER_UUID, null);
+    }
     public String getLoggedInUser(){
        return sharedPreferences.getString(AppConstants.LOGGED_IN_USER_SESSION_KEY, null);
     }

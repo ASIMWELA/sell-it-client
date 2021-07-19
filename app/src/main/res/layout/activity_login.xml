@@ -154,7 +154,7 @@
             android:layout_marginStart="177dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="177dp"
-            android:textColor="@color/red"
+            android:textColor="@color/color_secondary_blend"
             android:textSize="12sp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"

@@ -110,7 +110,7 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
             public void validate() {
                 if(editTxtBusinessDesc.getText().toString().trim().length()<20){
                     providerDescription = null;
-                    editTxtBusinessDesc.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    editTxtBusinessDesc.setBackgroundResource(R.drawable.input_text_area_border_error);
                     editTxtBusinessDesc.setError("Business description too short");
                 }else {
                     providerDescription = editTxtBusinessDesc.getText().toString().trim();

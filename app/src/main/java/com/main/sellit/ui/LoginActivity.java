@@ -8,15 +8,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.LoginContract;
+import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.helper.UserRoles;
+import com.main.sellit.model.ProviderLoginModel;
 import com.main.sellit.presenter.LoginPresenter;
 import com.main.sellit.ui.admin.AdminHomeActivity;
 import com.main.sellit.ui.customer.CustomerHomeActivity;
@@ -89,7 +90,23 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 //get token and set it to session
                 String token = jsonObject.getJSONObject("tokenPayload").getString("accessToken");
                 Intent providerIntent = new Intent(this, ProviderHomeActivity.class);
+                JSONObject userDetails = jsonObject.getJSONObject("userData");
+                JSONObject providerDetails = jsonObject.getJSONObject("userData").getJSONObject("providerDetails");
+
+                ProviderLoginModel providerLoginModel = ProviderLoginModel.builder()
+                        .providerUuid(providerDetails.getString("uuid"))
+                        .providerDescription(providerDetails.getString("providerDescription"))
+                        .officeAddress(providerDetails.getString("officeAddress"))
+                        .email(userDetails.getString("email"))
+                        .firstName(userDetails.getString("firstName"))
+                        .lastName(userDetails.getString("lastName"))
+                        .userName(userDetails.getString("userName"))
+                        .uuid(userDetails.getString("uuid"))
+                        .phoneNumber(userDetails.getString("mobileNumber"))
+                        .build();
+                providerIntent.putExtra(AppConstants.PROVIDER_LOGIN_DETAILS, providerLoginModel);
                 sessionManager.setAccessToken(token);
+                sessionManager.setProviderUuid(providerLoginModel.getProviderUuid());
                 startActivity(providerIntent);
                 finish();
             }

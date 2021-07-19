@@ -17,12 +17,14 @@ import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.MapServiceToProviderContract;
+import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.Service;
 import com.main.sellit.presenter.MapServiceToProviderPresenter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -34,7 +36,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
     FrameLayout fmLoadingProgressBar;
     LoadingButton btnSendProviderDetails;
     String serviceUuid;
-    TextView tvActivityTitle;
+    TextView tvActivityTitle, tvApiResponse;
     ImageView ivBackArrow;
     MapServiceToProviderPresenter presenter;
     Spinner spinnerServicesHolder;
@@ -43,8 +45,12 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
     String offerDesc;
     int experienceInMonths;
     double billingPerHour;
-
+    SessionManager sessionManager;
+    String providerUuid;
+    JSONObject serviceOfferObj;
+    String token;
     @Override
+    @SneakyThrows
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_service_to_provider);
@@ -54,6 +60,10 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
         presenter.getServices();
         services = new ArrayList<>();
         serviceNames = new ArrayList<>();
+        sessionManager = new SessionManager(this);
+        providerUuid = sessionManager.getProviderUUid();
+        serviceOfferObj = new JSONObject();
+        token = sessionManager.getToken();
 
         ivBackArrow.setOnClickListener(v->{
             onBackPressed();
@@ -75,6 +85,14 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
 
             }
         });
+
+        btnSendProviderDetails.setOnClickListener(v->{
+            tvApiResponse.setVisibility(View.INVISIBLE);
+            presenter.mapServiceToProvider(serviceOfferObj, serviceUuid, providerUuid, token);
+
+        });
+
+        validateInput();
     }
     private void initViews(){
         ivBackArrow = (ImageView)findViewById(R.id.iv_map_service_to_provider_back_arrow);
@@ -85,6 +103,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
         etExperienceInMonths = (EditText)findViewById(R.id.et_map_service_to_provider_experience_in_months);
         etServiceOfferDescription = (EditText)findViewById(R.id.et_map_service_to_provider_service_offer_desc);
         spinnerServicesHolder = (Spinner)findViewById(R.id.spn_map_service_to_provider_services);
+        tvApiResponse = (TextView)findViewById(R.id.tv_map_service_to_provider_api_response);
     }
     @Override
     public void onBackPressed() {
@@ -136,24 +155,26 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
     public boolean validateInput() {
         etServiceOfferDescription.addTextChangedListener(new TextValidator(etServiceOfferDescription) {
             @Override
+            @SneakyThrows
             public void validate() {
                 if(etServiceOfferDescription.getText().toString().trim().length()<10){
                     etServiceOfferDescription.setError("Service offer too short");
-                    etServiceOfferDescription.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    etServiceOfferDescription.setBackgroundResource(R.drawable.input_text_area_border_error);
                     offerDesc = null;
                 }else {
                     etServiceOfferDescription.setError(null);
-                    etServiceOfferDescription.setBackgroundResource(R.drawable.rounded_boaders);
+                    etServiceOfferDescription.setBackgroundResource(R.drawable.input_text_area_bg);
                     offerDesc = etServiceOfferDescription.getText().toString().trim();
+                    serviceOfferObj.put("serviceOfferingDescription", offerDesc);
                 }
             }
         });
 
         etExperienceInMonths.addTextChangedListener(new TextValidator(etExperienceInMonths) {
             @Override
+            @SneakyThrows
             public void validate() {
-                int expInMonths = Integer.parseInt(etExperienceInMonths.getText().toString().trim());
-                if(expInMonths < 0){
+                if(Integer.parseInt(etExperienceInMonths.getText().toString().trim()) < 0){
                     etExperienceInMonths.setError("Invalid experience in Months");
                     etExperienceInMonths.setBackgroundResource(R.drawable.rounded_boaders_error);
                     experienceInMonths = -1;
@@ -161,15 +182,17 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
                     etExperienceInMonths.setError(null);
                     etExperienceInMonths.setBackgroundResource(R.drawable.rounded_boaders);
                     experienceInMonths = Integer.parseInt(etExperienceInMonths.getText().toString().trim());
+                    serviceOfferObj.put("experienceInMonths",experienceInMonths);
                 }
             }
         });
 
         etBillingPerHour.addTextChangedListener(new TextValidator(etBillingPerHour) {
             @Override
+            @SneakyThrows
             public void validate() {
-                double billHour = Double.parseDouble(etBillingPerHour.getText().toString().trim());
-                if(billHour<0.0){
+
+                if(Double.parseDouble(etBillingPerHour.getText().toString().trim())<0.0){
                     etBillingPerHour.setError("Invalid billing rate");
                     etBillingPerHour.setBackgroundResource(R.drawable.rounded_boaders_error);
                     billingPerHour = -1.0;
@@ -177,6 +200,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
                     etBillingPerHour.setError(null);
                     etBillingPerHour.setBackgroundResource(R.drawable.rounded_boaders);
                     billingPerHour = Double.parseDouble(etBillingPerHour.getText().toString().trim());
+                    serviceOfferObj.put("billingRatePerHour", billingPerHour);
                 }
 
             }
@@ -202,17 +226,36 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
     public void hideLoadingButton() {
         btnSendProviderDetails.setEnabled(true);
         btnSendProviderDetails.hideLoading();
-        btnSendProviderDetails.refresh();
-        btnSendProviderDetails.setOnClickListener(null);
     }
 
     @Override
+    @SneakyThrows
     public void onSubmitServiceSuccess(JSONObject apiResponse) {
+        Toast.makeText(this, apiResponse.toString(), Toast.LENGTH_SHORT).show();
+        String message = apiResponse.getString("message");
 
+        //TODO: clear the input fields
+//        etBillingPerHour.setText("");
+//        etBillingPerHour.setError(null);
+//
+//        etExperienceInMonths.setText("");
+//        etExperienceInMonths.setError(null);
+//
+//        etServiceOfferDescription.setText("");
+//        etServiceOfferDescription.setError(null);
+
+        tvApiResponse.setText(message);
+        tvApiResponse.setTextColor(getResources().getColor(R.color.color_secondary));
+        tvApiResponse.setVisibility(View.VISIBLE);
     }
 
     @Override
+    @SneakyThrows
     public void onSubmitServiceError(String volleyError) {
-
+        JSONObject errorOb = new JSONObject(volleyError);
+        String message =  errorOb.getString("message");
+        tvApiResponse.setText(message);
+        tvApiResponse.setTextColor(getResources().getColor(R.color.color_secondary_blend));
+        tvApiResponse.setVisibility(View.VISIBLE);
     }
 }

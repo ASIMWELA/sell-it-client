@@ -135,6 +135,7 @@
                     android:background="@drawable/input_text_area_bg"
                     android:hint="Business Description"
                     android:includeFontPadding="false"
+                    android:paddingStart="2dp"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

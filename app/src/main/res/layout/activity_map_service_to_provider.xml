@@ -42,7 +42,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginEnd="32dp"
                     android:background="@drawable/rounded_boaders"
                     android:ems="10"
@@ -51,7 +51,7 @@
                     android:padding="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_map_service_to_provider_activity_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_map_service_to_provider_api_response" />
 
                 <TextView
                     android:id="@+id/tv_map_service_to_provider_activity_title"
@@ -104,6 +104,7 @@
                     android:ems="10"
                     android:hint="service offer description"
                     android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spn_map_service_to_provider_services" />
@@ -149,6 +150,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_map_service_to_provider_experience_in_months" />
+
+                <TextView
+                    android:id="@+id/tv_map_service_to_provider_api_response"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_map_service_to_provider_activity_title" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

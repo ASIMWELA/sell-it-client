@@ -17,5 +17,6 @@ public interface MapServiceToProviderContract {
     }
     interface Presenter{
         void getServices();
+        void mapServiceToProvider(JSONObject serviceProviderDetails, String serviceUuid, String providerUuid, String token);
     }
 }
