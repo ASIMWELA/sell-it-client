@@ -24,7 +24,6 @@ import com.main.sellit.presenter.MapServiceToProviderPresenter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -98,7 +97,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
         ivBackArrow = (ImageView)findViewById(R.id.iv_map_service_to_provider_back_arrow);
         tvActivityTitle = (TextView)findViewById(R.id.tv_map_service_to_provider_activity_title);
         btnSendProviderDetails = (LoadingButton)findViewById(R.id.btn_map_service_to_provider_send_request);
-        fmLoadingProgressBar =(FrameLayout)findViewById(R.id.progress_overlay_holder_map_service_to_provider);
+        fmLoadingProgressBar =(FrameLayout)findViewById(R.id.progress_overlay_holder_map_services_to_provider);
         etBillingPerHour =(EditText)findViewById(R.id.et_map_service_to_provider_billir_rate);
         etExperienceInMonths = (EditText)findViewById(R.id.et_map_service_to_provider_experience_in_months);
         etServiceOfferDescription = (EditText)findViewById(R.id.et_map_service_to_provider_service_offer_desc);

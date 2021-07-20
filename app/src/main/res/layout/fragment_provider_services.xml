@@ -11,10 +11,10 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recycler_view_provider_services"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="150dp"
+            android:layout_marginBottom="140dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,13 +27,37 @@
             android:backgroundTint="@color/color_primary_blend"
             android:clickable="true"
             android:src="@drawable/add"
+            android:layout_marginBottom="-100dp"
             app:tint="@color/white"
             app:backgroundTint="@color/color_primary_blend"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.912"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_provider_services"
             app:layout_constraintVertical_bias="0.191" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/progress_overlay_holder_provider_services"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="1.0"
+        android:animateLayoutChanges="true"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="110dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/color_primary_blend"
+            android:indeterminateTintMode="src_atop" />
+
+    </FrameLayout>
 </FrameLayout>

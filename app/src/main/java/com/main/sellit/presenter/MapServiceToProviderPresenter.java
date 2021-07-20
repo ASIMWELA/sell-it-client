@@ -43,7 +43,7 @@ public class MapServiceToProviderPresenter implements MapServiceToProviderContra
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                view.showGetServicesProgressBar();
+                view.hideGetServicesProgressBar();
                 view.onGetServicesError(error.toString());
             }
         });

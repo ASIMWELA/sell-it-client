@@ -165,7 +165,7 @@
     </ScrollView>
 
     <FrameLayout
-        android:id="@+id/progress_overlay_holder_map_service_to_provider"
+        android:id="@+id/progress_overlay_holder_map_services_to_provider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="1.0"
