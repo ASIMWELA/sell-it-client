@@ -3,15 +3,18 @@ package com.main.sellit.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @NoArgsConstructor
 @Builder
 @Data
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDetailsModel implements Parcelable {
     String
             firstName,

@@ -15,10 +15,13 @@ import com.main.sellit.model.ServiceAndCategoryNamesModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.MyViewHolder> {
     List<ServiceAndCategoryNamesModel> services = new ArrayList<>();
-    TextView tvServiceName, tvServiceCategoryName;
-
     public ServiceListAdapter(List<ServiceAndCategoryNamesModel> services) {
         this.services = services;
     }
@@ -34,8 +37,8 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ServiceListAdapter.MyViewHolder holder, int position) {
-        tvServiceCategoryName.setText(services.get(position).getServiceCategory());
-        tvServiceName.setText(services.get(position).getServiceName());
+        holder.tvServiceCategoryName.setText(services.get(position).getServiceCategory());
+        holder.tvServiceName.setText(services.get(position).getServiceName());
 
     }
 
@@ -45,6 +48,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView tvServiceName, tvServiceCategoryName;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvServiceCategoryName = itemView.findViewById(R.id.tv_provider_service_category_name);

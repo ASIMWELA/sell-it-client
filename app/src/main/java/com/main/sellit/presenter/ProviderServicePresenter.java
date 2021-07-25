@@ -16,9 +16,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProviderServicePresenter implements ProviderServiceContract.Presenter{
 
-    private final ProviderServiceContract.View view;
+    final ProviderServiceContract.View view;
     final Context ctx;
 
     public ProviderServicePresenter(ProviderServiceContract.View view, Context ctx) {

@@ -10,11 +10,16 @@ import android.view.ViewGroup;
 
 import com.main.sellit.R;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SignUpCustomerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class SignUpCustomerFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

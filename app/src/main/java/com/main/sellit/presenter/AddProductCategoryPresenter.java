@@ -17,10 +17,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class AddProductCategoryPresenter implements AddProductCategoryContract.Presenter {
 
-    private final AddProductCategoryContract.View view;
-    private final Context ctx;
+    final AddProductCategoryContract.View view;
+    final Context ctx;
 
     public AddProductCategoryPresenter(AddProductCategoryContract.View view, Context ctx) {
         this.view = view;

@@ -66,12 +66,12 @@ public class AddProductCategoryActivity extends AppCompatActivity implements Add
 
     }
     private void initViews(){
-        etName =  (EditText)findViewById(R.id.et_add_category_cate_name);
-        btnAddCategory = (LoadingButton)findViewById(R.id.btn_add_category_send_data);
-        ivBackArrow = (ImageView)findViewById(R.id.iv_add_category_back_arrow);
-        tvErrorMsg =(TextView)findViewById(R.id.tv_add_category_err_msg);
-        tvSuccessMsg = (TextView)findViewById(R.id.tv_add_category_submit_success);
-        tvAddService = (TextView)findViewById(R.id.tv_add_category_open_add_service_category);
+        etName = findViewById(R.id.et_add_category_cate_name);
+        btnAddCategory = findViewById(R.id.btn_add_category_send_data);
+        ivBackArrow = findViewById(R.id.iv_add_category_back_arrow);
+        tvErrorMsg = findViewById(R.id.tv_add_category_err_msg);
+        tvSuccessMsg = findViewById(R.id.tv_add_category_submit_success);
+        tvAddService = findViewById(R.id.tv_add_category_open_add_service_category);
     }
 
     @Override

@@ -2,6 +2,10 @@ package com.main.sellit.presenter;
 
 import com.main.sellit.contract.SignupContract;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class SignupPresenter implements SignupContract.Presenter {
 
     private final SignupContract.View view;

@@ -3,6 +3,10 @@ package com.main.sellit.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class SessionManager {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;

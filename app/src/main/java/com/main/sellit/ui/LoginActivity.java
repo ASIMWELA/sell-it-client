@@ -25,9 +25,14 @@ import com.main.sellit.ui.provider.ProviderHomeActivity;
 
 import org.json.JSONObject;
 
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.experimental.FieldDefaults;
+
 @NoArgsConstructor
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView {
 
 
@@ -117,8 +122,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             if(role.equals(UserRoles.ROLE_CUSTOMER.name())){
                 Intent customerIntent = new Intent(this, CustomerHomeActivity.class);
                 startActivity(customerIntent);
-                edtTextPassword.setText("");
-                edtTxtUserName.setText("");
+                finish();
+
             }
         }
 
@@ -180,6 +185,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.scrl_login_conatiner), "There are errors on your inputs", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(R.id.scrl_login_conatiner), "There are errors on your inputs", Snackbar.LENGTH_SHORT).show();
     }
 }

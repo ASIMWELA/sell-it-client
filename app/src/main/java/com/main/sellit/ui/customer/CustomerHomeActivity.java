@@ -6,6 +6,11 @@ import android.os.Bundle;
 
 import com.main.sellit.R;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CustomerHomeActivity extends AppCompatActivity {
 
     @Override

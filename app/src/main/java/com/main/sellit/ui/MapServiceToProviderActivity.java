@@ -27,8 +27,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import lombok.AccessLevel;
 import lombok.SneakyThrows;
+import lombok.experimental.FieldDefaults;
 
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class MapServiceToProviderActivity extends AppCompatActivity implements MapServiceToProviderContract.View {
 
     EditText etBillingPerHour, etExperienceInMonths, etServiceOfferDescription;
@@ -94,15 +98,15 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
         validateInput();
     }
     private void initViews(){
-        ivBackArrow = (ImageView)findViewById(R.id.iv_map_service_to_provider_back_arrow);
-        tvActivityTitle = (TextView)findViewById(R.id.tv_map_service_to_provider_activity_title);
-        btnSendProviderDetails = (LoadingButton)findViewById(R.id.btn_map_service_to_provider_send_request);
-        fmLoadingProgressBar =(FrameLayout)findViewById(R.id.progress_overlay_holder_map_services_to_provider);
-        etBillingPerHour =(EditText)findViewById(R.id.et_map_service_to_provider_billir_rate);
-        etExperienceInMonths = (EditText)findViewById(R.id.et_map_service_to_provider_experience_in_months);
-        etServiceOfferDescription = (EditText)findViewById(R.id.et_map_service_to_provider_service_offer_desc);
-        spinnerServicesHolder = (Spinner)findViewById(R.id.spn_map_service_to_provider_services);
-        tvApiResponse = (TextView)findViewById(R.id.tv_map_service_to_provider_api_response);
+        ivBackArrow = findViewById(R.id.iv_map_service_to_provider_back_arrow);
+        tvActivityTitle = findViewById(R.id.tv_map_service_to_provider_activity_title);
+        btnSendProviderDetails = findViewById(R.id.btn_map_service_to_provider_send_request);
+        fmLoadingProgressBar = findViewById(R.id.progress_overlay_holder_map_services_to_provider);
+        etBillingPerHour = findViewById(R.id.et_map_service_to_provider_billir_rate);
+        etExperienceInMonths = findViewById(R.id.et_map_service_to_provider_experience_in_months);
+        etServiceOfferDescription = findViewById(R.id.et_map_service_to_provider_service_offer_desc);
+        spinnerServicesHolder = findViewById(R.id.spn_map_service_to_provider_services);
+        tvApiResponse = findViewById(R.id.tv_map_service_to_provider_api_response);
     }
     @Override
     public void onBackPressed() {
@@ -173,15 +177,17 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
             @Override
             @SneakyThrows
             public void validate() {
-                if(Integer.parseInt(etExperienceInMonths.getText().toString().trim()) < 0){
-                    etExperienceInMonths.setError("Invalid experience in Months");
-                    etExperienceInMonths.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    experienceInMonths = -1;
-                }else {
-                    etExperienceInMonths.setError(null);
-                    etExperienceInMonths.setBackgroundResource(R.drawable.rounded_boaders);
-                    experienceInMonths = Integer.parseInt(etExperienceInMonths.getText().toString().trim());
-                    serviceOfferObj.put("experienceInMonths",experienceInMonths);
+                if(!etExperienceInMonths.getText().toString().isEmpty()){
+                    if(Integer.parseInt(etExperienceInMonths.getText().toString().trim()) < 0){
+                        etExperienceInMonths.setError("Invalid experience in Months");
+                        etExperienceInMonths.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        experienceInMonths = -1;
+                    }else {
+                        etExperienceInMonths.setError(null);
+                        etExperienceInMonths.setBackgroundResource(R.drawable.rounded_boaders);
+                        experienceInMonths = Integer.parseInt(etExperienceInMonths.getText().toString().trim());
+                        serviceOfferObj.put("experienceInMonths",experienceInMonths);
+                    }
                 }
             }
         });
@@ -190,16 +196,17 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
             @Override
             @SneakyThrows
             public void validate() {
-
-                if(Double.parseDouble(etBillingPerHour.getText().toString().trim())<0.0){
-                    etBillingPerHour.setError("Invalid billing rate");
-                    etBillingPerHour.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    billingPerHour = -1.0;
-                }else {
-                    etBillingPerHour.setError(null);
-                    etBillingPerHour.setBackgroundResource(R.drawable.rounded_boaders);
-                    billingPerHour = Double.parseDouble(etBillingPerHour.getText().toString().trim());
-                    serviceOfferObj.put("billingRatePerHour", billingPerHour);
+                if(!etBillingPerHour.getText().toString().isEmpty()){
+                    if(Double.parseDouble(etBillingPerHour.getText().toString().trim())<0.0){
+                        etBillingPerHour.setError("Invalid billing rate");
+                        etBillingPerHour.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        billingPerHour = -1.0;
+                    }else {
+                        etBillingPerHour.setError(null);
+                        etBillingPerHour.setBackgroundResource(R.drawable.rounded_boaders);
+                        billingPerHour = Double.parseDouble(etBillingPerHour.getText().toString().trim());
+                        serviceOfferObj.put("billingRatePerHour", billingPerHour);
+                    }
                 }
 
             }

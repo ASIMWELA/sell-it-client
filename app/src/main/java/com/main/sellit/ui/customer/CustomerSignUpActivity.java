@@ -1,0 +1,176 @@
+package com.main.sellit.ui.customer;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.main.sellit.R;
+import com.main.sellit.contract.CustomerSignupContract;
+import com.main.sellit.helper.AppConstants;
+import com.main.sellit.helper.TextValidator;
+import com.main.sellit.model.UserDetailsModel;
+import com.main.sellit.presenter.CustomerSignUpPresenter;
+import com.main.sellit.ui.provider.RegisterProviderActivity;
+
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class CustomerSignUpActivity extends AppCompatActivity implements CustomerSignupContract.View {
+
+    EditText etUserName, etLastName, etFirstName, etEmail, etPassword,etPhoneNumber;
+    AppCompatButton btnCaptureInfo;
+    ImageView ivBackBackArrow;
+    CustomerSignUpPresenter customerSignUpPresenter;
+    String userName, firstName, lastName, password, email, phoneNumber;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_customer_sign_up);
+        initViews();
+        validateData();
+        customerSignUpPresenter = new CustomerSignUpPresenter(this);
+
+        btnCaptureInfo.setOnClickListener(v->{
+            customerSignUpPresenter.captureInformation();
+        });
+        ivBackBackArrow.setOnClickListener(v->{
+            onBackPressed();
+        });
+
+
+
+    }
+
+    private void initViews(){
+        etUserName = findViewById(R.id.et_customer_sign_up_user_name);
+        etEmail = findViewById(R.id.et_customer_sign_up_email);
+        etFirstName = findViewById(R.id.et_customer_sign_up_first_name);
+        etPhoneNumber = findViewById(R.id.et_customer_sign_up_phone_number);
+        etPassword = findViewById(R.id.et_customer_sign_up_password);
+        etLastName = findViewById(R.id.et_customer_sign_up_last_name);
+        btnCaptureInfo = findViewById(R.id.btn_customer_sign_up_capture_info);
+        ivBackBackArrow = findViewById(R.id.btn_customer_sign_up_back_arrow);
+
+    }
+
+    @Override
+    public boolean validateData() {
+        etUserName.addTextChangedListener(new TextValidator(etUserName) {
+            @Override
+            public void validate() {
+                if(etUserName.getText().toString().trim().length() < 3){
+                    userName = null;
+                    etUserName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    etUserName.setError("Username too short");
+                }else {
+                    etUserName.setBackgroundResource(R.drawable.rounded_boaders);
+                    userName = etUserName.getText().toString().trim();
+                }
+            }
+        });
+        etPhoneNumber.addTextChangedListener(new TextValidator(etPhoneNumber) {
+            @Override
+            public void validate() {
+                if(etPhoneNumber.getText().toString().trim().length() < 9){
+                    phoneNumber = null;
+                    etPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    etPhoneNumber.setError("Phone number too short");
+                }else {
+                    etPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders);
+                    phoneNumber = etPhoneNumber.getText().toString().trim();
+                }
+            }
+        });
+        etPassword.addTextChangedListener(new TextValidator(etPassword) {
+            @Override
+            public void validate() {
+                if(etPassword.getText().toString().trim().length() < 5){
+                    password = null;
+                    etPassword.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    etPassword.setError("Password too short");
+                }else {
+                    etPassword.setBackgroundResource(R.drawable.rounded_boaders);
+                    password = etPassword.getText().toString().trim();
+                }
+            }
+        });
+        etFirstName.addTextChangedListener(new TextValidator(etFirstName) {
+            @Override
+            public void validate() {
+                if(etFirstName.getText().toString().trim().length() < 3){
+                    firstName = null;
+                    etFirstName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    etFirstName.setError("First name too short");
+                }else {
+                    etFirstName.setBackgroundResource(R.drawable.rounded_boaders);
+                    firstName = etFirstName.getText().toString().trim();
+                }
+            }
+        });
+
+        etLastName.addTextChangedListener(new TextValidator(etLastName) {
+            @Override
+            public void validate() {
+                if(etLastName.getText().toString().trim().length() < 3){
+                    lastName = null;
+                    etLastName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    etLastName.setError("Last name too short");
+                }else {
+                    etLastName.setBackgroundResource(R.drawable.rounded_boaders);
+                    lastName = etLastName.getText().toString().trim();
+                }
+            }
+        });
+
+        etEmail.addTextChangedListener(new TextValidator(etEmail) {
+            @Override
+            public void validate() {
+                String emailRegex = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                if(!etEmail.getText().toString().matches(emailRegex)){
+                    email = null;
+                    etEmail.setError("Invalid email");
+                    etEmail.setBackgroundResource(R.drawable.rounded_boaders_error);
+                }else{
+                    email = etEmail.getText().toString().trim();
+                    etEmail.setBackgroundResource(R.drawable.rounded_boaders);
+                }
+            }
+        });
+
+        return userName != null
+                && lastName != null
+                && firstName != null
+                && phoneNumber != null
+                && email != null
+                && password !=  null;
+    }
+
+    @Override
+    public void onFailedValidation() {
+        Snackbar.make(findViewById(R.id.customer_signup_base_view), "There are errors in Your Inputs", Snackbar.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onValidationSuccess() {
+        UserDetailsModel userDetailsModel = UserDetailsModel.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .userName(userName)
+                .email(email)
+                .phoneNumber(phoneNumber)
+                .password(password)
+                .build();
+        Intent intent = new Intent(this, SendRegisterCustomerRequestActivity.class);
+        intent.putExtra(AppConstants.USER_DETAILS, userDetailsModel);
+        startActivity(intent);
+    }
+}

@@ -101,14 +101,14 @@ public class AddServiceActivity extends AppCompatActivity implements AddServiceC
     }
 
     private void initViews(){
-        progressBarHolder = (FrameLayout)findViewById(R.id.progress_overlay_holder_add_service);
-        spnServiceCategory = (Spinner)findViewById(R.id.spn_service_category);
-        btnSaveService = (LoadingButton)findViewById(R.id.btn_add_service_save_service);
-        etServiceName = (EditText)findViewById(R.id.et_add_service_service_name);
-        tvAddServiceTitle = (TextView) findViewById(R.id.tv_add_service_title);
-        tvErrorSuccessMsg = (TextView)findViewById(R.id.tv_add_service_error_success_meg);
-        ivBackArrow = (ImageView)findViewById(R.id.iv_add_service_back_arrow);
-        tvOpenMapServiceActivity = (TextView)findViewById(R.id.tv_add_services_open_map_service_activity);
+        progressBarHolder = findViewById(R.id.progress_overlay_holder_add_service);
+        spnServiceCategory = findViewById(R.id.spn_service_category);
+        btnSaveService = findViewById(R.id.btn_add_service_save_service);
+        etServiceName = findViewById(R.id.et_add_service_service_name);
+        tvAddServiceTitle = findViewById(R.id.tv_add_service_title);
+        tvErrorSuccessMsg = findViewById(R.id.tv_add_service_error_success_meg);
+        ivBackArrow = findViewById(R.id.iv_add_service_back_arrow);
+        tvOpenMapServiceActivity = findViewById(R.id.tv_add_services_open_map_service_activity);
     }
 
     @Override

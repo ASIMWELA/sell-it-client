@@ -12,6 +12,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.main.sellit.R;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProviderHomeActivity extends AppCompatActivity {
     BottomNavigationView navigationItemView;
 

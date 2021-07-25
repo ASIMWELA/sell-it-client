@@ -21,6 +21,7 @@ import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.presenter.SignupPresenter;
+import com.main.sellit.ui.customer.CustomerSignUpActivity;
 import com.main.sellit.ui.provider.RegisterProviderActivity;
 
 import lombok.AccessLevel;
@@ -32,7 +33,7 @@ import lombok.experimental.FieldDefaults;
 public class SignupActivity extends AppCompatActivity implements SignupContract.View {
 
     Context ctx;
-    TextView activityTitle;
+    TextView activityTitle,tvOpenCustomerSignUpActivity;
     SignupPresenter signupPresenter;
     Button captureProviderInfo;
     EditText editTxtUserName,
@@ -74,6 +75,13 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         ivBackArrow.setOnClickListener(v->{
             onBackPressed();
         });
+
+        tvOpenCustomerSignUpActivity.setOnClickListener(v->{
+            startActivity(new Intent(this, CustomerSignUpActivity.class));
+            finish();
+        });
+
+
     }
 
     private void initViews(){
@@ -89,6 +97,7 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         editTxtPhoneNumber = (EditText)findViewById(R.id.edtx_phone_number);
         editTxtUserName = (EditText)findViewById(R.id.edt_txt_user_name);
         ivBackArrow = (ImageView)findViewById(R.id.imv_back_arrow_provider_info);
+        tvOpenCustomerSignUpActivity = (TextView)findViewById(R.id.tv_provider_capture_info_open_customer_signup_activity);
 
     }
     @Override
@@ -197,11 +206,6 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         Intent intent = new Intent(this, RegisterProviderActivity.class);
         intent.putExtra(AppConstants.USER_DETAILS, userDetailsModel);
         startActivity(intent);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
     @Override

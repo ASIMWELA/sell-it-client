@@ -20,6 +20,7 @@ import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.RegisterProviderContract;
 import com.main.sellit.helper.ApiUrls;
+import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.network.VolleyController;
@@ -37,7 +38,6 @@ import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RegisterProviderActivity extends AppCompatActivity implements RegisterProviderContract.View {
-    static final String USER_DETAILS = "userDetails";
     Spinner spnProviderIsAnIndividual;
     EditText editTxtBusinessDesc, editTxtOfficeAddress;
     boolean  boolProviderIsAnIndividual;
@@ -62,7 +62,7 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
         validateInput();
         //get associated data
         Intent intent = getIntent();
-        userDetailsModel= intent.getParcelableExtra(USER_DETAILS);
+        userDetailsModel= intent.getParcelableExtra(AppConstants.USER_DETAILS);
 
         btnSubmitProviderData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,11 +74,11 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
     }
 
     private void initViews(){
-        editTxtBusinessDesc = (EditText) findViewById(R.id.et_register_provider_bussiness_desc);
-        editTxtOfficeAddress = (EditText)findViewById(R.id.edtx_office_address);
-        spnProviderIsAnIndividual = (Spinner)findViewById(R.id.spn_is_individual);
-        btnSubmitProviderData = (LoadingButton)findViewById(R.id.btn_submit_provider_details);
-        txVErrorMessage = (TextView)findViewById(R.id.edtx_signup_error_message);
+        editTxtBusinessDesc = findViewById(R.id.et_register_provider_bussiness_desc);
+        editTxtOfficeAddress = findViewById(R.id.edtx_office_address);
+        spnProviderIsAnIndividual = findViewById(R.id.spn_is_individual);
+        btnSubmitProviderData = findViewById(R.id.btn_submit_provider_details);
+        txVErrorMessage = findViewById(R.id.edtx_signup_error_message);
 
         //initialize spinners
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
