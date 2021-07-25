@@ -108,26 +108,30 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
         editTxtBusinessDesc.addTextChangedListener(new TextValidator(editTxtBusinessDesc) {
             @Override
             public void validate() {
-                if(editTxtBusinessDesc.getText().toString().trim().length()<20){
-                    providerDescription = null;
-                    editTxtBusinessDesc.setBackgroundResource(R.drawable.input_text_area_border_error);
-                    editTxtBusinessDesc.setError("Business description too short");
-                }else {
-                    providerDescription = editTxtBusinessDesc.getText().toString().trim();
-                    editTxtBusinessDesc.setBackgroundResource(R.drawable.rounded_boaders);
+                if(!editTxtBusinessDesc.getText().toString().isEmpty()){
+                    if(editTxtBusinessDesc.getText().toString().trim().length()<20){
+                        providerDescription = null;
+                        editTxtBusinessDesc.setBackgroundResource(R.drawable.input_text_area_border_error);
+                        editTxtBusinessDesc.setError("Business description too short");
+                    }else {
+                        providerDescription = editTxtBusinessDesc.getText().toString().trim();
+                        editTxtBusinessDesc.setBackgroundResource(R.drawable.rounded_boaders);
+                    }
                 }
             }
         });
         editTxtOfficeAddress.addTextChangedListener(new TextValidator(editTxtOfficeAddress) {
             @Override
             public void validate() {
-                if(editTxtOfficeAddress.getText().toString().trim().length()<15){
-                    officeAddress = null;
-                    editTxtOfficeAddress.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    editTxtOfficeAddress.setError("Office address too short");
-                }else {
-                    officeAddress = editTxtOfficeAddress.getText().toString().trim();
-                    editTxtOfficeAddress.setBackgroundResource(R.drawable.rounded_boaders);
+                if(!editTxtOfficeAddress.getText().toString().isEmpty()){
+                    if(editTxtOfficeAddress.getText().toString().trim().length()<15){
+                        officeAddress = null;
+                        editTxtOfficeAddress.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        editTxtOfficeAddress.setError("Office address too short");
+                    }else {
+                        officeAddress = editTxtOfficeAddress.getText().toString().trim();
+                        editTxtOfficeAddress.setBackgroundResource(R.drawable.rounded_boaders);
+                    }
                 }
             }
         });
@@ -167,10 +171,9 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
                     btnSubmitProviderData.hideLoading();
                     btnSubmitProviderData.setEnabled(true);
                     Intent intent = new Intent(RegisterProviderActivity.this, LoginActivity.class);
-                    //TODO: clear the signup  tasks
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-
+                    Toast.makeText(RegisterProviderActivity.this, "Sign up Success", Toast.LENGTH_SHORT).show();
+                    finish();
             }
         }, error -> {
             if (error == null || error.networkResponse == null) {

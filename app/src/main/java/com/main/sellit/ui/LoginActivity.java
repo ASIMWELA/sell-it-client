@@ -157,20 +157,24 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         edtTxtUserName.addTextChangedListener(new TextValidator(edtTxtUserName) {
             @Override
             public void validate() {
-                if(edtTxtUserName.getText().toString().trim().length()<1){
-                    edtTxtUserName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    edtTxtUserName.setError("User name is required");
-                    userName=null;
-                }else {
-                    userName = edtTxtUserName.getText().toString().trim();
-                    edtTxtUserName.setBackgroundResource(R.drawable.rounded_boaders);
+                if(!edtTxtUserName.getText().toString().isEmpty()){
+                    if(edtTxtUserName.getText().toString().trim().length()<2){
+                        edtTxtUserName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        edtTxtUserName.setError("User name is required");
+                        userName=null;
+                    }else {
+                        userName = edtTxtUserName.getText().toString().trim();
+                        edtTxtUserName.setBackgroundResource(R.drawable.rounded_boaders);
+                    }
                 }
+
             }
         });
         edtTextPassword.addTextChangedListener(new TextValidator(edtTextPassword) {
             @Override
             public void validate() {
-                    if(edtTextPassword.getText().toString().trim().length()<1){
+                if(!edtTextPassword.getText().toString().isEmpty()){
+                    if(edtTextPassword.getText().toString().trim().length()<2){
                         edtTextPassword.setError("Password is required");
                         edtTextPassword.setBackgroundResource(R.drawable.rounded_boaders_error);
                         password = null;
@@ -178,6 +182,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                         password = edtTextPassword.getText().toString().trim();
                         edtTextPassword.setBackgroundResource(R.drawable.rounded_boaders);
                     }
+                }
             }
         });
         return userName != null && password != null;

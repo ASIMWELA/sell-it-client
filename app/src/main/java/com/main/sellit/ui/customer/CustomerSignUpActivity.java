@@ -68,81 +68,96 @@ public class CustomerSignUpActivity extends AppCompatActivity implements Custome
         etUserName.addTextChangedListener(new TextValidator(etUserName) {
             @Override
             public void validate() {
-                if(etUserName.getText().toString().trim().length() < 3){
-                    userName = null;
-                    etUserName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    etUserName.setError("Username too short");
-                }else {
-                    etUserName.setBackgroundResource(R.drawable.rounded_boaders);
-                    userName = etUserName.getText().toString().trim();
+                if(!etUserName.getText().toString().isEmpty()){
+                    if(etUserName.getText().toString().trim().length() < 3){
+                        userName = null;
+                        etUserName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        etUserName.setError("Username too short");
+                    }else {
+                        etUserName.setBackgroundResource(R.drawable.rounded_boaders);
+                        userName = etUserName.getText().toString().trim();
+                    }
                 }
             }
         });
         etPhoneNumber.addTextChangedListener(new TextValidator(etPhoneNumber) {
             @Override
             public void validate() {
-                if(etPhoneNumber.getText().toString().trim().length() < 9){
-                    phoneNumber = null;
-                    etPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    etPhoneNumber.setError("Phone number too short");
-                }else {
-                    etPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders);
-                    phoneNumber = etPhoneNumber.getText().toString().trim();
+                if(!etPhoneNumber.getText().toString().isEmpty()){
+                    if(etPhoneNumber.getText().toString().trim().length() < 9){
+                        phoneNumber = null;
+                        etPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        etPhoneNumber.setError("Phone number too short");
+                    }else {
+                        etPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders);
+                        phoneNumber = etPhoneNumber.getText().toString().trim();
+                    }
                 }
             }
         });
         etPassword.addTextChangedListener(new TextValidator(etPassword) {
             @Override
             public void validate() {
-                if(etPassword.getText().toString().trim().length() < 5){
-                    password = null;
-                    etPassword.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    etPassword.setError("Password too short");
-                }else {
-                    etPassword.setBackgroundResource(R.drawable.rounded_boaders);
-                    password = etPassword.getText().toString().trim();
+                if(!etPassword.getText().toString().isEmpty()) {
+                    if (etPassword.getText().toString().trim().length() < 5) {
+                        password = null;
+                        etPassword.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        etPassword.setError("Password too short");
+                    } else {
+                        etPassword.setBackgroundResource(R.drawable.rounded_boaders);
+                        password = etPassword.getText().toString().trim();
+                    }
                 }
             }
         });
         etFirstName.addTextChangedListener(new TextValidator(etFirstName) {
             @Override
             public void validate() {
-                if(etFirstName.getText().toString().trim().length() < 3){
-                    firstName = null;
-                    etFirstName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    etFirstName.setError("First name too short");
-                }else {
-                    etFirstName.setBackgroundResource(R.drawable.rounded_boaders);
-                    firstName = etFirstName.getText().toString().trim();
+
+                if(!etFirstName.getText().toString().isEmpty()){
+                    if(etFirstName.getText().toString().trim().length() < 3){
+                        firstName = null;
+                        etFirstName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        etFirstName.setError("First name too short");
+                    }else {
+                        etFirstName.setBackgroundResource(R.drawable.rounded_boaders);
+                        firstName = etFirstName.getText().toString().trim();
+                    }
                 }
+
             }
         });
 
         etLastName.addTextChangedListener(new TextValidator(etLastName) {
             @Override
             public void validate() {
-                if(etLastName.getText().toString().trim().length() < 3){
-                    lastName = null;
-                    etLastName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    etLastName.setError("Last name too short");
-                }else {
-                    etLastName.setBackgroundResource(R.drawable.rounded_boaders);
-                    lastName = etLastName.getText().toString().trim();
+                if(!etLastName.getText().toString().isEmpty()){
+                    if(etLastName.getText().toString().trim().length() < 3){
+                        lastName = null;
+                        etLastName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        etLastName.setError("Last name too short");
+                    }else {
+                        etLastName.setBackgroundResource(R.drawable.rounded_boaders);
+                        lastName = etLastName.getText().toString().trim();
+                    }
                 }
+
             }
         });
 
         etEmail.addTextChangedListener(new TextValidator(etEmail) {
             @Override
             public void validate() {
-                String emailRegex = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                if(!etEmail.getText().toString().matches(emailRegex)){
-                    email = null;
-                    etEmail.setError("Invalid email");
-                    etEmail.setBackgroundResource(R.drawable.rounded_boaders_error);
-                }else{
-                    email = etEmail.getText().toString().trim();
-                    etEmail.setBackgroundResource(R.drawable.rounded_boaders);
+                if(!etEmail.getText().toString().isEmpty()){
+                    String emailRegex = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                    if(!etEmail.getText().toString().matches(emailRegex)){
+                        email = null;
+                        etEmail.setError("Invalid email");
+                        etEmail.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    }else{
+                        email = etEmail.getText().toString().trim();
+                        etEmail.setBackgroundResource(R.drawable.rounded_boaders);
+                    }
                 }
             }
         });

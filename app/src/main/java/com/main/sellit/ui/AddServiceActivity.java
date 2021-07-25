@@ -159,15 +159,17 @@ public class AddServiceActivity extends AppCompatActivity implements AddServiceC
             @Override
             @SneakyThrows
             public void validate() {
-                if(etServiceName.getText().toString().trim().length()<3){
-                    etServiceName.setError("Service name too short");
-                    etServiceName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    serviceName = null;
-                }else {
-                    etServiceName.setError(null);
-                    etServiceName.setBackgroundResource(R.drawable.rounded_boaders);
-                    serviceName = etServiceName.getText().toString().trim();
-                    serviceData.put("serviceName", serviceName);
+                if(!etServiceName.getText().toString().isEmpty()){
+                    if(etServiceName.getText().toString().trim().length()<3){
+                        etServiceName.setError("Service name too short");
+                        etServiceName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        serviceName = null;
+                    }else {
+                        etServiceName.setError(null);
+                        etServiceName.setBackgroundResource(R.drawable.rounded_boaders);
+                        serviceName = etServiceName.getText().toString().trim();
+                        serviceData.put("serviceName", serviceName);
+                    }
                 }
             }
         });

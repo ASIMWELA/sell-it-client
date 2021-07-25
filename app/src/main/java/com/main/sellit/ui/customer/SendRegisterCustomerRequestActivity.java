@@ -16,6 +16,7 @@ import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.presenter.SendRegisterCustomerRequestPresenter;
+import com.main.sellit.ui.LoginActivity;
 
 import org.json.JSONObject;
 
@@ -151,14 +152,16 @@ public class SendRegisterCustomerRequestActivity extends AppCompatActivity imple
             @Override
             @SneakyThrows
             public void validate() {
-                if(etCity.getText().toString().trim().length() < 3){
-                    city = null;
-                    etCity.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    etCity.setError("Region name short");
-                }else {
-                    etCity.setBackgroundResource(R.drawable.rounded_boaders);
-                    city = etCity.getText().toString().trim();
-                    customerAddress.put("city", city);
+                if(!etCity.getText().toString().isEmpty()){
+                    if(etCity.getText().toString().trim().length() < 3){
+                        city = null;
+                        etCity.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        etCity.setError("Region name short");
+                    }else {
+                        etCity.setBackgroundResource(R.drawable.rounded_boaders);
+                        city = etCity.getText().toString().trim();
+                        customerAddress.put("city", city);
+                    }
                 }
             }
         });
@@ -178,14 +181,17 @@ public class SendRegisterCustomerRequestActivity extends AppCompatActivity imple
     }
 
     @Override
+    @SneakyThrows
     public void onRegistrationRequestError(String volleyError) {
+        JSONObject errorObject = new JSONObject(volleyError);
         Toast.makeText(this, volleyError, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRegistrationRequestSuccess(JSONObject apiResponse) {
-        Toast.makeText(this, apiResponse.toString(), Toast.LENGTH_SHORT).show();
-
+        startActivity(new Intent(this, LoginActivity.class));
+        Toast.makeText(this, "Sign up Success", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override

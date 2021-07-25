@@ -160,15 +160,17 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
             @Override
             @SneakyThrows
             public void validate() {
-                if(etServiceOfferDescription.getText().toString().trim().length()<10){
-                    etServiceOfferDescription.setError("Service offer too short");
-                    etServiceOfferDescription.setBackgroundResource(R.drawable.input_text_area_border_error);
-                    offerDesc = null;
-                }else {
-                    etServiceOfferDescription.setError(null);
-                    etServiceOfferDescription.setBackgroundResource(R.drawable.input_text_area_bg);
-                    offerDesc = etServiceOfferDescription.getText().toString().trim();
-                    serviceOfferObj.put("serviceOfferingDescription", offerDesc);
+                if(!etServiceOfferDescription.getText().toString().isEmpty()){
+                    if(etServiceOfferDescription.getText().toString().trim().length()<10){
+                        etServiceOfferDescription.setError("Service offer too short");
+                        etServiceOfferDescription.setBackgroundResource(R.drawable.input_text_area_border_error);
+                        offerDesc = null;
+                    }else {
+                        etServiceOfferDescription.setError(null);
+                        etServiceOfferDescription.setBackgroundResource(R.drawable.input_text_area_bg);
+                        offerDesc = etServiceOfferDescription.getText().toString().trim();
+                        serviceOfferObj.put("serviceOfferingDescription", offerDesc);
+                    }
                 }
             }
         });

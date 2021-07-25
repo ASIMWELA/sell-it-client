@@ -105,53 +105,62 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         editTxtUserName.addTextChangedListener(new TextValidator(editTxtUserName) {
             @Override
             public void validate() {
-                if(editTxtUserName.getText().toString().trim().length() < 3){
-                    userName = null;
-                    editTxtUserName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    editTxtUserName.setError("Username too short");
-                }else {
-                    editTxtUserName.setBackgroundResource(R.drawable.rounded_boaders);
-                    userName = editTxtUserName.getText().toString().trim();
+                if(!editTxtUserName.getText().toString().isEmpty()){
+                    if(editTxtUserName.getText().toString().trim().length() < 3){
+                        userName = null;
+                        editTxtUserName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        editTxtUserName.setError("Username too short");
+                    }else {
+                        editTxtUserName.setBackgroundResource(R.drawable.rounded_boaders);
+                        userName = editTxtUserName.getText().toString().trim();
+                    }
                 }
             }
         });
         editTxtPhoneNumber.addTextChangedListener(new TextValidator(editTxtPhoneNumber) {
             @Override
             public void validate() {
-                if(editTxtPhoneNumber.getText().toString().trim().length() < 9){
-                    phoneNumber = null;
-                    editTxtPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    editTxtPhoneNumber.setError("Phone number too short");
-                }else {
-                    editTxtPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders);
-                    phoneNumber = editTxtPhoneNumber.getText().toString().trim();
+                if(!editTxtPhoneNumber.getText().toString().isEmpty()){
+                    if(editTxtPhoneNumber.getText().toString().trim().length() < 9){
+                        phoneNumber = null;
+                        editTxtPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        editTxtPhoneNumber.setError("Phone number too short");
+                    }else {
+                        editTxtPhoneNumber.setBackgroundResource(R.drawable.rounded_boaders);
+                        phoneNumber = editTxtPhoneNumber.getText().toString().trim();
+                    }
                 }
             }
         });
         editTxtPassword.addTextChangedListener(new TextValidator(editTxtPassword) {
             @Override
             public void validate() {
-                if(editTxtPassword.getText().toString().trim().length() < 5){
-                    password = null;
-                    editTxtPassword.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    editTxtPassword.setError("Password too short");
-                    ContextCompat.getDrawable(getApplicationContext(), R.drawable.lock_icon).setTint(Color.RED);
-                }else {
-                    editTxtPassword.setBackgroundResource(R.drawable.rounded_boaders);
-                    password = editTxtPassword.getText().toString().trim();
+                if(!editTxtPassword.getText().toString().isEmpty()){
+                    if(editTxtPassword.getText().toString().trim().length() < 5){
+                        password = null;
+                        editTxtPassword.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        editTxtPassword.setError("Password too short");
+                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.lock_icon).setTint(Color.RED);
+                    }else {
+                        editTxtPassword.setBackgroundResource(R.drawable.rounded_boaders);
+                        password = editTxtPassword.getText().toString().trim();
+                    }
                 }
+
             }
         });
         editTxtFirstName.addTextChangedListener(new TextValidator(editTxtFirstName) {
             @Override
             public void validate() {
-                if(editTxtFirstName.getText().toString().trim().length() < 3){
-                    firstName = null;
-                    editTxtFirstName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    editTxtFirstName.setError("First name too short");
-                }else {
-                    editTxtFirstName.setBackgroundResource(R.drawable.rounded_boaders);
-                    firstName = editTxtFirstName.getText().toString().trim();
+                if(!editTxtFirstName.getText().toString().isEmpty()){
+                    if(editTxtFirstName.getText().toString().trim().length() < 3){
+                        firstName = null;
+                        editTxtFirstName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        editTxtFirstName.setError("First name too short");
+                    }else {
+                        editTxtFirstName.setBackgroundResource(R.drawable.rounded_boaders);
+                        firstName = editTxtFirstName.getText().toString().trim();
+                    }
                 }
             }
         });
@@ -159,13 +168,15 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         editTxtLastName.addTextChangedListener(new TextValidator(editTxtLastName) {
             @Override
             public void validate() {
-                if(editTxtLastName.getText().toString().trim().length() < 3){
-                    lastName = null;
-                    editTxtLastName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    editTxtLastName.setError("Last name too short");
-                }else {
-                    editTxtLastName.setBackgroundResource(R.drawable.rounded_boaders);
-                    lastName = editTxtLastName.getText().toString().trim();
+                if(!editTxtLastName.getText().toString().isEmpty()){
+                    if(editTxtLastName.getText().toString().trim().length() < 3){
+                        lastName = null;
+                        editTxtLastName.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        editTxtLastName.setError("Last name too short");
+                    }else {
+                        editTxtLastName.setBackgroundResource(R.drawable.rounded_boaders);
+                        lastName = editTxtLastName.getText().toString().trim();
+                    }
                 }
             }
         });
@@ -173,16 +184,17 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         editTxtEmail.addTextChangedListener(new TextValidator(editTxtEmail) {
             @Override
             public void validate() {
-                String emailRegex = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                if(!editTxtEmail.getText().toString().matches(emailRegex)){
-                    email = null;
-                    editTxtEmail.setError("Invalid email");
-                    editTxtEmail.setBackgroundResource(R.drawable.rounded_boaders_error);
-                }else{
-                    email = editTxtEmail.getText().toString().trim();
-                    editTxtEmail.setBackgroundResource(R.drawable.rounded_boaders);
+                if(!editTxtEmail.getText().toString().isEmpty()){
+                    String emailRegex = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                    if(!editTxtEmail.getText().toString().matches(emailRegex)){
+                        email = null;
+                        editTxtEmail.setError("Invalid email");
+                        editTxtEmail.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    }else{
+                        email = editTxtEmail.getText().toString().trim();
+                        editTxtEmail.setBackgroundResource(R.drawable.rounded_boaders);
+                    }
                 }
-
             }
         });
         return (userName != null)
