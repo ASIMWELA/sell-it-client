@@ -17,6 +17,7 @@ import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.helper.UserRoles;
+import com.main.sellit.model.CustomerLoginModel;
 import com.main.sellit.model.ProviderLoginModel;
 import com.main.sellit.presenter.LoginPresenter;
 import com.main.sellit.ui.admin.AdminHomeActivity;
@@ -88,43 +89,56 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         //TODO:
         String role = jsonObject.getJSONObject("userData").getJSONArray("roles").getJSONObject(0).getString("name");
        // JSONArray ar = jsonObject.getJSONArray("roles");
-        if(role==null){
-            Toast.makeText(this, "Error: No role assigned login failed", Toast.LENGTH_SHORT).show();
-        }else {
-            if(role.equals(UserRoles.ROLE_PROVIDER.name())){
-                //get token and set it to session
-                String token = jsonObject.getJSONObject("tokenPayload").getString("accessToken");
-                Intent providerIntent = new Intent(this, ProviderHomeActivity.class);
-                JSONObject userDetails = jsonObject.getJSONObject("userData");
-                JSONObject providerDetails = jsonObject.getJSONObject("userData").getJSONObject("providerDetails");
+        if(role.equals(UserRoles.ROLE_PROVIDER.name())){
+            //get token and set it to session
+            String token = jsonObject.getJSONObject("tokenPayload").getString("accessToken");
+            Intent providerIntent = new Intent(this, ProviderHomeActivity.class);
+            JSONObject userDetails = jsonObject.getJSONObject("userData");
+            JSONObject providerDetails = jsonObject.getJSONObject("userData").getJSONObject("providerDetails");
 
-                ProviderLoginModel providerLoginModel = ProviderLoginModel.builder()
-                        .providerUuid(providerDetails.getString("uuid"))
-                        .providerDescription(providerDetails.getString("providerDescription"))
-                        .officeAddress(providerDetails.getString("officeAddress"))
-                        .email(userDetails.getString("email"))
-                        .firstName(userDetails.getString("firstName"))
-                        .lastName(userDetails.getString("lastName"))
-                        .userName(userDetails.getString("userName"))
-                        .uuid(userDetails.getString("uuid"))
-                        .phoneNumber(userDetails.getString("mobileNumber"))
-                        .build();
-                providerIntent.putExtra(AppConstants.PROVIDER_LOGIN_DETAILS, providerLoginModel);
-                sessionManager.setAccessToken(token);
-                sessionManager.setProviderUuid(providerLoginModel.getProviderUuid());
-                startActivity(providerIntent);
-                finish();
-            }
-            if(role.equals(UserRoles.ROLE_ADMIN.name())){
-                Intent adminIntent = new Intent(this, AdminHomeActivity.class);
-                startActivity(adminIntent);
-            }
-            if(role.equals(UserRoles.ROLE_CUSTOMER.name())){
-                Intent customerIntent = new Intent(this, CustomerHomeActivity.class);
-                startActivity(customerIntent);
-                finish();
-
-            }
+            ProviderLoginModel providerLoginModel = ProviderLoginModel.builder()
+                    .providerUuid(providerDetails.getString("uuid"))
+                    .providerDescription(providerDetails.getString("providerDescription"))
+                    .officeAddress(providerDetails.getString("officeAddress"))
+                    .email(userDetails.getString("email"))
+                    .firstName(userDetails.getString("firstName"))
+                    .lastName(userDetails.getString("lastName"))
+                    .userName(userDetails.getString("userName"))
+                    .uuid(userDetails.getString("uuid"))
+                    .phoneNumber(userDetails.getString("mobileNumber"))
+                    .build();
+            providerIntent.putExtra(AppConstants.PROVIDER_LOGIN_DETAILS, providerLoginModel);
+            sessionManager.setAccessToken(token);
+            sessionManager.setProviderUuid(providerLoginModel.getProviderUuid());
+            startActivity(providerIntent);
+            finish();
+        }
+        if(role.equals(UserRoles.ROLE_ADMIN.name())){
+            Intent adminIntent = new Intent(this, AdminHomeActivity.class);
+            startActivity(adminIntent);
+        }
+        if(role.equals(UserRoles.ROLE_CUSTOMER.name())){
+            Intent customerIntent = new Intent(this, CustomerHomeActivity.class);
+            String token = jsonObject.getJSONObject("tokenPayload").getString("accessToken");
+            JSONObject userDetails = jsonObject.getJSONObject("userData");
+            JSONObject address = jsonObject.getJSONObject("userData").getJSONObject("address");
+            CustomerLoginModel customerLoginModel = CustomerLoginModel.builder()
+                    .email(userDetails.getString("email"))
+                    .firstName(userDetails.getString("firstName"))
+                    .lastName(userDetails.getString("lastName"))
+                    .userName(userDetails.getString("userName"))
+                    .uuid(userDetails.getString("uuid"))
+                    .phoneNumber(userDetails.getString("mobileNumber"))
+                    .city(address.getString("city"))
+                    .country(address.getString("country"))
+                    .region(address.getString("region"))
+                    .street(address.getString("street"))
+                    .locationDescription(address.getString("locationDescription"))
+                    .build();
+            customerIntent.putExtra(AppConstants.CUSTOMER_LOGIN_DETAILS, customerLoginModel);
+            sessionManager.setAccessToken(token);
+            startActivity(customerIntent);
+            finish();
         }
 
     }

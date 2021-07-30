@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/customer_service_container_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
+    app:cardMaxElevation="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="2dp">
+
+        <TextView
+            android:id="@+id/tv_customer_services_service_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:text="Service Name"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_customer_service_service_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_customer_services_service_name"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/tv_category_label"
+            android:text="Category"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_category_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_customer_services_service_name"
+            android:layout_marginStart="32dp"
+            android:drawableEnd="@drawable/ic_arrow_forward"
+            android:text="Category"
+            android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_customer_service_request"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_bg_default_button"
+            android:drawableEnd="@drawable/ic_base_forward_arrow"
+            android:minHeight="35dp"
+            android:text="Request"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
