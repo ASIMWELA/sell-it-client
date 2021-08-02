@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SellIt">
-        <activity android:name=".ui.customer.CustomerProfileActivity"></activity>
+        <activity android:name=".ui.RequestServiceActivity"></activity>
+        <activity android:name=".ui.ProviderListActivity" />
+        <activity android:name=".ui.customer.CustomerProfileActivity" />
         <activity android:name=".ui.customer.CustomerAppointmentsActivity" />
         <activity android:name=".ui.customer.CustomerRequestsActivity" />
         <activity android:name=".ui.customer.CustomerViewServicesActivity" />

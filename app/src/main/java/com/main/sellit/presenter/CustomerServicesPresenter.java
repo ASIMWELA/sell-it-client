@@ -12,6 +12,8 @@ import com.main.sellit.network.VolleyController;
 
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
+
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
@@ -29,7 +31,7 @@ public class CustomerServicesPresenter implements CustomerServicesContract.Prese
     public void getServices() {
         view.showGetServicesProgressBar();
 
-        JsonObjectRequest serviceCategoriesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest serviceCategoriesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services?pageNo=0&pageSize=150", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 view.hideGetServicesProgressBar();
@@ -38,6 +40,13 @@ public class CustomerServicesPresenter implements CustomerServicesContract.Prese
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                if (error == null || error.networkResponse == null) {
+                    view.hideGetServicesProgressBar();
+                    return;
+                }
+                String body;
+                body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+
                 view.hideGetServicesProgressBar();
                 view.onGetServicesError(error.toString());
             }

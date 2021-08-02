@@ -1,6 +1,7 @@
 package com.main.sellit.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,18 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.sellit.R;
-import com.main.sellit.model.Service;
+import com.main.sellit.helper.AppConstants;
 import com.main.sellit.model.ServiceAndCategoryNamesModel;
+import com.main.sellit.ui.ProviderListActivity;
+import com.main.sellit.ui.RequestServiceActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerServiceListAdapter extends RecyclerView.Adapter<CustomerServiceListAdapter.MyViewHolder> {
 
-    List<ServiceAndCategoryNamesModel> services = new ArrayList<>();
+    List<ServiceAndCategoryNamesModel> services;
     Context ctx;
-
     public CustomerServiceListAdapter(List<ServiceAndCategoryNamesModel> services, Context ctx) {
         this.services = services;
         this.ctx = ctx;
@@ -42,19 +44,25 @@ public class CustomerServiceListAdapter extends RecyclerView.Adapter<CustomerSer
     public void onBindViewHolder(@NonNull CustomerServiceListAdapter.MyViewHolder holder, int position) {
         holder.serviceName.setText(services.get(position).getServiceName());
         holder.serviceCategory.setText(services.get(position).getServiceCategory());
-        holder.container.setOnClickListener(v->{
 
-            Toast.makeText(ctx, "Clicked + "+ services.get(position).getServiceName(), Toast.LENGTH_SHORT).show();
+        holder.container.setOnClickListener(v->{
+            Intent getServiceProviderIntent = new Intent(ctx.getApplicationContext(), ProviderListActivity.class);
+            getServiceProviderIntent.putExtra(AppConstants.GET_SERVICE_PROVIDERS_UUID, services.get(position).getServiceUuid());
+            ctx.startActivity(getServiceProviderIntent);
+        });
+        holder.btnRequestService.setOnClickListener(v->{
+            Intent requestServiceIntent = new Intent(ctx.getApplicationContext(), RequestServiceActivity.class);
+            requestServiceIntent.putExtra(AppConstants.REQUEST_SERVICE_UUID, services.get(position).getServiceUuid());
+            requestServiceIntent.putExtra(AppConstants.REQUEST_SERVICE_SERVICE_NAME, services.get(position).getServiceName());
+
+            ctx.startActivity(requestServiceIntent);
         });
     }
-
     @Override
     public int getItemCount() {
         return services.size();
     }
-
-
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    static class MyViewHolder extends RecyclerView.ViewHolder{
         CardView container;
         TextView serviceName;
         TextView serviceCategory;

@@ -34,7 +34,7 @@ public class AddServicePresenter implements AddServiceContract.Presenter{
     @Override
     public void getServiceCategories() {
         view.showProgressBar();
-        JsonObjectRequest serviceCategoriesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services/categories", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest serviceCategoriesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services/categories?pageNo=0&pageSize=150", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 view.hideProgressBar();

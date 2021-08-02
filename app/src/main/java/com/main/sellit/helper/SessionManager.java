@@ -37,5 +37,4 @@ public class SessionManager {
         return sharedPreferences.getString(AppConstants.API_ACCESS_TOKEN, null);
     }
 
-
 }

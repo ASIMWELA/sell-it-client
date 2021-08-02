@@ -73,4 +73,17 @@
             android:indeterminateTint="@color/color_primary_blend"
             android:indeterminateTintMode="src_atop" />
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_customer_view_services_no_services_messages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="No Services Availabele In \nThe Application"
+        android:textAlignment="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
