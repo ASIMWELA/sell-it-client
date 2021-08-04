@@ -15,6 +15,8 @@ import com.main.sellit.R;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.CustomerLoginModel;
 
+import java.util.Objects;
+
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
@@ -26,6 +28,8 @@ public class ProviderHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider_home);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         sessionManager = new SessionManager(this);
 
 
@@ -41,11 +45,4 @@ public class ProviderHomeActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        sessionManager.setLoggedInUser(null);
-        sessionManager.setAccessToken(null);
-        finish();
-    }
 }

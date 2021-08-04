@@ -4,20 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/provider_nav_graph"
     app:startDestination="@id/provider_navigation_profile">
-
     <fragment
         android:id="@+id/provider_navigation_request"
         android:name="com.main.sellit.ui.provider.ProviderRequestFragment"
-        android:label="Service Requests"
         tools:layout="@layout/fragment_provider_request" />
     <fragment
         android:id="@+id/provider_navigation_profile"
         android:name="com.main.sellit.ui.provider.ProviderProfileFragment"
-        android:label="Profile"
         tools:layout="@layout/fragment_provider_profile" />
     <fragment
         android:id="@+id/provider_navigation_services"
         android:name="com.main.sellit.ui.provider.ProviderServicesFragment"
-        android:label="Services"
         tools:layout="@layout/fragment_provider_services" />
 </navigation>
