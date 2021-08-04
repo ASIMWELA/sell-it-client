@@ -10,7 +10,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 import com.main.sellit.R;
+import com.main.sellit.helper.SessionManager;
+import com.main.sellit.model.CustomerLoginModel;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -18,11 +21,12 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProviderHomeActivity extends AppCompatActivity {
     BottomNavigationView navigationItemView;
-
+    SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider_home);
+        sessionManager = new SessionManager(this);
 
 
         navigationItemView = findViewById(R.id.provider_bottom_navigation_view);
@@ -40,6 +44,8 @@ public class ProviderHomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        sessionManager.setLoggedInUser(null);
+        sessionManager.setAccessToken(null);
         finish();
     }
 }

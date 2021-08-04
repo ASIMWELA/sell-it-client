@@ -11,4 +11,5 @@ public class AppConstants {
     public static final String LOGGED_IN_USER_SESSION_KEY = "user_session";
     public static final String USER_DETAILS = "userDetails";
     public static final String LOGGED_IN_CUSTOMER_UUID = "logged_in_customer_uuid";
+    public static final String IS_USER_LOGGED_IN = "USER_LOGGED_IN";
 }

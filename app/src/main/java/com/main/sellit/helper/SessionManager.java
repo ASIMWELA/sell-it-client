@@ -3,6 +3,8 @@ package com.main.sellit.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Set;
+
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
@@ -16,12 +18,13 @@ public class SessionManager {
         editor = sharedPreferences.edit();
         editor.apply();
     }
-    public void setLoggedInUser(String userObject){
-        editor.putString(AppConstants.LOGGED_IN_USER_SESSION_KEY, userObject).commit();
+    public void setLoggedInUser(String userObj){
+        editor.putString(AppConstants.LOGGED_IN_USER_SESSION_KEY, userObj).commit();
     }
 
     public void setProviderUuid(String providerUuid){
         editor.putString(AppConstants.SET_PROVIDER_UUID, providerUuid).commit();
+
     }
 
     public String getProviderUUid(){
@@ -44,5 +47,15 @@ public class SessionManager {
     public String getLoggedInCustomerUuid(){
         return sharedPreferences.getString(AppConstants.LOGGED_IN_CUSTOMER_UUID, null);
     }
+
+    public void setIsUserLoggedIn(String role){
+        editor.putString(AppConstants.IS_USER_LOGGED_IN, role).commit();
+    }
+
+    public String getIsUserLoggedIn(){
+        return sharedPreferences.getString(AppConstants.IS_USER_LOGGED_IN, null);
+    }
+
+
 
 }

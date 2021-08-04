@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.LoginContract;
@@ -25,6 +26,8 @@ import com.main.sellit.ui.customer.CustomerHomeActivity;
 import com.main.sellit.ui.provider.ProviderHomeActivity;
 
 import org.json.JSONObject;
+
+import java.util.Map;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -109,6 +112,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     .build();
             providerIntent.putExtra(AppConstants.PROVIDER_LOGIN_DETAILS, providerLoginModel);
             sessionManager.setAccessToken(token);
+            sessionManager.setLoggedInUser(providerLoginModel.toString());
+            sessionManager.setIsUserLoggedIn(role);
             sessionManager.setProviderUuid(providerLoginModel.getProviderUuid());
             startActivity(providerIntent);
             finish();
@@ -137,7 +142,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     .build();
             customerIntent.putExtra(AppConstants.CUSTOMER_LOGIN_DETAILS, customerLoginModel);
             sessionManager.setAccessToken(token);
+            sessionManager.setLoggedInUser(customerLoginModel.toString());
             sessionManager.setLoggedInCustomerUuid(customerLoginModel.getUuid());
+            sessionManager.setIsUserLoggedIn(role);
             startActivity(customerIntent);
             finish();
         }

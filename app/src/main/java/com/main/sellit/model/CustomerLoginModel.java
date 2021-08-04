@@ -3,11 +3,14 @@ package com.main.sellit.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.GsonBuilder;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -72,5 +75,9 @@ public class CustomerLoginModel implements Parcelable {
         dest.writeString(region);
         dest.writeString(street);
         dest.writeString(locationDescription);
+    }
+    @Override
+    public String toString() {
+        return new GsonBuilder().create().toJson(this, CustomerLoginModel.class);
     }
 }

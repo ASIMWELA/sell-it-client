@@ -3,6 +3,10 @@ package com.main.sellit.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.GsonBuilder;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -67,5 +71,12 @@ public class ProviderLoginModel implements Parcelable {
         dest.writeString(email);
         dest.writeString(phoneNumber);
         dest.writeString(uuid);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+            return new GsonBuilder().create().toJson(this, ProviderLoginModel.class);
+
     }
 }

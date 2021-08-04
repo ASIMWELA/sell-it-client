@@ -6,10 +6,14 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.main.sellit.R;
 import com.main.sellit.contract.CustomerHomeContract;
+import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.SessionManager;
+import com.main.sellit.model.CustomerLoginModel;
 import com.main.sellit.presenter.CustomerHomePresenter;
 
 import lombok.AccessLevel;
@@ -22,21 +26,30 @@ public class CustomerHomeActivity extends AppCompatActivity implements CustomerH
     RelativeLayout btnLogout;
     CustomerHomePresenter customerHomePresenter;
     SessionManager sessionManager;
+    TextView tvCustomerName;
     CardView cvOpenAppointmentsActivity, cvOpenServicesActivity, cvOpenProfileActivity, cvOpenRequestsActivity;
-
+    CustomerLoginModel customerLoginModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_home);
         initViews();
+        Intent i = getIntent();
+
+
 
         sessionManager = new SessionManager(this);
         customerHomePresenter = new CustomerHomePresenter(this);
 
+        Gson gson = new Gson();
+        String json = sessionManager.getLoggedInUser();
+        customerLoginModel = gson.fromJson(json, CustomerLoginModel.class);
+
         cvOpenServicesActivity.setOnClickListener(v->{
             customerHomePresenter.onCustomerServicesCardClicked();
         });
-
+        String customerName = customerLoginModel.getFirstName() + " "+customerLoginModel.getLastName();
+        tvCustomerName.setText(customerName);
         cvOpenRequestsActivity.setOnClickListener(v->{
             customerHomePresenter.onCustomerRequestCardClicked();
         });
@@ -60,6 +73,7 @@ public class CustomerHomeActivity extends AppCompatActivity implements CustomerH
         cvOpenRequestsActivity = findViewById(R.id.cv_customer_home_open_service_request_activity);
         cvOpenServicesActivity = findViewById(R.id.cv_customer_home_open_services_activity);
         btnLogout = findViewById(R.id.rl_customer_home_logout_btn);
+        tvCustomerName = findViewById(R.id.tv_customer_home_customer_name);
     }
 
     @Override
@@ -84,6 +98,7 @@ public class CustomerHomeActivity extends AppCompatActivity implements CustomerH
 
     @Override
     public void onLogout() {
+        sessionManager.setLoggedInUser(null);
         sessionManager.setAccessToken(null);
         onBackPressed();
     }
