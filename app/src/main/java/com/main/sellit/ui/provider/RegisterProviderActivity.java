@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +48,7 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
     RegisterProviderPresenter registerProviderPresenter;
     TextView txVErrorMessage;
     JSONObject providerSignupRequest = new JSONObject();
+    ImageView ivBackArrow;
 
 
     @Override
@@ -71,6 +73,10 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
             }
         });
 
+        ivBackArrow.setOnClickListener(v->{
+            onBackPressed();
+        });
+
     }
 
     private void initViews(){
@@ -79,6 +85,7 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
         spnProviderIsAnIndividual = findViewById(R.id.spn_is_individual);
         btnSubmitProviderData = findViewById(R.id.btn_submit_provider_details);
         txVErrorMessage = findViewById(R.id.edtx_signup_error_message);
+        ivBackArrow = findViewById(R.id.iv_back_arrow);
 
         //initialize spinners
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,

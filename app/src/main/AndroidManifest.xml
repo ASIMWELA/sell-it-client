@@ -32,9 +32,7 @@
             android:theme="@style/Action.Bar" />
         <activity android:name=".ui.provider.RegisterProviderActivity" />
         <activity android:name=".ui.LoginActivity" />
-        <activity
-            android:name=".ui.SignupActivity"
-            android:theme="@style/Action.Bar" />
+        <activity android:name=".ui.SignupActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

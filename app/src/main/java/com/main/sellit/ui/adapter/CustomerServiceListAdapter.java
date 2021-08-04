@@ -54,7 +54,6 @@ public class CustomerServiceListAdapter extends RecyclerView.Adapter<CustomerSer
             Intent requestServiceIntent = new Intent(ctx.getApplicationContext(), RequestServiceActivity.class);
             requestServiceIntent.putExtra(AppConstants.REQUEST_SERVICE_UUID, services.get(position).getServiceUuid());
             requestServiceIntent.putExtra(AppConstants.REQUEST_SERVICE_SERVICE_NAME, services.get(position).getServiceName());
-
             ctx.startActivity(requestServiceIntent);
         });
     }

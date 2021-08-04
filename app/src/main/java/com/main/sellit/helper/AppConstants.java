@@ -8,6 +8,7 @@ public class AppConstants {
     public static final String GET_SERVICE_PROVIDERS_UUID ="SERVICE_UUID_GET_PROVIDERS";
     public static final String REQUEST_SERVICE_UUID = "REQUEST_SERVICE_FOR_UUID";
     public static final String REQUEST_SERVICE_SERVICE_NAME = "Service_name";
-    public static String LOGGED_IN_USER_SESSION_KEY = "user_session";
+    public static final String LOGGED_IN_USER_SESSION_KEY = "user_session";
     public static final String USER_DETAILS = "userDetails";
+    public static final String LOGGED_IN_CUSTOMER_UUID = "logged_in_customer_uuid";
 }

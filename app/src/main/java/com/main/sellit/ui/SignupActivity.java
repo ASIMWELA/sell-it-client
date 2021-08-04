@@ -56,8 +56,6 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_capture_provider_personal_details);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.actionbar_layout);
         signupPresenter = new SignupPresenter(this);
 
         //initialize views
@@ -72,13 +70,15 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
             }
         });
 
-        ivBackArrow.setOnClickListener(v->{
-            onBackPressed();
-        });
+
 
         tvOpenCustomerSignUpActivity.setOnClickListener(v->{
             startActivity(new Intent(this, CustomerSignUpActivity.class));
             finish();
+        });
+
+        ivBackArrow.setOnClickListener(v->{
+            onBackPressed();
         });
 
 
@@ -86,17 +86,14 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
 
     private void initViews(){
         captureProviderInfo = (Button)findViewById(R.id.btn_submit_provider_details);
-        activityTitle = (TextView)findViewById((R.id.txt_title_text));
-        activityTitle.setText(R.string.sign_provider);
-
-        //user input views
+       //user input views
         editTxtEmail = (EditText)findViewById(R.id.edtx_email);
         editTxtFirstName=(EditText)findViewById(R.id.edtx_firt_name);
         editTxtLastName = (EditText)findViewById(R.id.edtx_last_name);
         editTxtPassword = (EditText)findViewById(R.id.edtx_password);
         editTxtPhoneNumber = (EditText)findViewById(R.id.edtx_phone_number);
         editTxtUserName = (EditText)findViewById(R.id.edt_txt_user_name);
-        ivBackArrow = (ImageView)findViewById(R.id.imv_back_arrow_provider_info);
+        ivBackArrow = (ImageView)findViewById(R.id.iv_provider_sign_up_back);
         tvOpenCustomerSignUpActivity = (TextView)findViewById(R.id.tv_provider_capture_info_open_customer_signup_activity);
 
     }

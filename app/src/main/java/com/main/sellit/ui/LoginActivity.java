@@ -137,6 +137,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     .build();
             customerIntent.putExtra(AppConstants.CUSTOMER_LOGIN_DETAILS, customerLoginModel);
             sessionManager.setAccessToken(token);
+            sessionManager.setLoggedInCustomerUuid(customerLoginModel.getUuid());
             startActivity(customerIntent);
             finish();
         }

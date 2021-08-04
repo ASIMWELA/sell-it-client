@@ -37,4 +37,12 @@ public class SessionManager {
         return sharedPreferences.getString(AppConstants.API_ACCESS_TOKEN, null);
     }
 
+    public void setLoggedInCustomerUuid(String customerUuid){
+        editor.putString(AppConstants.LOGGED_IN_CUSTOMER_UUID, customerUuid).commit();
+    }
+
+    public String getLoggedInCustomerUuid(){
+        return sharedPreferences.getString(AppConstants.LOGGED_IN_CUSTOMER_UUID, null);
+    }
+
 }

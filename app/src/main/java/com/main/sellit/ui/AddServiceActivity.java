@@ -202,6 +202,8 @@ public class AddServiceActivity extends AppCompatActivity implements AddServiceC
         }else {
             tvErrorSuccessMsg.setText(R.string.add_service_succes_msg);
         }
+        serviceName = null;
+        serviceCategoryUuid = null;
         etServiceName.setText("");
         etServiceName.setError(null);
         etServiceName.setBackgroundResource(R.drawable.rounded_boaders);

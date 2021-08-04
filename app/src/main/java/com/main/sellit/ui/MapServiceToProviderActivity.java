@@ -243,14 +243,18 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
         String message = apiResponse.getString("message");
 
         //TODO: clear the input fields
-//        etBillingPerHour.setText("");
-//        etBillingPerHour.setError(null);
+          etBillingPerHour.setText("");
+          etBillingPerHour.setError(null);
+          etExperienceInMonths.setText(null);
+          etExperienceInMonths.setError(null);
 //
-//        etExperienceInMonths.setText("");
-//        etExperienceInMonths.setError(null);
-//
-//        etServiceOfferDescription.setText("");
-//        etServiceOfferDescription.setError(null);
+          etServiceOfferDescription.setText(null);
+          etServiceOfferDescription.setError(null);
+
+        billingPerHour = -1.0;
+        experienceInMonths = -1;
+        offerDesc = null;
+        serviceUuid = null;
 
         tvApiResponse.setText(message);
         tvApiResponse.setTextColor(getResources().getColor(R.color.color_secondary));

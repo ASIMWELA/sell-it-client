@@ -112,6 +112,7 @@ public class AddProductCategoryActivity extends AppCompatActivity implements Add
         etName.setText("");
         etName.setError(null);
         etName.setBackgroundResource(R.drawable.rounded_boaders);
+        categoryName = null;
         String successMsg = apiResponse.getString("message");
         if(successMsg != null){
             tvSuccessMsg.setText(successMsg);

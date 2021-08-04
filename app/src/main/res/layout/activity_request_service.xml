@@ -2,13 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customer_request_service_base_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.RequestServiceActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/view10"
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="90dp"
+            android:textColor="@color/color_secondary"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/view10"
@@ -57,18 +59,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/input_text_area_bg"
             android:drawablePadding="4dp"
             android:ems="10"
             android:hint="Service Description"
-            android:inputType="textPersonName"
-            android:minLines="10"
-            android:padding="10dp"
+            android:inputType="text|textMultiLine"
+            android:maxLength="200"
+            android:maxLines="4"
+            android:padding="8dp"
+            android:scrollHorizontally="false"
+            android:singleLine="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view10" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_api_response" />
 
         <EditText
             android:id="@+id/et_customer_request_service_pick_required_on_date"
@@ -76,10 +81,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:drawablePadding="4dp"
+            android:background="@drawable/rounded_boaders"
+            android:drawableEnd="@drawable/ic_baseline_calendar_today"
+            android:drawablePadding="2dp"
             android:editable="false"
             android:ems="10"
-            android:hint="Service Required On"
+            android:hint="Pick Required Date"
             android:outlineAmbientShadowColor="@color/color_primary_blend"
             android:outlineSpotShadowColor="@color/color_primary_blend"
             android:padding="8dp"
@@ -92,25 +99,56 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_boaders"
+            android:drawableEnd="@drawable/ic_baseline_access_time"
             android:drawablePadding="2dp"
             android:editable="false"
             android:ems="10"
             android:hint="Pick Start Time"
+            android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_customer_request_service_pick_required_on_date" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/et_customer_request_service_service_required_hours"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_boaders"
             android:drawablePadding="2dp"
             android:ems="10"
             android:hint="Expected hours"
             android:inputType="number"
+            android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customer_request_service_pick_time" />
+
+        <com.kusu.loadingbutton.LoadingButton
+            android:id="@+id/btn_customer_request_service_send_request"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_bg"
+            android:text="Create Request"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_customer_request_service_service_required_hours"
+            app:lb_cornerRadius="30dp"
+            app:lb_isShadowEnable="false" />
+
+        <TextView
+            android:id="@+id/tv_api_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view10" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
