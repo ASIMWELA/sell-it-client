@@ -106,17 +106,19 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
                             @Override
                             @SneakyThrows
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                                String time = sHour + ":" + sMinute;
-                                etStartTime.setText(time);
 
-                                //TODO: CHANGE IT TO STRING (time) AFTER CHANGING DB SCHEMA
                                 final Calendar cldr = Calendar.getInstance();
                                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                                 int month = cldr.get(Calendar.MONTH);
                                 int year = cldr.get(Calendar.YEAR);
                                 String getMonth = (month-1)<10? "0"+(month-1):(month-1)+"";
                                 String getDay = day<10? "0"+day:day+"";
-                                formattedExpectedStartTime = year +"-"+getMonth+"-"+getDay;
+                                //format dates
+                                String h = sHour < 10?"0"+sHour:sHour+"";
+                                String m = sMinute<10? "0"+sMinute:sMinute+"";
+                                String time = h + ":" + m;
+                                etStartTime.setText(time);
+                                formattedExpectedStartTime = year +"-"+getMonth+"-"+getDay+"T"+h+":"+m+":43.511Z";
                                 data.put("expectedStartTime", formattedExpectedStartTime);
                             }
                         }, hour, minutes, true);
