@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="5dp"
+    android:elevation="15dp"
+    app:cardCornerRadius="30dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="2dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_provider_requests_create_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_bg_default_button"
+            android:minHeight="40dp"
+            android:text="Submit\nOffer"
+            android:textAlignment="center"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/tv_provider_request_list_request_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="Request Descption"
+            android:textColor="@color/black_shade"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_provider_request_list_request_description"
+            android:layout_marginStart="8dp"
+            android:text="Required on :" />
+
+        <TextView
+            android:id="@+id/tv_provider_service_request_required_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_provider_request_list_request_description"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@id/textView17"
+            android:text="12-12-2020"
+            android:textColor="@color/black_shade" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_provider_request_list_request_description"
+            android:layout_marginStart="3dp"
+            android:layout_toRightOf="@id/tv_provider_service_request_required_date"
+            android:drawableEnd="@drawable/ic_baseline_alternate_email_24" />
+
+        <TextView
+            android:id="@+id/tv_provider_service_request_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_provider_request_list_request_description"
+            android:layout_marginStart="3dp"
+            android:layout_toRightOf="@id/textView20"
+            android:text="12:30"
+            android:textColor="@color/black_shade" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView17"
+            android:layout_marginStart="8dp"
+            android:text="Expected hours :" />
+
+        <TextView
+            android:id="@+id/tv_provider_services_expected_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView17"
+            android:layout_marginStart="2dp"
+            android:layout_toRightOf="@id/textView22"
+            android:text="12"
+            android:textColor="@color/black_shade" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_provider_services_expected_hours"
+            android:layout_marginStart="8dp"
+            android:text="Request by :" />
+
+        <TextView
+            android:id="@+id/tv_provider_request_customer_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_provider_services_expected_hours"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_toRightOf="@id/textView24"
+            android:text="v@gmail.com"
+            android:textColor="@color/black_shade"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_provider_services_expected_hours"
+            android:layout_marginStart="2dp"
+            android:layout_toRightOf="@id/tv_provider_request_customer_email"
+            android:text="in"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_provider_requests_customer_location_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_provider_services_expected_hours"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/textView26"
+            android:text="Zomba"
+            android:textColor="@color/black_shade" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

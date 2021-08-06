@@ -60,7 +60,7 @@ public class ProviderServicePresenter implements ProviderServiceContract.Present
                 return params;
             }
         };
-        ;
+
         VolleyController.getInstance(ctx).addToRequestQueue(getServicesRequest);
     }
 }

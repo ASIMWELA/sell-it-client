@@ -61,12 +61,7 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
         String serviceUuid = i.getStringExtra(AppConstants.REQUEST_SERVICE_UUID);
         tvServiceName.setText(serviceName);
         SessionManager sessionManager = new SessionManager(this);
-
-
-
         validateInput();
-
-
         etDateRequiredOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
