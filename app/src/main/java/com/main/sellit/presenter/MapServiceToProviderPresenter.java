@@ -44,7 +44,7 @@ public class MapServiceToProviderPresenter implements MapServiceToProviderContra
             @Override
             public void onErrorResponse(VolleyError error) {
                 view.hideGetServicesProgressBar();
-                view.onGetServicesError(error.toString());
+                view.onGetServicesError(error);
             }
         });
         VolleyController.getInstance(ctx).addToRequestQueue(getServicesRequest);
@@ -63,14 +63,14 @@ public class MapServiceToProviderPresenter implements MapServiceToProviderContra
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    if (error == null || error.networkResponse == null) {
-                        view.hideLoadingButton();
-                        return;
-                    }
-                    String body;
-                    body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+//                    if (error == null || error.networkResponse == null) {
+//                        view.hideLoadingButton();
+//                        return;
+//                    }
+//                    String body;
+//                    body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
                     view.hideLoadingButton();
-                    view.onSubmitServiceError(body);
+                    view.onSubmitServiceError(error);
                 }
             }){
                 @Override

@@ -2,7 +2,9 @@ package com.main.sellit.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,10 +15,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.MapServiceToProviderContract;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.Service;
@@ -52,6 +56,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
     String providerUuid;
     JSONObject serviceOfferObj;
     String token;
+    FlagErrors flagErrors;
     @Override
     @SneakyThrows
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
         providerUuid = sessionManager.getProviderUUid();
         serviceOfferObj = new JSONObject();
         token = sessionManager.getToken();
+        flagErrors = new FlagErrors(this, this);
 
         ivBackArrow.setOnClickListener(v->{
             onBackPressed();
@@ -150,8 +156,8 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
     }
 
     @Override
-    public void onGetServicesError(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    public void onGetServicesError(VolleyError error) {
+       flagErrors.flagApiError(error);
     }
 
     @Override
@@ -221,7 +227,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
 
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.map_service_to_provider_base_view), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
+      flagErrors.flagValidationError(R.id.map_service_to_provider_base_view);
     }
 
     @Override
@@ -263,11 +269,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
 
     @Override
     @SneakyThrows
-    public void onSubmitServiceError(String volleyError) {
-        JSONObject errorOb = new JSONObject(volleyError);
-        String message =  errorOb.getString("message");
-        tvApiResponse.setText(message);
-        tvApiResponse.setTextColor(getResources().getColor(R.color.color_secondary_blend));
-        tvApiResponse.setVisibility(View.VISIBLE);
+    public void onSubmitServiceError(VolleyError volleyError) {
+        flagErrors.flagApiError(volleyError);
     }
 }

@@ -26,6 +26,12 @@ public class SessionManager {
         editor.putString(AppConstants.SET_PROVIDER_UUID, providerUuid).commit();
 
     }
+    public void setServiceProviderUuid(String serviceProviderUuid){
+        editor.putString(AppConstants.SET_SERVICE_PROVIDER_UUID, serviceProviderUuid).commit();
+    }
+    public String getServiceProviderUuid(){
+        return sharedPreferences.getString(AppConstants.SET_SERVICE_PROVIDER_UUID, null);
+    }
 
     public String getProviderUUid(){
         return sharedPreferences.getString(AppConstants.SET_PROVIDER_UUID, null);

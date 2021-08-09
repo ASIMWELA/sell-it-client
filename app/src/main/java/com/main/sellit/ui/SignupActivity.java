@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.main.sellit.R;
 import com.main.sellit.contract.SignupContract;
 import com.main.sellit.helper.AppConstants;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.presenter.SignupPresenter;
@@ -51,7 +52,7 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
             lastName;
 
     ImageView ivBackArrow;
-
+    FlagErrors flagErrors;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,7 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
             finish();
         });
 
+        flagErrors = new FlagErrors(this, this);
         ivBackArrow.setOnClickListener(v->{
             onBackPressed();
         });
@@ -216,9 +218,8 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         intent.putExtra(AppConstants.USER_DETAILS, userDetailsModel);
         startActivity(intent);
     }
-
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.capture_provider_details_container), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
+       flagErrors.flagValidationError(R.id.capture_provider_details_container);
     }
 }

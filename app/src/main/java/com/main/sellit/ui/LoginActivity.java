@@ -1,7 +1,9 @@
 package com.main.sellit.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,12 +11,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.LoginContract;
 import com.main.sellit.helper.AppConstants;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.helper.UserRoles;
@@ -26,8 +29,6 @@ import com.main.sellit.ui.customer.CustomerHomeActivity;
 import com.main.sellit.ui.provider.ProviderHomeActivity;
 
 import org.json.JSONObject;
-
-import java.util.Map;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -46,6 +47,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     String userName, password;
     TextView txvErrorMessage, tvOpenSignupActivity;
     SessionManager sessionManager;
+    FlagErrors flagErrors;
+    TextView generalError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         initViews();
         sessionManager = new SessionManager(this);
         loginPresenter = new LoginPresenter(this, this);
+        flagErrors = new FlagErrors(this, this);
+        generalError = findViewById(R.id.tv_general_arror_message);
 
         //validate initial values
         validateInput();
@@ -115,6 +120,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             sessionManager.setLoggedInUser(providerLoginModel.toString());
             sessionManager.setIsUserLoggedIn(role);
             sessionManager.setProviderUuid(providerLoginModel.getProviderUuid());
+            String serviceProviderUuid = jsonObject.optString("serviceProviderUuid", null);
+            if(serviceProviderUuid == null){
+                Toast.makeText(this, "You are currently not Offering\nany service. You are ineligible to make offers!", Toast.LENGTH_SHORT).show();
+            }else {
+                sessionManager.setServiceProviderUuid(serviceProviderUuid);
+            }
             startActivity(providerIntent);
             finish();
         }
@@ -153,13 +164,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     @SneakyThrows
-    public void onLoginFailure(String message) {
-        //TODO: resolve btn error after second click
-        JSONObject errorObject = new JSONObject(message);
-        String errorMessage = errorObject.getString("message");
-        txvErrorMessage.setText(errorMessage);
-        txvErrorMessage.setVisibility(View.VISIBLE);
-        // startActivity(getIntent());
+    public void onLoginFailure(VolleyError message) {
+        flagErrors.flagApiError(message);
     }
 
     @Override
@@ -212,6 +218,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.scrl_login_conatiner), "There are errors on your inputs", Snackbar.LENGTH_SHORT).show();
+        flagErrors.flagValidationError(R.id.scrl_login_conatiner);
     }
 }

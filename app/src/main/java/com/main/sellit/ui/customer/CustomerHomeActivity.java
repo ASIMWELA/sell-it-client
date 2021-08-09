@@ -11,10 +11,10 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.main.sellit.R;
 import com.main.sellit.contract.CustomerHomeContract;
-import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.CustomerLoginModel;
 import com.main.sellit.presenter.CustomerHomePresenter;
+import com.main.sellit.ui.LoginActivity;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -29,6 +29,7 @@ public class CustomerHomeActivity extends AppCompatActivity implements CustomerH
     TextView tvCustomerName;
     CardView cvOpenAppointmentsActivity, cvOpenServicesActivity, cvOpenProfileActivity, cvOpenRequestsActivity;
     CustomerLoginModel customerLoginModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class CustomerHomeActivity extends AppCompatActivity implements CustomerH
 
         sessionManager = new SessionManager(this);
         customerHomePresenter = new CustomerHomePresenter(this);
+
 
         Gson gson = new Gson();
         String json = sessionManager.getLoggedInUser();
@@ -100,7 +102,9 @@ public class CustomerHomeActivity extends AppCompatActivity implements CustomerH
     public void onLogout() {
         sessionManager.setLoggedInUser(null);
         sessionManager.setAccessToken(null);
-        onBackPressed();
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 
 

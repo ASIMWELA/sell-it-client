@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.sellit.R;
@@ -58,6 +60,11 @@ public class ProviderRequestListAdapter extends RecyclerView.Adapter<ProviderReq
             intent.putExtra(AppConstants.UUID_FOR_REQUEST_TO_SEND_OFFER_FOR, requestModelList.get(position).getUuid());
             context.startActivity(intent);
         });
+
+
+        holder.singleRowContainer.setOnClickListener(v->{
+            Toast.makeText(context, "Send An Offer to \n"+requestModelList.get(position).getRequestBy(), Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
@@ -68,6 +75,7 @@ public class ProviderRequestListAdapter extends RecyclerView.Adapter<ProviderReq
     public static class ServiceListViewHolder extends RecyclerView.ViewHolder{
         TextView requestDesc, expectedHours, requiredDate,startTime,customerEmail, customerLocationCity;
         AppCompatButton btnCreateOffer;
+        CardView singleRowContainer;
 
         public ServiceListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +86,7 @@ public class ProviderRequestListAdapter extends RecyclerView.Adapter<ProviderReq
             startTime = itemView.findViewById(R.id.tv_provider_service_request_time);
             customerEmail = itemView.findViewById(R.id.tv_provider_request_customer_email);
             customerLocationCity = itemView.findViewById(R.id.tv_provider_requests_customer_location_city);
+            singleRowContainer = itemView.findViewById(R.id.provider_request_list_single_row);
         }
     }
 }

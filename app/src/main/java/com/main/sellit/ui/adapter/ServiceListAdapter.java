@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.sellit.R;
-import com.main.sellit.model.Service;
 import com.main.sellit.model.ServiceAndCategoryNamesModel;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
     @Override
     public ServiceListAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.service_layout_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.provider_service_layout_list_row, parent, false);
 
         return new MyViewHolder(view);
     }

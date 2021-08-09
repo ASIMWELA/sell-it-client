@@ -49,7 +49,7 @@ public class ProviderServicePresenter implements ProviderServiceContract.Present
             @Override
             public void onErrorResponse(VolleyError error) {
                 view.hideGetServicesProgressBar();
-                view.onGetServicesError(error.toString());
+                view.onGetServicesError(error);
             }
         }){
             @Override

@@ -11,10 +11,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.main.sellit.R;
 import com.main.sellit.contract.CustomerServicesContract;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.model.ServiceAndCategoryNamesModel;
 import com.main.sellit.presenter.CustomerServicesPresenter;
 import com.main.sellit.ui.adapter.CustomerServiceListAdapter;
@@ -37,6 +38,7 @@ public class CustomerViewServicesActivity extends AppCompatActivity implements C
     RecyclerView recyclerViewServices;
     List<ServiceAndCategoryNamesModel> serviceAndCategoryNamesModelList;
     TextView tvServicesNotAvailable;
+    FlagErrors flagErrors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class CustomerViewServicesActivity extends AppCompatActivity implements C
         setContentView(R.layout.activity_customer_view_services);
         initViews();
         CustomerServicesPresenter customerServicesPresenter = new CustomerServicesPresenter(this, this);
+        flagErrors = new FlagErrors(this, this);
         customerServicesPresenter.getServices();
         serviceAndCategoryNamesModelList = new ArrayList<>();
         ivBackArrow.setOnClickListener(v->{
@@ -88,10 +91,10 @@ public class CustomerViewServicesActivity extends AppCompatActivity implements C
 
     @Override
     @SneakyThrows
-    public void onGetServicesError(String error) {
-        JSONObject errorObj = new JSONObject(error);
-        String errorMessage = errorObj.getString("message");
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+    public void onGetServicesError(VolleyError error) {
+//        JSONObject errorObj = new JSONObject(error);
+//        String errorMessage = errorObj.getString("message");
+        flagErrors.flagApiError(error);
     }
     @Override
     public void showGetServicesProgressBar() {

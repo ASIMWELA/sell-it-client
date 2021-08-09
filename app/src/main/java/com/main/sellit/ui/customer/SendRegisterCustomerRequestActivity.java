@@ -8,11 +8,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.SendCustomerSignUpRequestContract;
 import com.main.sellit.helper.AppConstants;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.presenter.SendRegisterCustomerRequestPresenter;
@@ -36,6 +38,7 @@ public class SendRegisterCustomerRequestActivity extends AppCompatActivity imple
     LoadingButton btnSendRequest;
     ImageView ivBackArrow;
     JSONObject data;
+    FlagErrors flagErrors;
 
 
     @Override
@@ -47,6 +50,7 @@ public class SendRegisterCustomerRequestActivity extends AppCompatActivity imple
 
         customerAddress = new JSONObject();
         customerDetails = new JSONObject();
+        flagErrors = new FlagErrors(this, this);
         sendRegisterCustomerRequestPresenter = new SendRegisterCustomerRequestPresenter(this, this);
 
 
@@ -177,14 +181,14 @@ public class SendRegisterCustomerRequestActivity extends AppCompatActivity imple
     }
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.sende_register_customer_request_base_view),"There are errors in your inputs" ,Snackbar.LENGTH_SHORT);
+        flagErrors.flagValidationError(R.id.sende_register_customer_request_base_view);
     }
 
     @Override
     @SneakyThrows
-    public void onRegistrationRequestError(String volleyError) {
-        JSONObject errorObject = new JSONObject(volleyError);
-        Toast.makeText(this, volleyError, Toast.LENGTH_SHORT).show();
+    public void onRegistrationRequestError(VolleyError volleyError) {
+      //  JSONObject errorObject = new JSONObject(volleyError);
+        flagErrors.flagApiError(volleyError);
     }
 
     @Override

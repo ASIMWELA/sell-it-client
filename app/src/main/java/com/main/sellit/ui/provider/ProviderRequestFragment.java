@@ -20,17 +20,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.main.sellit.R;
 import com.main.sellit.contract.ProviderRequestsContract;
-import com.main.sellit.contract.ProviderServiceContract;
-import com.main.sellit.helper.AppConstants;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.ProviderServiceRequestModel;
-import com.main.sellit.model.ServiceAndCategoryNamesModel;
 import com.main.sellit.presenter.ProviderRequestsPresenter;
-import com.main.sellit.presenter.ProviderServicePresenter;
 import com.main.sellit.ui.LoginActivity;
 import com.main.sellit.ui.adapter.ProviderRequestListAdapter;
 
@@ -39,7 +36,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import lombok.AccessLevel;
 import lombok.SneakyThrows;
@@ -61,10 +57,12 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
     List<ProviderServiceRequestModel> serviceRequestModelList;
     ProviderRequestListAdapter requestListAdapter;
     ImageView ivOpenOptionsMenu;
+    FlagErrors flagErrors;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sessionManager = new SessionManager(requireContext());
+        flagErrors = new FlagErrors(requireContext(), requireActivity());
         token =  sessionManager.getToken();
         providerRequestsPresenter = new ProviderRequestsPresenter(this, getContext());
         serviceRequestModelList = new ArrayList<>();
@@ -156,8 +154,8 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
     }
 
     @Override
-    public void onGetRequestError(String apiError) {
-        Toast.makeText(getContext(), apiError, Toast.LENGTH_SHORT).show();
+    public void onGetRequestError(VolleyError apiError) {
+        flagErrors.flagApiError(apiError);
     }
 
     @Override

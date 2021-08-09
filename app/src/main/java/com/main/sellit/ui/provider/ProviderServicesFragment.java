@@ -4,16 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
@@ -23,13 +20,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.android.volley.VolleyError;
 import com.main.sellit.R;
 import com.main.sellit.contract.ProviderServiceContract;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
-import com.main.sellit.model.Service;
 import com.main.sellit.model.ServiceAndCategoryNamesModel;
-import com.main.sellit.model.ServiceCategory;
 import com.main.sellit.presenter.ProviderServicePresenter;
 import com.main.sellit.ui.AddProductCategoryActivity;
 import com.main.sellit.ui.LoginActivity;
@@ -39,8 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -60,6 +54,7 @@ public class ProviderServicesFragment extends Fragment implements ProviderServic
     ServiceListAdapter serviceListAdapter;
     TextView tvNoServicesMessage;
     ImageView ivBackArrow, ivOpenOptionsMenu;
+    FlagErrors flagErrors;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +77,7 @@ public class ProviderServicesFragment extends Fragment implements ProviderServic
 
         providerServicePresenter = new ProviderServicePresenter(this, getContext());
         sessionManager = new SessionManager(requireContext());
+        flagErrors = new FlagErrors(requireContext(), requireActivity());
 
         authToken = sessionManager.getToken();
         providerUuid = sessionManager.getProviderUUid();
@@ -178,8 +174,8 @@ public class ProviderServicesFragment extends Fragment implements ProviderServic
     }
 
     @Override
-    public void onGetServicesError(String volleyError) {
-        Toast.makeText(getActivity(), volleyError, Toast.LENGTH_SHORT).show();
+    public void onGetServicesError(VolleyError volleyError) {
+        flagErrors.flagApiError(volleyError);
     }
 
     @Override

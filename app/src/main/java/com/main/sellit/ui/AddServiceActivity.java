@@ -3,7 +3,6 @@ package com.main.sellit.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,12 +12,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.AddServiceContract;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.ServiceCategory;
@@ -52,6 +52,7 @@ public class AddServiceActivity extends AppCompatActivity implements AddServiceC
     String token;
     ImageView ivBackArrow;
     TextView tvOpenMapServiceActivity;
+    FlagErrors flagErrors;
 
 
 
@@ -67,6 +68,7 @@ public class AddServiceActivity extends AppCompatActivity implements AddServiceC
         serviceData = new JSONObject();
         sessionManager = new SessionManager(this);
         token = sessionManager.getToken();
+        flagErrors = new FlagErrors(this, this);
 
         spnServiceCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -149,8 +151,8 @@ public class AddServiceActivity extends AppCompatActivity implements AddServiceC
         }
     }
     @Override
-    public void onError(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    public void onError(VolleyError error) {
+        flagErrors.flagApiError(error);
     }
 
     @Override
@@ -178,7 +180,7 @@ public class AddServiceActivity extends AppCompatActivity implements AddServiceC
 
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.add_service_base_container), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
+       flagErrors.flagValidationError(R.id.add_service_base_container);
     }
 
     @Override
@@ -213,15 +215,7 @@ public class AddServiceActivity extends AppCompatActivity implements AddServiceC
 
     @Override
     @SneakyThrows
-    public void onSubmitServiceError(String volleyError) {
-        JSONObject errorObj = new JSONObject(volleyError);
-        String erroMsg = errorObj.getString("message");
-        if(erroMsg != null){
-            tvErrorSuccessMsg.setText(erroMsg);
-        }else {
-            tvErrorSuccessMsg.setText(R.string.add_service_error_msg);
-        }
-        tvErrorSuccessMsg.setTextColor(Color.RED);
-        tvErrorSuccessMsg.setVisibility(View.VISIBLE);
+    public void onSubmitServiceError(VolleyError volleyError) {
+        flagErrors.flagApiError(volleyError);
     }
 }

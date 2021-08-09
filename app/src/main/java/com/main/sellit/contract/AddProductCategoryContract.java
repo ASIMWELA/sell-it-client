@@ -1,5 +1,7 @@
 package com.main.sellit.contract;
 
+import com.android.volley.VolleyError;
+
 import org.json.JSONObject;
 
 public interface AddProductCategoryContract {
@@ -7,7 +9,7 @@ public interface AddProductCategoryContract {
         boolean validateInput();
         void onFailedValidation();
         void onSubmitSuccess(JSONObject apiResponse);
-        void onSubmitError(String apiError);
+        void onSubmitError(VolleyError apiError);
         void startLoadingButton();
         void stopLoadingButton();
 

@@ -3,6 +3,7 @@ package com.main.sellit.presenter;
 import android.content.Context;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -42,14 +43,8 @@ public class ProviderRequestsPresenter implements ProviderRequestsContract.Prese
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (error == null || error.networkResponse == null) {
-                    view.hideGetRequestProgressBar();
-                    return;
-                }
-                String body;
-                body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
                 view.hideGetRequestProgressBar();
-                view.onGetRequestError(body);
+                view.onGetRequestError(error);
             }
         }){
             @Override

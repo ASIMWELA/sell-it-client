@@ -40,15 +40,8 @@ public class CustomerServicesPresenter implements CustomerServicesContract.Prese
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (error == null || error.networkResponse == null) {
-                    view.hideGetServicesProgressBar();
-                    return;
-                }
-                String body;
-                body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-
                 view.hideGetServicesProgressBar();
-                view.onGetServicesError(error.toString());
+                view.onGetServicesError(error);
             }
         });
         VolleyController.getInstance(ctx).addToRequestQueue(serviceCategoriesRequest);

@@ -53,13 +53,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     view.onLoginSuccess(response);
                 }
             }, error -> {
-                if (error == null || error.networkResponse == null) {
-                    view.stopLoadingButton();
-                    return;
-                }
-                String body;
-                body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-                view.onLoginFailure(body);
+                view.onLoginFailure(error);
                 view.stopLoadingButton();
 
             });

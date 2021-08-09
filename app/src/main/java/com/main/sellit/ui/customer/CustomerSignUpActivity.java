@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.main.sellit.R;
 import com.main.sellit.contract.CustomerSignupContract;
 import com.main.sellit.helper.AppConstants;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.presenter.CustomerSignUpPresenter;
@@ -32,6 +33,7 @@ public class CustomerSignUpActivity extends AppCompatActivity implements Custome
     ImageView ivBackBackArrow;
     CustomerSignUpPresenter customerSignUpPresenter;
     String userName, firstName, lastName, password, email, phoneNumber;
+    FlagErrors flagErrors;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class CustomerSignUpActivity extends AppCompatActivity implements Custome
         ivBackBackArrow.setOnClickListener(v->{
             onBackPressed();
         });
-
+        flagErrors = new FlagErrors(this, this);
 
 
     }
@@ -172,7 +174,7 @@ public class CustomerSignUpActivity extends AppCompatActivity implements Custome
 
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.customer_signup_base_view), "There are errors in Your Inputs", Snackbar.LENGTH_SHORT).show();
+       flagErrors.flagValidationError(R.id.customer_signup_base_view);
     }
     @Override
     public void onValidationSuccess() {

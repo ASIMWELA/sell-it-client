@@ -4,16 +4,16 @@ import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
 
-public interface RequestServiceContract {
+public interface ProviderSendOfferContract {
     interface View{
         boolean validateInput();
         void onFailedValidation();
         void showLoadingButton();
         void hideLoadingButton();
-        void onCreateRequestSuccess(JSONObject apiResponse);
-        void onCreateRequestError(VolleyError apiError);
+        void onSendOfferResponse(JSONObject apiResponse);
+        void onSendOfferError(VolleyError apiError);
     }
     interface Presenter{
-        void createRequest(JSONObject data, String customerUuid, String serviceUuid, String token);
+        void sendOfferRequest(String token, String requestUuid, String providerUuid, JSONObject data);
     }
 }

@@ -22,16 +22,14 @@ import com.main.sellit.R;
 import com.main.sellit.contract.RegisterProviderContract;
 import com.main.sellit.helper.ApiUrls;
 import com.main.sellit.helper.AppConstants;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.network.VolleyController;
 import com.main.sellit.presenter.RegisterProviderPresenter;
 import com.main.sellit.ui.LoginActivity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 
 import lombok.AccessLevel;
 import lombok.SneakyThrows;
@@ -49,6 +47,7 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
     TextView txVErrorMessage;
     JSONObject providerSignupRequest = new JSONObject();
     ImageView ivBackArrow;
+    FlagErrors flagErrors;
 
 
     @Override
@@ -65,6 +64,7 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
         //get associated data
         Intent intent = getIntent();
         userDetailsModel= intent.getParcelableExtra(AppConstants.USER_DETAILS);
+        flagErrors = new FlagErrors(this, this);
 
         btnSubmitProviderData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +163,7 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
 
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.cnst_send_provider_details_container), "There are errors in your inputs", Snackbar.LENGTH_LONG).show();
+        flagErrors.flagValidationError(R.id.cnst_send_provider_details_container);
     }
 
     private void signUpProvider(JSONObject jsonObject){
@@ -183,24 +183,9 @@ public class RegisterProviderActivity extends AppCompatActivity implements Regis
                     finish();
             }
         }, error -> {
-            if (error == null || error.networkResponse == null) {
-                return;
-            }
-            String body;
-            //get status code here
-            final String statusCode = String.valueOf(error.networkResponse.statusCode);
-            //get response body and parse with appropriate encoding
-            try {
-                body = new String(error.networkResponse.data,"UTF-8");
-                JSONObject errorObject = new JSONObject(body);
-                String message = errorObject.getString("message");
-                txVErrorMessage.setText(message);
-                txVErrorMessage.setVisibility(View.VISIBLE);
-            } catch (UnsupportedEncodingException | JSONException e) {
-                // exception
-            }
             btnSubmitProviderData.hideLoading();
             btnSubmitProviderData.setEnabled(true);
+            flagErrors.flagApiError(error);
         });
         VolleyController.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }

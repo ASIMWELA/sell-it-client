@@ -10,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.AddProductCategoryContract;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.presenter.AddProductCategoryPresenter;
@@ -35,6 +37,7 @@ public class AddProductCategoryActivity extends AppCompatActivity implements Add
     JSONObject data;
     String accessToken;
     TextView tvErrorMsg, tvSuccessMsg, tvAddService;
+    FlagErrors flagErrors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class AddProductCategoryActivity extends AppCompatActivity implements Add
         data = new JSONObject();
         SessionManager sessionManager = new SessionManager(this);
         accessToken = sessionManager.getToken();
+        flagErrors = new FlagErrors(this, this);
         validateInput();
         btnAddCategory.setOnClickListener(v->{
             if(accessToken == null){
@@ -103,7 +107,7 @@ public class AddProductCategoryActivity extends AppCompatActivity implements Add
 
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.add_category_container), "Error in your input", Snackbar.LENGTH_LONG).show();
+        flagErrors.flagValidationError(R.id.add_category_container);
     }
 
     @Override
@@ -122,15 +126,8 @@ public class AddProductCategoryActivity extends AppCompatActivity implements Add
 
     @Override
     @SneakyThrows
-    public void onSubmitError(String apiError) {
-        JSONObject apiErrObj = new JSONObject(apiError);
-        String err = apiErrObj.getString("message");
-        if(err != null){
-            tvErrorMsg.setText(err);
-        }else {
-            tvErrorMsg.setText(R.string.add_category_submit_error);
-        }
-        tvErrorMsg.setVisibility(View.VISIBLE);
+    public void onSubmitError(VolleyError apiError) {
+        flagErrors.flagApiError(apiError);
     }
 
     @Override

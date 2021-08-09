@@ -44,7 +44,7 @@ public class AddServicePresenter implements AddServiceContract.Presenter{
             @Override
             public void onErrorResponse(VolleyError error) {
                 view.hideProgressBar();
-                view.onError(error.toString());
+                view.onError(error);
             }
         });
         VolleyController.getInstance(ctx).addToRequestQueue(serviceCategoriesRequest);
@@ -63,14 +63,8 @@ public class AddServicePresenter implements AddServiceContract.Presenter{
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    if (error == null || error.networkResponse == null) {
-                        view.hideLoadingButton();
-                        return;
-                    }
-                    String body;
-                    body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
                     view.hideLoadingButton();
-                    view.onSubmitServiceError(body);
+                    view.onSubmitServiceError(error);
                 }
             }){
                 @Override

@@ -41,13 +41,7 @@ public class SendRegisterCustomerRequestPresenter implements SendCustomerSignUpR
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    if (error == null || error.networkResponse == null) {
-                        view.hideLoadingButton();
-                        return;
-                    }
-                    String body;
-                    body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-                    view.onRegistrationRequestError(body);
+                    view.onRegistrationRequestError(error);
                     view.hideLoadingButton();
                 }
             });

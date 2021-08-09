@@ -15,11 +15,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.RequestServiceContract;
 import com.main.sellit.helper.AppConstants;
+import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.presenter.RequestServicePresenter;
@@ -46,6 +48,7 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
     LoadingButton btnSendRequest;
     JSONObject data;
     ImageView ivBackArrow;
+    FlagErrors flagErrors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
         initViews();
         RequestServicePresenter requestServicePresenter = new RequestServicePresenter(this, this);
         data = new JSONObject();
+        flagErrors = new FlagErrors(this, this);
 
 
         Intent i = getIntent();
@@ -196,7 +200,7 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
 
     @Override
     public void onFailedValidation() {
-        Snackbar.make(findViewById(R.id.customer_request_service_base_view), "There are errors in Your Inputs", Snackbar.LENGTH_SHORT).show();
+        flagErrors.flagValidationError(R.id.customer_request_service_base_view);
     }
 
     @Override
@@ -237,12 +241,7 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
 
     @Override
     @SneakyThrows
-    public void onCreateRequestError(String apiError) {
-        JSONObject error = new JSONObject(apiError);
-        etExpectedHours.setBackgroundResource(R.drawable.rounded_boaders);
-        tvApiResponse.setTextColor(getResources().getColor(R.color.color_secondary_blend));
-        tvApiResponse.setText(error.getString("message"));
-        tvApiResponse.setVisibility(View.VISIBLE);
-        Toast.makeText(this, error.getString("message"), Toast.LENGTH_SHORT).show();
+    public void onCreateRequestError(VolleyError apiError) {
+        flagErrors.flagApiError(apiError);
     }
 }
