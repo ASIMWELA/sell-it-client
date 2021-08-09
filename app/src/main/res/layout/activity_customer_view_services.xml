@@ -15,11 +15,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="70dp"
         android:text="Services"
         android:textSize="18sp"
@@ -31,7 +32,7 @@
         android:id="@+id/ivCustomerServicesBackArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,6 +53,7 @@
         android:id="@+id/progress_overlay_holder_customer_services"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="110dp"
         android:alpha="1.0"
         android:animateLayoutChanges="true"
         android:background="@color/white"
@@ -68,7 +70,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="10dp"
             android:indeterminate="true"
             android:indeterminateTint="@color/color_primary_blend"
             android:indeterminateTintMode="src_atop" />

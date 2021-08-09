@@ -2,7 +2,6 @@ package com.main.sellit.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -80,10 +78,10 @@ public class ProviderRequestListAdapter extends RecyclerView.Adapter<ProviderReq
         public ServiceListViewHolder(@NonNull View itemView) {
             super(itemView);
             btnCreateOffer = itemView.findViewById(R.id.btn_provider_requests_create_offer);
-            requestDesc = itemView.findViewById(R.id.tv_provider_request_list_request_description);
-            expectedHours = itemView.findViewById(R.id.tv_provider_services_expected_hours);
-            requiredDate = itemView.findViewById(R.id.tv_provider_service_request_required_date);
-            startTime = itemView.findViewById(R.id.tv_provider_service_request_time);
+            requestDesc = itemView.findViewById(R.id.tv_customer_request_list_request_description);
+            expectedHours = itemView.findViewById(R.id.tv_customer_services_expected_hours);
+            requiredDate = itemView.findViewById(R.id.tv_customer_service_request_required_date);
+            startTime = itemView.findViewById(R.id.tv_customer_service_request_time);
             customerEmail = itemView.findViewById(R.id.tv_provider_request_customer_email);
             customerLocationCity = itemView.findViewById(R.id.tv_provider_requests_customer_location_city);
             singleRowContainer = itemView.findViewById(R.id.provider_request_list_single_row);

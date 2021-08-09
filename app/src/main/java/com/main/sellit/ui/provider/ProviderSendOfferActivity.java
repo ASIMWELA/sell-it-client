@@ -3,8 +3,10 @@ package com.main.sellit.ui.provider;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -36,6 +38,7 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
     ProviderSendOfferPresenter providerSendOfferPresenter;
     JSONObject offer;
     double discount, amount;
+    TextView tvSuccessMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,11 +50,13 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
         sessionManager = new SessionManager(this);
         providerSendOfferPresenter = new ProviderSendOfferPresenter(this, this);
         offer = new JSONObject();
+        tvSuccessMessage.setVisibility(View.GONE);
 
 
         validateInput();
 
         btnSendRequest.setOnClickListener(v->{
+            tvSuccessMessage.setVisibility(View.GONE);
             Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
@@ -65,7 +70,7 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
                 e.printStackTrace();
             }
             String serviceProviderUuid = sessionManager.getServiceProviderUuid();
-            if(serviceProviderUuid == null){
+            if(serviceProviderUuid.equals("notAvailable")){
                 Toast.makeText(this, "You are ineligible to submit\nan offer since you are not\noffering any service.", Toast.LENGTH_SHORT).show();
             }else {
                 providerSendOfferPresenter.sendOfferRequest(sessionManager.getToken(), requestUuid, serviceProviderUuid,offer);
@@ -82,6 +87,7 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
         etAmount = findViewById(R.id.et_provider_send_offer_amount);
         btnSendRequest = findViewById(R.id.btn_provider_send_offer_send_request);
         ivBackArrow = findViewById(R.id.iv_provider_send_offer_back_arrow);
+        tvSuccessMessage = findViewById(R.id.tv_proviser_send_offer_sucess_message);
     }
 
     @Override
@@ -90,11 +96,14 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
             @Override
             @SneakyThrows
             public void validate() {
-                if(!etAmount.getText().toString().trim().isEmpty()){
+                if(etAmount.getText().toString().trim().isEmpty()){
+                    amount = 0.0;
+                    etAmount.setError("Amount required");
+                    etAmount.setBackgroundResource(R.drawable.rounded_boaders_error);
+                }else {
+                    etAmount.setBackgroundResource(R.drawable.rounded_boaders);
                     amount = Double.parseDouble(etAmount.getText().toString().trim());
                     offer.put("estimatedCost", amount);
-                }else {
-                    amount = 0.0;
                 }
 
             }
@@ -103,17 +112,19 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
             @Override
             @SneakyThrows
             public void validate() {
-                if(!edDiscount.getText().toString().trim().isEmpty()){
+                if(edDiscount.getText().toString().trim().isEmpty()){
+                    edDiscount.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    etAmount.setError("Amount required");
+                    discount = 0.0;
+                }else {
+                    edDiscount.setBackgroundResource(R.drawable.rounded_boaders);
                     discount = Double.parseDouble(edDiscount.getText().toString().trim());
                     offer.put("discountInPercent", discount);
-                }else {
-                    discount = 0.0;
                 }
             }
         });
 
-
-        return amount != 0.0 && discount != 0.0;
+        return (amount != 0.0) && (discount != 0.0);
     }
 
     @Override
@@ -134,8 +145,20 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
     }
 
     @Override
+    @SneakyThrows
     public void onSendOfferResponse(JSONObject apiResponse) {
-        Toast.makeText(this, apiResponse.toString(), Toast.LENGTH_SHORT).show();
+        amount = 0.0;
+        discount = 0.0;
+        String message = apiResponse.getString("message");
+        edDiscount.setText("");
+        etAmount.setText("");
+
+        edDiscount.setBackgroundResource(R.drawable.rounded_boaders);
+        etAmount.setError(null);
+        etAmount.setBackgroundResource(R.drawable.rounded_boaders);
+        edDiscount.setError(null);
+        tvSuccessMessage.setText(message);
+        tvSuccessMessage.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -23,8 +23,8 @@
             <View
                 android:id="@+id/view4"
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:background="@drawable/add_category_bg"
+                android:layout_height="110dp"
+                android:background="@drawable/login_bg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,15 +66,15 @@
                 android:id="@+id/tv_add_service_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="70dp"
                 android:text="Add Service"
-                android:textColor="@color/color_primary_blend"
+                android:textColor="@color/material_on_surface_disabled"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.kusu.loadingbutton.LoadingButton
                 android:id="@+id/btn_add_service_save_service"
@@ -117,12 +117,12 @@
                 android:id="@+id/iv_add_service_back_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                app:tint="@color/white"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/back_arrow_icon" />
+                app:srcCompat="@drawable/back_arrow_icon"
+                app:tint="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"

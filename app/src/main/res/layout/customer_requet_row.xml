@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/provider_request_list_single_row"
+    android:id="@+id/customer_request_singles_row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
@@ -15,19 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="3dp">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_provider_requests_create_offer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_bg_default_button"
-            android:minHeight="40dp"
-            android:text="Submit\nOffer"
-            android:textAlignment="center"
-            android:textAllCaps="false" />
 
         <TextView
             android:id="@+id/tv_customer_request_list_request_description"
@@ -95,46 +82,18 @@
             android:text="12"
             android:textColor="@color/black_shade" />
 
-        <TextView
-            android:id="@+id/textView24"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_customer_requests_list_open_offers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_customer_services_expected_hours"
-            android:layout_marginStart="8dp"
-            android:text="Request by :" />
-
-        <TextView
-            android:id="@+id/tv_provider_request_customer_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_customer_services_expected_hours"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="2dp"
-            android:layout_toRightOf="@id/textView24"
-            android:text="v@gmail.com"
-            android:textColor="@color/black_shade"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_customer_services_expected_hours"
-            android:layout_marginStart="2dp"
-            android:layout_toRightOf="@id/tv_provider_request_customer_email"
-            android:text="in"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_provider_requests_customer_location_city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_customer_services_expected_hours"
-            android:layout_marginLeft="4dp"
-            android:layout_toRightOf="@id/textView26"
-            android:text="Zomba"
-            android:textColor="@color/black_shade" />
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_bg_default_button"
+            android:minHeight="40dp"
+            android:text="Offers"
+            android:textAllCaps="false" />
 
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

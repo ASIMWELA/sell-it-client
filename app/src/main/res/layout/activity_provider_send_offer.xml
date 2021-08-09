@@ -44,6 +44,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_boaders"
         android:ems="10"
@@ -52,7 +53,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view15" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_proviser_send_offer_sucess_message" />
 
     <EditText
         android:id="@+id/et_provider_send_offer_amount"
@@ -86,5 +87,19 @@
         app:layout_constraintTop_toBottomOf="@+id/et_provider_send_offer_amount"
         app:lb_cornerRadius="30dp"
         app:lb_isShadowEnable="false" />
+
+    <TextView
+        android:id="@+id/tv_proviser_send_offer_sucess_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/ic_baseline_check_circle_24"
+        android:textColor="@color/color_secondary"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:drawableTint="@color/color_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view15" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

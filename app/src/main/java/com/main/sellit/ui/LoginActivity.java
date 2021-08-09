@@ -120,8 +120,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             sessionManager.setLoggedInUser(providerLoginModel.toString());
             sessionManager.setIsUserLoggedIn(role);
             sessionManager.setProviderUuid(providerLoginModel.getProviderUuid());
-            String serviceProviderUuid = jsonObject.optString("serviceProviderUuid", null);
-            if(serviceProviderUuid == null){
+            String serviceProviderUuid = jsonObject.optString("serviceProviderUuid","notAvailable");
+            if(serviceProviderUuid.equals("notAvailable")){
                 Toast.makeText(this, "You are currently not Offering\nany service. You are ineligible to make offers!", Toast.LENGTH_SHORT).show();
             }else {
                 sessionManager.setServiceProviderUuid(serviceProviderUuid);

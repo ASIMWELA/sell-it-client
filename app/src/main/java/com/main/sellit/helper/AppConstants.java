@@ -14,4 +14,5 @@ public class AppConstants {
     public static final String IS_USER_LOGGED_IN = "USER_LOGGED_IN";
     public static final String UUID_FOR_REQUEST_TO_SEND_OFFER_FOR = "request_uuid_to_send_offer_for";
     public static final String SET_SERVICE_PROVIDER_UUID = "2SERVICE_PROVIDER12456";
+    public static final String UUID_TO_VIEW_OFFERS_FOR = "Uuid_to_startbdjd_get_its_offers";
 }

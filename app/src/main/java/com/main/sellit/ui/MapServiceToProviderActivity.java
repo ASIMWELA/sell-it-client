@@ -2,9 +2,7 @@ package com.main.sellit.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.MapServiceToProviderContract;
@@ -107,7 +104,7 @@ public class MapServiceToProviderActivity extends AppCompatActivity implements M
         ivBackArrow = findViewById(R.id.iv_map_service_to_provider_back_arrow);
         tvActivityTitle = findViewById(R.id.tv_map_service_to_provider_activity_title);
         btnSendProviderDetails = findViewById(R.id.btn_map_service_to_provider_send_request);
-        fmLoadingProgressBar = findViewById(R.id.progress_overlay_holder_map_services_to_provider);
+        fmLoadingProgressBar = findViewById(R.id.progress_overlay_bar_customer_requests);
         etBillingPerHour = findViewById(R.id.et_map_service_to_provider_billir_rate);
         etExperienceInMonths = findViewById(R.id.et_map_service_to_provider_experience_in_months);
         etServiceOfferDescription = findViewById(R.id.et_map_service_to_provider_service_offer_desc);

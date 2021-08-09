@@ -159,7 +159,6 @@ public class ProviderServicesFragment extends Fragment implements ProviderServic
             }
             serviceListAdapter = new ServiceListAdapter(servicesList);
 
-
             LinearLayoutManager r = new LinearLayoutManager(getContext());
             recyclerViewServices.setLayoutManager(r);
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerViewServices.getContext(),
