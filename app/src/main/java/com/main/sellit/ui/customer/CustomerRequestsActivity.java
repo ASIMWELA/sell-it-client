@@ -27,8 +27,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.AccessLevel;
 import lombok.SneakyThrows;
+import lombok.experimental.FieldDefaults;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CustomerRequestsActivity extends AppCompatActivity implements CustomerRequestContract.View {
 
     FrameLayout progressBar;
@@ -40,7 +43,6 @@ public class CustomerRequestsActivity extends AppCompatActivity implements Custo
     List<CustomerServiceRequestModel> customerServiceRequestModelList;
     CustomerRequestPresenter customerRequestPresenter;
     SessionManager sessionManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,6 @@ public class CustomerRequestsActivity extends AppCompatActivity implements Custo
         }else {
             for(int x = 0 ; x < dataArray.length(); x++){
                 JSONObject requestObject = dataArray.getJSONObject(x);
-
                 CustomerServiceRequestModel requestModel =
                         CustomerServiceRequestModel.builder()
                                 .uuid(requestObject.getString("uuid"))
@@ -83,7 +84,6 @@ public class CustomerRequestsActivity extends AppCompatActivity implements Custo
                                 .build();
                 customerServiceRequestModelList.add(requestModel);
             }
-
             customerRequestsAdapter = new CustomerRequestsAdapter(customerServiceRequestModelList, this);
             LinearLayoutManager r = new LinearLayoutManager(this);
             requestRecyclerView.setLayoutManager(r);
