@@ -102,6 +102,8 @@ public class CustomerHomeActivity extends AppCompatActivity implements CustomerH
     public void onLogout() {
         sessionManager.setLoggedInUser(null);
         sessionManager.setAccessToken(null);
+        sessionManager.setLoggedInCustomerUuid(null);
+        sessionManager.setIsUserLoggedIn(null);
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         finish();

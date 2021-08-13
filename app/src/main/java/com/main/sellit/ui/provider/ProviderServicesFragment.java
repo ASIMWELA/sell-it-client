@@ -98,8 +98,10 @@ public class ProviderServicesFragment extends Fragment implements ProviderServic
             public boolean onMenuItemClick(MenuItem item){
                 switch (item.getItemId()){
                     case R.id. logout_provider:
-                        sessionManager.setLoggedInUser(null);
                         sessionManager.setAccessToken(null);
+                        sessionManager.setLoggedInUser(null);
+                        sessionManager.setIsUserLoggedIn(null);
+                        sessionManager.setProviderUuid(null);
                         startActivity(new Intent(requireActivity(), LoginActivity.class));
                         requireActivity().finish();
                         return true;

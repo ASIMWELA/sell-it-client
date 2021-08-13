@@ -94,8 +94,10 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
             @Override
             public boolean onMenuItemClick(MenuItem item){
                 if (item.getItemId() == R.id.provider_request_logout_btn) {
-                    sessionManager.setLoggedInUser(null);
                     sessionManager.setAccessToken(null);
+                    sessionManager.setLoggedInUser(null);
+                    sessionManager.setIsUserLoggedIn(null);
+                    sessionManager.setProviderUuid(null);
                     startActivity(new Intent(requireActivity(), LoginActivity.class));
                     requireActivity().finish();
                     return true;

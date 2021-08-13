@@ -92,19 +92,20 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_customer_home_open_services_activity"
-                android:layout_width="110dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
-                android:padding="2dp"
-                android:layout_marginStart="48dp"
-                app:cardBackgroundColor="@color/grey_shed"
+                android:layout_marginStart="67dp"
                 android:layout_marginRight="32dp"
+                android:padding="2dp"
+                app:cardBackgroundColor="@color/grey_shed"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:id="@+id/tv_customer_home_services_card_title"
                         android:layout_width="wrap_content"
@@ -124,12 +125,12 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_customer_home_open_service_request_activity"
-                android:layout_width="110dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="48dp"
-                app:cardBackgroundColor="@color/grey_shed"
+                android:layout_marginEnd="67dp"
                 android:padding="2dp"
+                app:cardBackgroundColor="@color/grey_shed"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="5dp">
 
@@ -166,14 +167,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_customer_home_open_appointments_activity"
-                android:layout_width="110dp"
-                app:cardCornerRadius="15dp"
-                android:padding="2dp"
-                app:cardElevation="5dp"
-                android:layout_marginStart="48dp"
-                app:cardBackgroundColor="@color/grey_shed"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true">
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="67dp"
+                android:padding="2dp"
+                app:cardBackgroundColor="@color/grey_shed"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -199,14 +200,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_customer_home_open_profile_activity"
-                android:layout_width="110dp"
-                app:cardElevation="5dp"
-                android:padding="2dp"
-                android:layout_marginEnd="48dp"
-                app:cardCornerRadius="15dp"
-                app:cardBackgroundColor="@color/grey_shed"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true">
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="67dp"
+                android:padding="2dp"
+                app:cardBackgroundColor="@color/grey_shed"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
