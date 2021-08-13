@@ -34,18 +34,16 @@ public class AddServicePresenter implements AddServiceContract.Presenter{
     @Override
     public void getServiceCategories() {
         view.showProgressBar();
-        JsonObjectRequest serviceCategoriesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services/categories?pageNo=0&pageSize=150", null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                view.hideProgressBar();
-                view.onResponse(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                view.hideProgressBar();
-                view.onError(error);
-            }
+        JsonObjectRequest serviceCategoriesRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                ApiUrls.BASE_API_URL + "/services/categories?pageNo=0&pageSize=150",
+                null,
+                response -> {
+                     view.hideProgressBar();
+                     view.onResponse(response);
+              }, error -> {
+                     view.hideProgressBar();
+                     view.onError(error);
         });
         VolleyController.getInstance(ctx).addToRequestQueue(serviceCategoriesRequest);
     }
@@ -54,21 +52,18 @@ public class AddServicePresenter implements AddServiceContract.Presenter{
     public void saveService(JSONObject serviceData, String token, String categoryUuid) {
         if(view.validateInput()){
             view.showLoadingButton();
-            JsonObjectRequest addService= new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL + "/services/"+categoryUuid+"/save-service", serviceData, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    view.hideLoadingButton();
-                    view.onSubmitServiceSuccess(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    view.hideLoadingButton();
-                    view.onSubmitServiceError(error);
-                }
+            JsonObjectRequest addService= new JsonObjectRequest(
+                    Request.Method.POST, ApiUrls.BASE_API_URL + "/services/"+categoryUuid+"/save-service",
+                    serviceData,
+                    response -> {
+                         view.hideLoadingButton();
+                         view.onSubmitServiceSuccess(response);
+                  }, error -> {
+                         view.hideLoadingButton();
+                         view.onSubmitServiceError(error);
             }){
                 @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
+                public Map<String, String> getHeaders() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("Content-Type", "application/json; charset=UTF-8");
                     params.put("Authorization", "Bearer "+token);

@@ -1,0 +1,25 @@
+package com.main.sellit.model;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class ProviderOfferModel {
+    String uuid,
+            offerBy,
+            experienceInMonths,
+            mobileNumber,
+            email,
+            location,
+            submissionDate,
+            overallRating;
+    double  discountInPercent, estimatedCost;
+}

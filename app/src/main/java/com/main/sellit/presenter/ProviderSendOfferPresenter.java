@@ -38,19 +38,15 @@ public class ProviderSendOfferPresenter implements ProviderSendOfferContract.Pre
            JsonObjectRequest jsonObjectRequest =  new JsonObjectRequest(
                    Request.Method.POST,
                    ApiUrls.BASE_API_URL + "/services/" + requestUuid + "/" + providerUuid + "/make-offer",
-                      data, new Response.Listener<JSONObject>() {
-               @Override
-               public void onResponse(JSONObject response) {
-                   view.hideLoadingButton();
-                   view.onSendOfferResponse(response);
-               }
-           }, new Response.ErrorListener() {
-               @Override
-               public void onErrorResponse(VolleyError error) {
-                   view.hideLoadingButton();
-                   view.onSendOfferError(error);
-               }
-           }){
+                      data,
+                   response -> {
+                          view.hideLoadingButton();
+                          view.onSendOfferResponse(response);
+                      },
+                   error -> {
+                          view.hideLoadingButton();
+                          view.onSendOfferError(error);
+                      }){
                @Override
                public Map<String, String> getHeaders() throws AuthFailureError {
                    Map<String, String> params = new HashMap<String, String>();

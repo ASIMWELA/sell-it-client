@@ -32,18 +32,15 @@ public class SendRegisterCustomerRequestPresenter implements SendCustomerSignUpR
     public void sendSignUpRequest(JSONObject data) {
         if(view.validateData()){
             view.showLoadingButton();
-            JsonObjectRequest signUpCustomerRequest = new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL + "/customers", data, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    view.hideLoadingButton();
-                    view.onRegistrationRequestSuccess(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    view.onRegistrationRequestError(error);
-                    view.hideLoadingButton();
-                }
+            JsonObjectRequest signUpCustomerRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    ApiUrls.BASE_API_URL + "/customers", data,
+                    response -> {
+                        view.hideLoadingButton();
+                        view.onRegistrationRequestSuccess(response);
+                   }, error -> {
+                       view.onRegistrationRequestError(error);
+                       view.hideLoadingButton();
             });
 
             VolleyController.getInstance(ctx).addToRequestQueue(signUpCustomerRequest);

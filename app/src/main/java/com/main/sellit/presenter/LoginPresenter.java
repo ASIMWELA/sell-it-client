@@ -42,19 +42,16 @@ public class LoginPresenter implements LoginContract.Presenter {
             JSONObject loginObject = new JSONObject();
             loginObject.put("userName", userName);
             loginObject.put("password", password);
-            JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL + "/auth/login", loginObject, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    if(response == null){
-                        Toast.makeText(context, "We could not authenticate. Try again", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    view.stopLoadingButton();
-                    view.onLoginSuccess(response);
-                }
-            }, error -> {
-                view.onLoginFailure(error);
-                view.stopLoadingButton();
+            JsonObjectRequest loginRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    ApiUrls.BASE_API_URL + "/auth/login",
+                    loginObject,
+                    response -> {
+                         view.stopLoadingButton();
+                          view.onLoginSuccess(response);
+                     }, error -> {
+                         view.onLoginFailure(error);
+                          view.stopLoadingButton();
 
             });
 

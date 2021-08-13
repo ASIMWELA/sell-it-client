@@ -39,19 +39,17 @@ public class ProviderServicePresenter implements ProviderServiceContract.Present
     @Override
     public void getProviderServices(String providerUuid, String token) {
         view.showGetServicesProgressBar();
-        JsonObjectRequest getServicesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services/"+providerUuid, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                view.hideGetServicesProgressBar();
-                view.onGetServicesResponse(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                view.hideGetServicesProgressBar();
-                view.onGetServicesError(error);
-            }
-        }){
+        JsonObjectRequest getServicesRequest = new JsonObjectRequest(
+                Request.Method.GET, ApiUrls.BASE_API_URL + "/services/"+providerUuid,
+                null,
+                response -> {
+                    view.hideGetServicesProgressBar();
+                    view.onGetServicesResponse(response);
+                },
+                error -> {
+                    view.hideGetServicesProgressBar();
+                    view.onGetServicesError(error);
+                }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

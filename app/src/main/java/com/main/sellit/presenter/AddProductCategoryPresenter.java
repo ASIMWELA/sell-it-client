@@ -36,18 +36,15 @@ public class AddProductCategoryPresenter implements AddProductCategoryContract.P
     public void submitData(JSONObject data, String token) {
         if(view.validateInput()){
             view.startLoadingButton();
-            JsonObjectRequest addCategoryRequest = new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL + "/services/categories", data, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    view.stopLoadingButton();
-                    view.onSubmitSuccess(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    view.stopLoadingButton();
-                    view.onSubmitError(error);
-                }
+            JsonObjectRequest addCategoryRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    ApiUrls.BASE_API_URL + "/services/categories", data,
+                    response -> {
+                          view.stopLoadingButton();
+                          view.onSubmitSuccess(response);
+                  }, error -> {
+                          view.stopLoadingButton();
+                         view.onSubmitError(error);
             }){
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {

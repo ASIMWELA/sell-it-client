@@ -31,18 +31,15 @@ public class CustomerServicesPresenter implements CustomerServicesContract.Prese
     public void getServices() {
         view.showGetServicesProgressBar();
 
-        JsonObjectRequest serviceCategoriesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services?pageNo=0&pageSize=150", null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                view.hideGetServicesProgressBar();
-                view.onGetServicesSuccess(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                view.hideGetServicesProgressBar();
-                view.onGetServicesError(error);
-            }
+        JsonObjectRequest serviceCategoriesRequest = new JsonObjectRequest(
+                Request.Method.GET, ApiUrls.BASE_API_URL + "/services?pageNo=0&pageSize=150",
+                null,
+                response -> {
+                   view.hideGetServicesProgressBar();
+                   view.onGetServicesSuccess(response);
+              }, error -> {
+                    view.hideGetServicesProgressBar();
+                    view.onGetServicesError(error);
         });
         VolleyController.getInstance(ctx).addToRequestQueue(serviceCategoriesRequest);
     }

@@ -34,18 +34,12 @@ public class ProviderRequestsPresenter implements ProviderRequestsContract.Prese
     @Override
     public void getRequests(String token) {
         view.showGetRequestProgressBar();
-        JsonObjectRequest getRequestsRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services/requests?pageNo=0&pageSize=100", null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                view.hideGetRequestProgressBar();
-                view.onGetRequestSuccess(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                view.hideGetRequestProgressBar();
-                view.onGetRequestError(error);
-            }
+        JsonObjectRequest getRequestsRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services/requests?pageNo=0&pageSize=100", null, response -> {
+            view.hideGetRequestProgressBar();
+            view.onGetRequestSuccess(response);
+        }, error -> {
+            view.hideGetRequestProgressBar();
+            view.onGetRequestError(error);
         }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

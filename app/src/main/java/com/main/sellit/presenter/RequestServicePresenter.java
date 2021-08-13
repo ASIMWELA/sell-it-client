@@ -35,19 +35,15 @@ public class RequestServicePresenter implements RequestServiceContract.Presenter
     public void createRequest(JSONObject data, String customerUuid, String serviceUuid, String token) {
         if(view.validateInput()){
             view.showLoadingButton();
-            JsonObjectRequest createRequest = new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL+"/services/"+customerUuid+"/"+serviceUuid+"/request-service", data, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    view.hideLoadingButton();
-                    view.onCreateRequestSuccess(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    view.hideLoadingButton();
-                    view.onCreateRequestError(error);
-                }
-            }){
+            JsonObjectRequest createRequest = new JsonObjectRequest(
+                    Request.Method.POST, ApiUrls.BASE_API_URL+"/services/"+customerUuid+"/"+serviceUuid+"/request-service",
+                    data, response -> {
+                        view.hideLoadingButton();
+                        view.onCreateRequestSuccess(response);
+                    }, error -> {
+                        view.hideLoadingButton();
+                        view.onCreateRequestError(error);
+                    }){
                 @Override
                 public Map<String, String> getHeaders() {
                     Map<String, String> params = new HashMap<String, String>();

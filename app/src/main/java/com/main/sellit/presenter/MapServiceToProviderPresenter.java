@@ -34,18 +34,12 @@ public class MapServiceToProviderPresenter implements MapServiceToProviderContra
     @Override
     public void getServices() {
         view.showGetServicesProgressBar();
-        JsonObjectRequest getServicesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services?pageNo=0&pageSize=20", null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                view.hideGetServicesProgressBar();
-                view.onGetServicesResponse(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                view.hideGetServicesProgressBar();
-                view.onGetServicesError(error);
-            }
+        JsonObjectRequest getServicesRequest = new JsonObjectRequest(Request.Method.GET, ApiUrls.BASE_API_URL + "/services?pageNo=0&pageSize=20", null, response -> {
+            view.hideGetServicesProgressBar();
+            view.onGetServicesResponse(response);
+        }, error -> {
+            view.hideGetServicesProgressBar();
+            view.onGetServicesError(error);
         });
         VolleyController.getInstance(ctx).addToRequestQueue(getServicesRequest);
     }
@@ -54,24 +48,12 @@ public class MapServiceToProviderPresenter implements MapServiceToProviderContra
     public void mapServiceToProvider(JSONObject serviceProviderDetails, String serviceUuid, String providerUuid, String token) {
         if(view.validateInput()){
             view.showLoadingButton();
-            JsonObjectRequest mapServiceRequest = new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL + "/providers/"+serviceUuid+"/"+providerUuid+"/map-service-to-provider", serviceProviderDetails, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    view.hideLoadingButton();
-                    view.onSubmitServiceSuccess(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-//                    if (error == null || error.networkResponse == null) {
-//                        view.hideLoadingButton();
-//                        return;
-//                    }
-//                    String body;
-//                    body = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-                    view.hideLoadingButton();
-                    view.onSubmitServiceError(error);
-                }
+            JsonObjectRequest mapServiceRequest = new JsonObjectRequest(Request.Method.POST, ApiUrls.BASE_API_URL + "/providers/"+serviceUuid+"/"+providerUuid+"/map-service-to-provider", serviceProviderDetails, response -> {
+                view.hideLoadingButton();
+                view.onSubmitServiceSuccess(response);
+            }, error -> {
+                view.hideLoadingButton();
+                view.onSubmitServiceError(error);
             }){
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
