@@ -11,6 +11,18 @@
         android:layout_height="match_parent"
         tools:context=".ui.LoginActivity">
 
+        <TextView
+            android:id="@+id/txt_login_account_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="Dont have an Account?"
+            android:textColor="@color/material_on_surface_emphasis_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_send_request" />
+
         <View
             android:id="@+id/view2"
             android:layout_width="wrap_content"
@@ -20,6 +32,22 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_login_open_signup_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:text="Sign Up"
+            android:textColor="@color/color_primary_blend"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt_login_account_prompt"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_send_request" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -116,37 +144,6 @@
             app:lb_cornerRadius="32dp"
             app:lb_isShadowEnable="false" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login_send_request">
-
-            <TextView
-                android:id="@+id/txt_login_account_prompt"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="85dp"
-                android:layout_marginEnd="0dp"
-                android:layout_weight="1"
-                android:text="Dont have an Account?"
-                android:textColor="@color/material_on_surface_emphasis_medium" />
-
-            <TextView
-                android:id="@+id/tv_login_open_signup_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Sign Up"
-                android:textColor="@color/color_primary_blend"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
         <TextView
             android:id="@+id/txv_login_error_message"
             android:layout_width="wrap_content"
@@ -160,6 +157,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="4dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="20dp"
+            android:text="|"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tv_login_open_signup_activity"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_send_request" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

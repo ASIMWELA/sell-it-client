@@ -232,17 +232,6 @@
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
-        <ImageView
-            app:tint="@color/white"
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/back_arrow_icon" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

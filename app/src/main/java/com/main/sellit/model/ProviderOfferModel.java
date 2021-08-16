@@ -20,6 +20,7 @@ public class ProviderOfferModel {
             email,
             location,
             submissionDate,
-            overallRating;
-    double  discountInPercent, estimatedCost;
+            overallRating,
+            estimatedCost;
+    double  discountInPercent;
 }

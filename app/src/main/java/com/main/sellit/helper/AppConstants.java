@@ -15,4 +15,5 @@ public class AppConstants {
     public static final String UUID_FOR_REQUEST_TO_SEND_OFFER_FOR = "request_uuid_to_send_offer_for";
     public static final String SET_SERVICE_PROVIDER_UUID = "2SERVICE_PROVIDER12456";
     public static final String UUID_TO_VIEW_OFFERS_FOR = "Uuid_to_startbdjd_get_its_offers";
+    public static final String CREATE_APPOINTMENT_FOR_SERVICE_DELIVERY_OFFER_UUID = "Service_delivery_offer_uuid";
 }

@@ -14,8 +14,8 @@
         <View
             android:id="@+id/view3"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:background="@drawable/add_category_bg"
+            android:layout_height="110dp"
+            android:background="@drawable/login_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -24,14 +24,14 @@
             android:id="@+id/iv_add_category_back_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            app:tint="@color/white"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.014"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/back_arrow_icon" />
+            app:srcCompat="@drawable/back_arrow_icon"
+            app:tint="@color/white" />
 
         <TextView
             android:id="@+id/tv_add_category_title"

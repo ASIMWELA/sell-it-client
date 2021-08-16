@@ -220,4 +220,5 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     public void onFailedValidation() {
         flagErrors.flagValidationError(R.id.scrl_login_conatiner);
     }
+
 }

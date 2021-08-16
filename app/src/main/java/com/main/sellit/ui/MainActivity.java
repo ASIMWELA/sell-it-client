@@ -31,7 +31,7 @@
          Button btnSignup = (Button) findViewById(R.id.btn_welcome_signup);
         Button btnLogin = (Button) findViewById(R.id.btn_welcome_login);
         sessionManager = new SessionManager(this);
-
+        checkSession();
         //navigate to login and signup activities
         btnSignup.setOnClickListener(v -> presenter.signUpButtonClicked());
         btnLogin.setOnClickListener(v->presenter.loginButtonClicked());
@@ -45,22 +45,25 @@
 
      @Override
      public void navigateToLogin() {
-         if(sessionManager.getLoggedInUser() == null){
-             Intent i = new Intent(this, LoginActivity.class);
-             startActivity(i);
-         }else {
+         Intent i = new Intent(this, LoginActivity.class);
+         startActivity(i);
+     }
+
+     private void checkSession(){
+         if(sessionManager.getLoggedInUser() != null){
              String userRole = sessionManager.getIsUserLoggedIn();
              if(userRole.equals(UserRoles.ROLE_ADMIN.name())){
                  startActivity(new Intent(this, AdminHomeActivity.class));
+                 finish();
              }
-
              if(userRole.equals(UserRoles.ROLE_CUSTOMER.name())){
                  startActivity(new Intent(this, CustomerHomeActivity.class));
+                 finish();
              }
              if(userRole.equals(UserRoles.ROLE_PROVIDER.name())){
                  startActivity(new Intent(this, ProviderHomeActivity.class));
+                 finish();
              }
-
          }
      }
  }
