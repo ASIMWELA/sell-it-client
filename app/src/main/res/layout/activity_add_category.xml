@@ -33,52 +33,19 @@
             app:srcCompat="@drawable/back_arrow_icon"
             app:tint="@color/white" />
 
-        <TextView
-            android:id="@+id/tv_add_category_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:text="Add Product Category"
-            android:textColor="@color/color_primary_blend"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.137"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.275" />
-
-        <EditText
-            android:id="@+id/et_add_category_cate_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/rounded_boaders"
-            android:ems="10"
-            android:hint="name"
-            android:inputType="textPersonName"
-            android:padding="10dp"
-            android:textColorHighlight="@color/black"
-            android:textColorLink="@color/color_primary_blend"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_add_category_submit_success" />
-
         <com.kusu.loadingbutton.LoadingButton
             android:id="@+id/btn_add_category_send_data"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:text="Add Category"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_add_category_cate_name"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_product_categories"
             app:lb_cornerRadius="30dp"
             app:lb_isShadowEnable="false" />
 
@@ -131,6 +98,30 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="70dp"
+            android:text="Add Product Category"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_product_categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_category_submit_success" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

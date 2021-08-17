@@ -160,6 +160,7 @@
         android:id="@+id/progress_overlay_holder_add_service"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="110dp"
         android:alpha="1.0"
         android:animateLayoutChanges="true"
         android:background="@color/white"

@@ -37,7 +37,7 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
     SessionManager sessionManager;
     ProviderSendOfferPresenter providerSendOfferPresenter;
     JSONObject offer;
-    double discount, amount;
+    double discount = 0.0, amount = 0.0;
     TextView tvSuccessMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,9 +114,14 @@ public class ProviderSendOfferActivity extends AppCompatActivity implements Prov
             public void validate() {
                 if(edDiscount.getText().toString().trim().isEmpty()){
                     edDiscount.setBackgroundResource(R.drawable.rounded_boaders_error);
-                    etAmount.setError("Amount required");
+                    edDiscount.setError("Discount required");
                     discount = 0.0;
-                }else {
+                }else if(Double.parseDouble(edDiscount.getText().toString().trim())>100 || Double.parseDouble(edDiscount.getText().toString().trim())<0){
+                    edDiscount.setBackgroundResource(R.drawable.rounded_boaders_error);
+                    edDiscount.setError("Invalid value for discount");
+                    discount = 0.0;
+                }
+                else {
                     edDiscount.setBackgroundResource(R.drawable.rounded_boaders);
                     discount = Double.parseDouble(edDiscount.getText().toString().trim());
                     offer.put("discountInPercent", discount);
