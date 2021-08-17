@@ -1,9 +1,7 @@
 package com.main.sellit.ui;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
-import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.LoginContract;
@@ -48,7 +45,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     TextView txvErrorMessage, tvOpenSignupActivity;
     SessionManager sessionManager;
     FlagErrors flagErrors;
-    TextView generalError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +54,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         sessionManager = new SessionManager(this);
         loginPresenter = new LoginPresenter(this, this);
         flagErrors = new FlagErrors(this, this);
-        generalError = findViewById(R.id.tv_general_arror_message);
+
+        View view = findViewById(R.id.v_open_welcome_activity);
+
+        view.setOnClickListener(v->{
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        });
+
 
         //validate initial values
         validateInput();

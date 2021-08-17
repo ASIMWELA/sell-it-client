@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="19dp"
             android:layout_marginBottom="16dp"
             android:layout_weight="1"
             android:text="Sign Up"
@@ -158,16 +158,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <TextView
-            android:id="@+id/textView31"
-            android:layout_width="4dp"
-            android:layout_height="6dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="20dp"
-            android:text="|"
-            android:textSize="20sp"
-            android:textStyle="bold"
+        <View
+            android:id="@+id/view19"
+            android:layout_width="3dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/grey_shed"
             app:layout_constraintStart_toEndOf="@+id/tv_login_open_signup_activity"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_send_request" />
+
+        <TextView
+            android:id="@+id/v_open_welcome_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="16dp"
+            android:text="Home"
+            android:textColor="@color/color_primary_blend"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view19"
             app:layout_constraintTop_toBottomOf="@+id/btn_login_send_request" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
