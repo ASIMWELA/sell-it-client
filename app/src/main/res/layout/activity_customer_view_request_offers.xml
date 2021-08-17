@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view12">
+        app:layout_constraintTop_toBottomOf="parent">
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"

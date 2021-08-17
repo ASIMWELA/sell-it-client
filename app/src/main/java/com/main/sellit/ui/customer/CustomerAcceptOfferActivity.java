@@ -1,9 +1,11 @@
 package com.main.sellit.ui.customer;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -27,7 +29,9 @@ import com.main.sellit.ui.RequestServiceActivity;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 
 import lombok.AccessLevel;
 import lombok.SneakyThrows;
@@ -182,16 +186,34 @@ public class CustomerAcceptOfferActivity extends AppCompatActivity implements Cu
     private void prepareDatePicker(int day, int month, int year) {
         datePicker = new DatePickerDialog(CustomerAcceptOfferActivity.this,
                 new DatePickerDialog.OnDateSetListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     @SneakyThrows
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                        Calendar c = Calendar.getInstance();
+
+
+
                         String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                         etAppointmentDate.setText(date);
 
                         String getMonth = (monthOfYear+1)<10? "0"+(monthOfYear+1):(monthOfYear+1)+"";
                         String getDay = dayOfMonth<10? "0"+dayOfMonth:dayOfMonth+"";
-                        formattedDate = year +"-"+getMonth+"-"+getDay;
-                        appointmentData.put("serviceDeliveredOn", formattedDate);
+
+                        c.set(year, Integer.parseInt(getMonth)-1, Integer.parseInt(getDay), 0, 0);
+
+                        if(LocalDate.of(year, Integer.parseInt(getMonth), Integer.parseInt(getDay)).isBefore(LocalDate.now())){
+                            formattedDate = null;
+                            etAppointmentDate.setError("Wrong appointment date");
+                            etAppointmentDate.setBackgroundResource(R.drawable.rounded_boaders_error);
+                        }else {
+                            formattedDate = year +"-"+getMonth+"-"+getDay;
+                            appointmentData.put("serviceDeliveredOn", formattedDate);
+                            etAppointmentDate.setError(null);
+                            etAppointmentDate.setBackgroundResource(R.drawable.rounded_boaders);
+                        }
+
                     }
                 }, year, month, day);
     }
