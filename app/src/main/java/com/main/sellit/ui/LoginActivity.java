@@ -191,12 +191,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 if(!edtTxtUserName.getText().toString().isEmpty()){
                     if(edtTxtUserName.getText().toString().trim().length()<2){
                         edtTxtUserName.setBackgroundResource(R.drawable.rounded_boaders_error);
-                        edtTxtUserName.setError("User name is required");
+                        edtTxtUserName.setError("user name too short");
                         userName=null;
                     }else {
                         userName = edtTxtUserName.getText().toString().trim();
                         edtTxtUserName.setBackgroundResource(R.drawable.rounded_boaders);
                     }
+                }else {
+                    edtTxtUserName.setBackgroundResource(R.drawable.rounded_boaders);
                 }
 
             }
@@ -206,13 +208,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             public void validate() {
                 if(!edtTextPassword.getText().toString().isEmpty()){
                     if(edtTextPassword.getText().toString().trim().length()<2){
-                        edtTextPassword.setError("Password is required");
+                        edtTextPassword.setError("password too short");
                         edtTextPassword.setBackgroundResource(R.drawable.rounded_boaders_error);
                         password = null;
                     }else {
                         password = edtTextPassword.getText().toString().trim();
                         edtTextPassword.setBackgroundResource(R.drawable.rounded_boaders);
                     }
+                }else {
+                    edtTextPassword.setBackgroundResource(R.drawable.rounded_boaders);
                 }
             }
         });

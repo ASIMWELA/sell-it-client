@@ -92,8 +92,6 @@ public class CustomerViewServicesActivity extends AppCompatActivity implements C
     @Override
     @SneakyThrows
     public void onGetServicesError(VolleyError error) {
-//        JSONObject errorObj = new JSONObject(error);
-//        String errorMessage = errorObj.getString("message");
         flagErrors.flagApiError(error);
     }
     @Override

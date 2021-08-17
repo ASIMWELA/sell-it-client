@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customer_accept_offer_base_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.customer.CustomerAcceptOfferActivity">
@@ -46,7 +46,7 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="32dp"
-      android:layout_marginTop="2dp"
+      android:layout_marginTop="12dp"
       android:layout_marginEnd="32dp"
       android:background="@drawable/input_text_area_bg"
       android:drawablePadding="4dp"
@@ -61,7 +61,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/view18" />
+      app:layout_constraintTop_toBottomOf="@+id/tv_appointment_success_msg" />
 
   <EditText
       android:id="@+id/et_customer_create_appointment_appointment_date"
@@ -71,9 +71,9 @@
       android:layout_marginTop="16dp"
       android:background="@drawable/rounded_boaders"
       android:drawableEnd="@drawable/calendar_default"
-      android:ems="10"
       android:editable="false"
-      android:hint="Pick appointment date"
+      android:ems="10"
+      android:hint="Pick Date"
       android:inputType="textPersonName"
       android:padding="8dp"
       app:layout_constraintStart_toStartOf="parent"
@@ -87,8 +87,8 @@
       android:layout_marginTop="16dp"
       android:background="@drawable/rounded_boaders"
       android:drawableEnd="@drawable/access_time_default"
-      android:ems="10"
       android:editable="false"
+      android:ems="10"
       android:hint="Pick starting time"
       android:inputType="textPersonName"
       android:padding="8dp"
@@ -103,8 +103,8 @@
       android:layout_marginTop="16dp"
       android:background="@drawable/rounded_boaders"
       android:drawableEnd="@drawable/access_time_default"
-      android:ems="10"
       android:editable="false"
+      android:ems="10"
       android:hint="Pick ending time"
       android:inputType="textPersonName"
       android:padding="8dp"
@@ -115,16 +115,30 @@
       android:id="@+id/btn_customer_create_appointment_appointment_send_appointment"
       android:layout_width="0dp"
       android:layout_height="40dp"
-      android:textColor="@color/white"
-      app:lb_isShadowEnable="false"
-      app:lb_cornerRadius="30dp"
       android:layout_marginStart="32dp"
       android:layout_marginTop="20dp"
       android:layout_marginEnd="32dp"
       android:background="@drawable/rounded_bg"
       android:text="Button"
+      android:textColor="@color/white"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/et_customer_create_appointment_appointment_end_time" />
+      app:layout_constraintTop_toBottomOf="@+id/et_customer_create_appointment_appointment_end_time"
+      app:lb_cornerRadius="30dp"
+      app:lb_isShadowEnable="false" />
+
+  <TextView
+      android:id="@+id/tv_appointment_success_msg"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="9dp"
+      android:drawableEnd="@drawable/ic_baseline_check_circle_success"
+      android:text="TextView"
+      android:textColor="@color/color_secondary"
+      android:textSize="16sp"
+      android:visibility="gone"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/view18" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

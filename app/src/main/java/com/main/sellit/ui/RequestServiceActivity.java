@@ -66,64 +66,19 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
         tvServiceName.setText(serviceName);
         SessionManager sessionManager = new SessionManager(this);
         validateInput();
-        etDateRequiredOn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
-                // date picker dialog
-                datePicker = new DatePickerDialog(RequestServiceActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            @SneakyThrows
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                // eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
-                                String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                                etDateRequiredOn.setText(date);
 
-                                String getMonth = (monthOfYear+1)<10? "0"+(monthOfYear+1):(monthOfYear+1)+"";
-                                String getDay = dayOfMonth<10? "0"+dayOfMonth:dayOfMonth+"";
-                                formattedRequiredDate = year +"-"+getMonth+"-"+getDay;
-                                data.put("requiredOn", formattedRequiredDate);
-                            }
-                        }, year, month, day);
-                datePicker.show();
-            }
-        });
-        etStartTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int hour = cldr.get(Calendar.HOUR_OF_DAY);
-                int minutes = cldr.get(Calendar.MINUTE);
-                // time picker dialog
-                timePicker = new TimePickerDialog(RequestServiceActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            @SneakyThrows
-                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+        final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+        // Prepare date picker
+        prepareDatePicker(day, month, year);
+        prepareTimePicker(cldr);
 
-                                final Calendar cldr = Calendar.getInstance();
-                                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                                int month = cldr.get(Calendar.MONTH);
-                                int year = cldr.get(Calendar.YEAR);
-                                String getMonth = (month-1)<10? "0"+(month-1):(month-1)+"";
-                                String getDay = day<10? "0"+day:day+"";
-                                //format dates
-                                String h = sHour < 10?"0"+sHour:sHour+"";
-                                String m = sMinute<10? "0"+sMinute:sMinute+"";
-                                String time = h + ":" + m;
-                                etStartTime.setText(time);
-                                formattedExpectedStartTime = year +"-"+getMonth+"-"+getDay+"T"+h+":"+m+":43.511Z";
-                                data.put("expectedStartTime", formattedExpectedStartTime);
-                            }
-                        }, hour, minutes, true);
-                timePicker.show();
-            }
-        });
+        //popup date and time pickers
+        etStartTime.setOnClickListener(v -> timePicker.show());
+        etDateRequiredOn.setOnClickListener(v -> datePicker.show());
 
         String customerUuid = sessionManager.getLoggedInCustomerUuid();
         String token = sessionManager.getToken();
@@ -137,6 +92,7 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
         });
 
     }
+
 
     private void initViews(){
         tvServiceName = findViewById(R.id.tv_customer_request_service_service_name);
@@ -243,5 +199,52 @@ public class RequestServiceActivity extends AppCompatActivity implements Request
     @SneakyThrows
     public void onCreateRequestError(VolleyError apiError) {
         flagErrors.flagApiError(apiError);
+    }
+
+    private void prepareDatePicker(int day, int month, int year) {
+        datePicker = new DatePickerDialog(RequestServiceActivity.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    @SneakyThrows
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                        etDateRequiredOn.setText(date);
+
+                        String getMonth = (monthOfYear+1)<10? "0"+(monthOfYear+1):(monthOfYear+1)+"";
+                        String getDay = dayOfMonth<10? "0"+dayOfMonth:dayOfMonth+"";
+                        formattedRequiredDate = year +"-"+getMonth+"-"+getDay;
+                        data.put("requiredOn", formattedRequiredDate);
+                    }
+                }, year, month, day);
+    }
+
+    private void prepareTimePicker(Calendar cldr) {
+        int hour = cldr.get(Calendar.HOUR_OF_DAY);
+        int minutes = cldr.get(Calendar.MINUTE);
+
+
+        // time picker dialog
+        timePicker = new TimePickerDialog(RequestServiceActivity.this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    @SneakyThrows
+                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+
+
+                        final Calendar cldr = Calendar.getInstance();
+                        int day = cldr.get(Calendar.DAY_OF_MONTH);
+                        int month = cldr.get(Calendar.MONTH);
+                        int year = cldr.get(Calendar.YEAR);
+                        String getMonth = (month-1)<10? "0"+(month-1):(month-1)+"";
+                        String getDay = day<10? "0"+day:day+"";
+                        //format dates
+                        String h = sHour < 10?"0"+sHour:sHour+"";
+                        String m = sMinute<10? "0"+sMinute:sMinute+"";
+                        String time = h + ":" + m;
+                        etStartTime.setText(time);
+                        formattedExpectedStartTime = year +"-"+getMonth+"-"+getDay+"T"+h+":"+m+":43.511Z";
+                        data.put("expectedStartTime", formattedExpectedStartTime);
+                    }
+                }, hour, minutes, true);
     }
 }
