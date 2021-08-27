@@ -14,5 +14,9 @@
         android:id="@+id/provider_navigation_request"
         android:title="@string/provider_requests"
         android:icon="@drawable/requests"/>
+    <item
+        android:id="@+id/provider_navigation_appointments"
+        android:title="Appointments"
+        android:icon="@drawable/ic_alarm"/>
 
 </menu>
