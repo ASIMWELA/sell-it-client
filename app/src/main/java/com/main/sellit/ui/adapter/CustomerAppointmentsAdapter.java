@@ -42,6 +42,7 @@ public class CustomerAppointmentsAdapter extends RecyclerView.Adapter<CustomerAp
         holder.appointmentDesc.setText(appointmentModel.getAppointmentDesc());
         holder.appointmentDate.setText(appointmentModel.getAppointmentDate());
         holder.providerEmail.setText(appointmentModel.getProviderEmail());
+
         holder.reviewProvider.setOnClickListener(v->{
             Toast.makeText(context, "You can review" + appointmentModel.getUuid(), Toast.LENGTH_SHORT).show();
         });

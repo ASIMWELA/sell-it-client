@@ -1,5 +1,6 @@
 package com.main.sellit.ui.provider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,7 @@ import com.main.sellit.R;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.CustomerLoginModel;
 import com.main.sellit.model.ProviderLoginModel;
+import com.main.sellit.ui.LoginActivity;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -26,7 +28,6 @@ public class ProviderProfileFragment extends Fragment {
     tvProviderEmail, tvProviderPhoneNumber, tvProviderOfficeLocation,
     tvProviderBusinessDesc;
     SessionManager sessionManager;
-    ProviderLoginModel  providerLoginModel;
     ImageView ivLogout;
 
     @Override
@@ -42,8 +43,8 @@ public class ProviderProfileFragment extends Fragment {
         sessionManager = new SessionManager(requireContext());
         Gson gson = new Gson();
         String json = sessionManager.getLoggedInUser();
-        providerLoginModel = gson.fromJson(json, ProviderLoginModel.class);
-        String fullName = providerLoginModel.getFirstName() + "  "+providerLoginModel.getLastName();
+        ProviderLoginModel providerLoginModel = gson.fromJson(json, ProviderLoginModel.class);
+        String fullName = providerLoginModel.getFirstName() + "  "+ providerLoginModel.getLastName();
 
         //set to views
         tvProviderBusinessDesc.setText(providerLoginModel.getProviderDescription());
@@ -53,8 +54,14 @@ public class ProviderProfileFragment extends Fragment {
         tvProviderPhoneNumber.setText(providerLoginModel.getPhoneNumber());
         tvProviderEmail.setText(providerLoginModel.getEmail());
 
+        //clear the provider credential
         ivLogout.setOnClickListener(v->{
-            Toast.makeText(requireContext(), "Logout", Toast.LENGTH_SHORT).show();
+            sessionManager.setAccessToken(null);
+            sessionManager.setLoggedInUser(null);
+            sessionManager.setIsUserLoggedIn(null);
+            sessionManager.setProviderUuid(null);
+            Intent intent = new Intent(requireActivity(), LoginActivity.class);
+            startActivity(intent);
         });
 
         return view;

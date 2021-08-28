@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_provider_services" />
     <fragment
         android:id="@+id/provider_navigation_appointments"
-        android:name="com.main.sellit.ProviderAppointments"
+        android:name="com.main.sellit.ui.provider.ProviderAppointments"
         android:label="fragment_provider_appointments"
         tools:layout="@layout/fragment_provider_appointments" />
 </navigation>
