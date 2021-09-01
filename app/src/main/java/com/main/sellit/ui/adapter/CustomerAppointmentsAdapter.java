@@ -1,6 +1,7 @@
 package com.main.sellit.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.sellit.R;
 import com.main.sellit.model.CustomerAppointmentModel;
+import com.main.sellit.ui.customer.ReviewProviderActivity;
 
 import java.util.List;
 
@@ -44,7 +46,13 @@ public class CustomerAppointmentsAdapter extends RecyclerView.Adapter<CustomerAp
         holder.providerEmail.setText(appointmentModel.getProviderEmail());
 
         holder.reviewProvider.setOnClickListener(v->{
-            Toast.makeText(context, "You can review" + appointmentModel.getUuid(), Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(context.getApplicationContext(), ReviewProviderActivity.class);
+            i.putExtra("providerName", appointmentModel.getAppointmentWith());
+            i.putExtra("appointmentUuid", appointmentModel.getUuid());
+
+
+            context.startActivity(i);
+
         });
     }
 

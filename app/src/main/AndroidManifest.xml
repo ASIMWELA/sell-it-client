@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.main.sellit" >
+    package="com.main.sellit">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -13,13 +13,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SellIt" >
-        <activity android:name=".ui.customer.CustomerAcceptOfferActivity" >
-        </activity>
+        android:theme="@style/Theme.SellIt">
+        <activity android:name=".ui.customer.ReviewProviderActivity"></activity>
+        <activity android:name=".ui.customer.CustomerAcceptOfferActivity"></activity>
         <activity android:name=".ui.customer.CustomerViewRequestOffersActivity" />
         <activity android:name=".ui.provider.ProviderSendOfferActivity" />
         <activity android:name=".ui.RequestServiceActivity" />
-        <activity android:name=".ui.ProviderListActivity" />
+        <activity android:name=".ui.ProviderListActivity"/>
         <activity android:name=".ui.customer.CustomerProfileActivity" />
         <activity android:name=".ui.customer.CustomerAppointmentsActivity" />
         <activity android:name=".ui.customer.CustomerRequestsActivity" />
@@ -37,7 +37,7 @@
         <activity android:name=".ui.provider.RegisterProviderActivity" />
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.SignupActivity" />
-        <activity android:name=".ui.MainActivity" >
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

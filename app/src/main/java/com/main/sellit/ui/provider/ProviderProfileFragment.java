@@ -62,6 +62,7 @@ public class ProviderProfileFragment extends Fragment {
             sessionManager.setProviderUuid(null);
             Intent intent = new Intent(requireActivity(), LoginActivity.class);
             startActivity(intent);
+            requireActivity().finish();
         });
 
         return view;

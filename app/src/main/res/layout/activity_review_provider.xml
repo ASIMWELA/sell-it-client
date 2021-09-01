@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.customer.ReviewProviderActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_provider_base_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/view22"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:background="@drawable/login_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/et_customer_review_provider_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:padding="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_arrow_icon"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="70dp"
+            android:text="Review "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_customer_review_provider_p_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="70dp"
+            android:text="Augustine Simwela"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView34"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_review_provider_punctulity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/rounded_boaders"
+            android:ems="10"
+            android:hint="punctuality(0-5)"
+            android:inputType="number"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_review_provider_success_message" />
+
+        <EditText
+            android:id="@+id/et_review_provider_proficiency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_boaders"
+            android:ems="10"
+            android:hint="proficiency(0-5)"
+            android:inputType="number"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_review_provider_punctulity" />
+
+        <EditText
+            android:id="@+id/et_review_provider_professionalism"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_boaders"
+            android:ems="10"
+            android:hint="professionalism(0-5)"
+            android:inputType="number"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_review_provider_proficiency" />
+
+        <EditText
+            android:id="@+id/et_review_provider_comminucation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_boaders"
+            android:ems="10"
+            android:hint="communication(0-5)"
+            android:inputType="number"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_review_provider_professionalism" />
+
+        <EditText
+            android:id="@+id/et_review_provider_pricing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_boaders"
+            android:ems="10"
+            android:hint="pricing(0-5)"
+            android:inputType="number"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_review_provider_comminucation" />
+
+        <EditText
+            android:id="@+id/et_review_provider_review_summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/input_text_area_bg"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:hint="Review Summary"
+            android:inputType="text|textMultiLine"
+            android:maxLength="200"
+            android:maxLines="4"
+            android:padding="8dp"
+            android:scrollHorizontally="false"
+            android:singleLine="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_review_provider_pricing" />
+
+        <com.kusu.loadingbutton.LoadingButton
+            android:id="@+id/bt_send_review"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_bg"
+            android:text="Send Review"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_review_provider_review_summary"
+            app:lb_cornerRadius="30dp"
+            app:lb_isShadowEnable="false" />
+
+        <TextView
+            android:id="@+id/tv_review_provider_success_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:drawableEnd="@drawable/ic_baseline_check_circle_success"
+            android:textColor="@color/color_secondary"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view22" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

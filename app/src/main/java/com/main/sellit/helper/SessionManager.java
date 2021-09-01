@@ -61,7 +61,4 @@ public class SessionManager {
     public String getIsUserLoggedIn(){
         return sharedPreferences.getString(AppConstants.IS_USER_LOGGED_IN, null);
     }
-
-
-
 }
