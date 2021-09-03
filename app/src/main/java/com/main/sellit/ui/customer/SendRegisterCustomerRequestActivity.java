@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.SendCustomerSignUpRequestContract;
@@ -17,7 +16,7 @@ import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
-import com.main.sellit.presenter.SendRegisterCustomerRequestPresenter;
+import com.main.sellit.presenter.customer.SendRegisterCustomerRequestPresenter;
 import com.main.sellit.ui.LoginActivity;
 
 import org.json.JSONObject;

@@ -16,7 +16,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.RequestServiceContract;
@@ -24,7 +23,7 @@ import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
-import com.main.sellit.presenter.RequestServicePresenter;
+import com.main.sellit.presenter.customer.RequestServicePresenter;
 
 import org.json.JSONObject;
 

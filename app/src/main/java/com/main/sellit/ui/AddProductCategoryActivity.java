@@ -11,10 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +22,7 @@ import com.main.sellit.R;
 import com.main.sellit.contract.AddProductCategoryContract;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
-import com.main.sellit.helper.TextValidator;
-import com.main.sellit.presenter.AddProductCategoryPresenter;
+import com.main.sellit.presenter.provider.AddProductCategoryPresenter;
 
 import org.json.JSONObject;
 

@@ -26,7 +26,7 @@ import com.main.sellit.contract.ProviderServiceContract;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.ServiceAndCategoryNamesModel;
-import com.main.sellit.presenter.ProviderServicePresenter;
+import com.main.sellit.presenter.provider.ProviderServicePresenter;
 import com.main.sellit.ui.AddProductCategoryActivity;
 import com.main.sellit.ui.LoginActivity;
 import com.main.sellit.ui.adapter.ServiceListAdapter;

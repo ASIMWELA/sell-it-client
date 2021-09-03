@@ -18,7 +18,7 @@ import com.main.sellit.contract.CustomerRequestContract;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.CustomerServiceRequestModel;
-import com.main.sellit.presenter.CustomerRequestPresenter;
+import com.main.sellit.presenter.customer.CustomerRequestPresenter;
 import com.main.sellit.ui.adapter.CustomerRequestsAdapter;
 
 import org.json.JSONArray;

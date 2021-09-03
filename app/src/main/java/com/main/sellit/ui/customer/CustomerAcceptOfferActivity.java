@@ -23,15 +23,13 @@ import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
-import com.main.sellit.presenter.CustomerAcceptOfferPresenter;
-import com.main.sellit.ui.RequestServiceActivity;
+import com.main.sellit.presenter.customer.CustomerAcceptOfferPresenter;
 
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
 import lombok.AccessLevel;
 import lombok.SneakyThrows;

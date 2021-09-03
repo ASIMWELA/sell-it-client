@@ -16,7 +16,7 @@ import com.main.sellit.contract.ReviewProviderContract;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
-import com.main.sellit.presenter.ReviewProviderPresenter;
+import com.main.sellit.presenter.customer.ReviewProviderPresenter;
 
 import org.json.JSONObject;
 

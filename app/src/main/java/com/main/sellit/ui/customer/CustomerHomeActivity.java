@@ -13,7 +13,7 @@ import com.main.sellit.R;
 import com.main.sellit.contract.CustomerHomeContract;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.CustomerLoginModel;
-import com.main.sellit.presenter.CustomerHomePresenter;
+import com.main.sellit.presenter.customer.CustomerHomePresenter;
 import com.main.sellit.ui.LoginActivity;
 
 import lombok.AccessLevel;

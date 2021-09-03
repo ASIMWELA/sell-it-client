@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
@@ -22,13 +21,10 @@ import com.main.sellit.R;
 import com.main.sellit.contract.ProviderAppointmentsContract;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
-import com.main.sellit.model.CustomerAppointmentModel;
 import com.main.sellit.model.ProviderAppointmentModel;
 import com.main.sellit.model.ProviderLoginModel;
-import com.main.sellit.presenter.ProviderAppointmentsPresenter;
-import com.main.sellit.ui.adapter.CustomerAppointmentsAdapter;
+import com.main.sellit.presenter.provider.ProviderAppointmentsPresenter;
 import com.main.sellit.ui.adapter.ProviderAppointmentsAdapter;
-import com.main.sellit.ui.adapter.ProviderRequestListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -1,10 +1,10 @@
-package com.main.sellit.presenter;
+package com.main.sellit.presenter.customer;
 
 import android.content.Context;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.main.sellit.contract.ProviderAppointmentsContract;
+import com.main.sellit.contract.CustomerViewProvidersContract;
 import com.main.sellit.helper.ApiUrls;
 import com.main.sellit.network.VolleyController;
 
@@ -12,42 +12,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ProviderAppointmentsPresenter  implements ProviderAppointmentsContract.Presenter{
+@RequiredArgsConstructor
+public class CustomerViewProvidersPresenter implements CustomerViewProvidersContract.Presenter{
     Context context;
-    ProviderAppointmentsContract.View view;
-
-    public ProviderAppointmentsPresenter(Context context, ProviderAppointmentsContract.View view) {
-        this.context = context;
-        this.view = view;
-    }
+    CustomerViewProvidersContract.View view;
 
     @Override
-    public void getProviderAppointments(String token, String providerUuid) {
-        view.showGetAppointmentsProgressBar();
+    public void getProviders(String token, String serviceUuid) {
+        view.showGetProvidersProgressBar();
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
-                ApiUrls.BASE_API_URL+"/services/"+providerUuid+"/appointments",
+                ApiUrls.BASE_API_URL+"/services/"+serviceUuid+"/providers",
                 null,
                 response -> {
-                    view.hideGetAppointmentsProgressBar();
-                    view.onGetAppointmentSuccess(response);
+                    view.hideGetProvidersProgressBar();
+                    view.onGetProvidersSuccess(response);
                 },
                 error -> {
-                    view.hideGetAppointmentsProgressBar();
-                    view.onGetAppointmentsError(error);
+                    view.onGetProvidersError(error);
+                    view.hideGetProvidersProgressBar();
                 }
-        ){
-            @Override
+        ){@Override
             public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/json; charset=UTF-8");
+                params.put("Accept", "application/json; charset=UTF-8");
                 params.put("Authorization", "Bearer "+token);
                 return params;
             }
         };
+
         VolleyController.getInstance(context).addToRequestQueue(request);
     }
 }

@@ -28,7 +28,7 @@ public class ProviderProfileFragment extends Fragment {
     tvProviderEmail, tvProviderPhoneNumber, tvProviderOfficeLocation,
     tvProviderBusinessDesc;
     SessionManager sessionManager;
-    ImageView ivLogout;
+    ImageView ivBackArrow;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,14 +55,8 @@ public class ProviderProfileFragment extends Fragment {
         tvProviderEmail.setText(providerLoginModel.getEmail());
 
         //clear the provider credential
-        ivLogout.setOnClickListener(v->{
-            sessionManager.setAccessToken(null);
-            sessionManager.setLoggedInUser(null);
-            sessionManager.setIsUserLoggedIn(null);
-            sessionManager.setProviderUuid(null);
-            Intent intent = new Intent(requireActivity(), LoginActivity.class);
-            startActivity(intent);
-            requireActivity().finish();
+        ivBackArrow.setOnClickListener(v->{
+            requireActivity().onBackPressed();
         });
 
         return view;
@@ -75,6 +69,6 @@ public class ProviderProfileFragment extends Fragment {
         tvProviderOfficeLocation = view.findViewById(R.id.tv_provider_profile_office_location);
         tvProviderUsername = view.findViewById(R.id.tv_provider_profile_username);
         tvProviderFullName = view.findViewById(R.id.tv_provider_profile_full_name);
-        ivLogout = view.findViewById(R.id.iv_provider_profile_logout);
+        ivBackArrow = view.findViewById(R.id.iv_provider_profile_back_arrow);
     }
 }

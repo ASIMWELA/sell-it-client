@@ -27,7 +27,7 @@ import com.main.sellit.contract.ProviderRequestsContract;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.ProviderServiceRequestModel;
-import com.main.sellit.presenter.ProviderRequestsPresenter;
+import com.main.sellit.presenter.provider.ProviderRequestsPresenter;
 import com.main.sellit.ui.LoginActivity;
 import com.main.sellit.ui.adapter.ProviderRequestListAdapter;
 
@@ -48,7 +48,6 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
 
     RecyclerView recyclerView;
     TextView noRequestMessage;
-    ImageView backArrow;
     Context context;
     FrameLayout fmProgressBar;
     SessionManager sessionManager;
@@ -82,9 +81,6 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
         initViews(view);
 
         providerRequestsPresenter.getRequests(token);
-        backArrow.setOnClickListener(v->{
-            requireActivity().onBackPressed();
-        });
         noRequestMessage.setVisibility(View.GONE);
 
         PopupMenu pm = new PopupMenu(requireActivity(), ivOpenOptionsMenu);
@@ -116,7 +112,6 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
     private void initViews(View v){
         recyclerView = v.findViewById(R.id.rv_provider_service_request_list);
         noRequestMessage = v.findViewById(R.id.tv_provider_requests_no_request_message);
-        backArrow = v.findViewById(R.id.iv_provider_services_back_arrow);
         ivOpenOptionsMenu = v.findViewById(R.id.iv_provider_requests_open_options_menu);
         fmProgressBar = v.findViewById(R.id.progress_overlay_holder_provider_get_requests);
     }

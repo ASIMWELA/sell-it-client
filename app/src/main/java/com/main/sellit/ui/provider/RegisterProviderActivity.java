@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.RegisterProviderContract;
@@ -26,7 +25,7 @@ import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
 import com.main.sellit.network.VolleyController;
-import com.main.sellit.presenter.RegisterProviderPresenter;
+import com.main.sellit.presenter.provider.RegisterProviderPresenter;
 import com.main.sellit.ui.LoginActivity;
 
 import org.json.JSONObject;

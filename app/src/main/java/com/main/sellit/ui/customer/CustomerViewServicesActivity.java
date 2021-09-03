@@ -17,7 +17,7 @@ import com.main.sellit.R;
 import com.main.sellit.contract.CustomerServicesContract;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.model.ServiceAndCategoryNamesModel;
-import com.main.sellit.presenter.CustomerServicesPresenter;
+import com.main.sellit.presenter.customer.CustomerServicesPresenter;
 import com.main.sellit.ui.adapter.CustomerServiceListAdapter;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.main.sellit.presenter;
+package com.main.sellit.presenter.customer;
 
 import android.content.Context;
 

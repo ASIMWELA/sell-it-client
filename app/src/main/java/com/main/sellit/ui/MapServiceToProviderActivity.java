@@ -21,7 +21,7 @@ import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.Service;
-import com.main.sellit.presenter.MapServiceToProviderPresenter;
+import com.main.sellit.presenter.provider.MapServiceToProviderPresenter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

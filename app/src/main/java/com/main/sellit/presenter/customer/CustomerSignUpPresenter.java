@@ -1,4 +1,4 @@
-package com.main.sellit.presenter;
+package com.main.sellit.presenter.customer;
 
 import com.main.sellit.contract.CustomerSignupContract;
 

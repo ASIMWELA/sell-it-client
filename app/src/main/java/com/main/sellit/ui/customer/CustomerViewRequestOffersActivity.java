@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.main.sellit.R;
@@ -20,8 +19,7 @@ import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.model.ProviderOfferModel;
-import com.main.sellit.presenter.CustomerViewRequestOffersPresenter;
-import com.main.sellit.ui.adapter.CustomerRequestsAdapter;
+import com.main.sellit.presenter.customer.CustomerViewRequestOffersPresenter;
 import com.main.sellit.ui.adapter.CustomerViewOfferAdapter;
 
 import org.json.JSONArray;

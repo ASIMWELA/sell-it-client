@@ -14,7 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
-import com.google.android.material.snackbar.Snackbar;
 import com.kusu.loadingbutton.LoadingButton;
 import com.main.sellit.R;
 import com.main.sellit.contract.AddServiceContract;
@@ -22,7 +21,7 @@ import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.SessionManager;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.ServiceCategory;
-import com.main.sellit.presenter.AddServicePresenter;
+import com.main.sellit.presenter.provider.AddServicePresenter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

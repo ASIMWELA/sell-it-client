@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -16,10 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.main.sellit.R;
 import com.main.sellit.helper.AppConstants;
 import com.main.sellit.model.ServiceAndCategoryNamesModel;
-import com.main.sellit.ui.ProviderListActivity;
 import com.main.sellit.ui.RequestServiceActivity;
+import com.main.sellit.ui.customer.CustomerViewProvidersActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerServiceListAdapter extends RecyclerView.Adapter<CustomerServiceListAdapter.MyViewHolder> {
@@ -46,8 +44,9 @@ public class CustomerServiceListAdapter extends RecyclerView.Adapter<CustomerSer
         holder.serviceCategory.setText(services.get(position).getServiceCategory());
 
         holder.container.setOnClickListener(v->{
-            Intent getServiceProviderIntent = new Intent(ctx.getApplicationContext(), ProviderListActivity.class);
+            Intent getServiceProviderIntent = new Intent(ctx.getApplicationContext(), CustomerViewProvidersActivity.class);
             getServiceProviderIntent.putExtra(AppConstants.GET_SERVICE_PROVIDERS_UUID, services.get(position).getServiceUuid());
+            getServiceProviderIntent.putExtra("serviceName", services.get(position).getServiceName());
             ctx.startActivity(getServiceProviderIntent);
         });
         holder.btnRequestService.setOnClickListener(v->{

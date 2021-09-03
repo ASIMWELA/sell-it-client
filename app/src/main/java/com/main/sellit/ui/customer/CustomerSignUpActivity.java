@@ -2,24 +2,19 @@ package com.main.sellit.ui.customer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.main.sellit.R;
 import com.main.sellit.contract.CustomerSignupContract;
 import com.main.sellit.helper.AppConstants;
 import com.main.sellit.helper.FlagErrors;
 import com.main.sellit.helper.TextValidator;
 import com.main.sellit.model.UserDetailsModel;
-import com.main.sellit.presenter.CustomerSignUpPresenter;
-import com.main.sellit.ui.provider.RegisterProviderActivity;
+import com.main.sellit.presenter.customer.CustomerSignUpPresenter;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
