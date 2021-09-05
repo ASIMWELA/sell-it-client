@@ -47,6 +47,7 @@ public class CustomerRequestsAdapter extends RecyclerView.Adapter<CustomerReques
         holder.btnViewOffers.setOnClickListener(v->{
             Intent i = new Intent(context.getApplicationContext(), CustomerViewRequestOffersActivity.class);
             i.putExtra(AppConstants.UUID_TO_VIEW_OFFERS_FOR, requestModel.getUuid());
+            i.putExtra("requestDec", requestModel.getRequirementDescription());
             context.startActivity(i);
         });
         holder.cvSingleRow.setOnClickListener(v->{

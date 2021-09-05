@@ -37,8 +37,7 @@
             android:layout_marginBottom="2dp"
             android:text="Request Descption"
             android:textColor="@color/black_shade"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView17"
@@ -133,6 +132,7 @@
             android:layout_below="@id/tv_customer_services_expected_hours"
             android:layout_marginLeft="4dp"
             android:layout_toRightOf="@id/textView26"
+            android:paddingTop="2dp"
             android:text="Zomba"
             android:textColor="@color/black_shade" />
 

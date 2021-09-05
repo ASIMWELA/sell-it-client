@@ -96,18 +96,9 @@ public class ProviderServicesFragment extends Fragment implements ProviderServic
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onMenuItemClick(MenuItem item){
-                switch (item.getItemId()){
-                    case R.id. logout_provider:
-                        sessionManager.setAccessToken(null);
-                        sessionManager.setLoggedInUser(null);
-                        sessionManager.setIsUserLoggedIn(null);
-                        sessionManager.setProviderUuid(null);
-                        startActivity(new Intent(requireActivity(), LoginActivity.class));
-                        requireActivity().finish();
-                        return true;
-                    case R.id.create_product_category:
-                        providerServicePresenter.openCategoryBtnClicked();
-                        return true;
+                if (item.getItemId() == R.id.create_product_category) {
+                    providerServicePresenter.openCategoryBtnClicked();
+                    return true;
                 }
                 return true;
             }

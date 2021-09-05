@@ -54,11 +54,12 @@ public class CustomerViewRequestOffersActivity extends AppCompatActivity impleme
         flagErrors  =  new FlagErrors(this, this);
         presenter = new CustomerViewRequestOffersPresenter(this, this);
         requestUuid = getIntent().getStringExtra(AppConstants.UUID_TO_VIEW_OFFERS_FOR);
+        String requestDesc = getIntent().getStringExtra("requestDec");
         sessionManager = new SessionManager(this);
         offers = new ArrayList<>();
         //get offers
         presenter.getOffers(sessionManager.getToken(), requestUuid);
-        tvOfferId.setText(requestUuid);
+        tvOfferId.setText(requestDesc);
 
         ivBackArrow.setOnClickListener(v->{
             onBackPressed();

@@ -7,7 +7,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.test.espresso.IdlingResource;
 
 import com.android.volley.VolleyError;
 import com.kusu.loadingbutton.LoadingButton;
@@ -38,6 +42,7 @@ import lombok.experimental.FieldDefaults;
 public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView {
 
 
+
     LoginPresenter loginPresenter;
     LoadingButton btnLogin;
     EditText edtTxtUserName, edtTextPassword;
@@ -45,7 +50,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     TextView txvErrorMessage, tvOpenSignupActivity;
     SessionManager sessionManager;
     FlagErrors flagErrors;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -84,13 +84,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_provider_requests_open_options_menu"
-            android:layout_width="24dp"
-            android:layout_height="32dp"
+            android:id="@+id/btn_logout_provider_service_request"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_baseline_more_vert_24"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_log_out"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

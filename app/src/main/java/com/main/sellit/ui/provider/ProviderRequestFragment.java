@@ -55,7 +55,7 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
     ProviderRequestsPresenter providerRequestsPresenter;
     List<ProviderServiceRequestModel> serviceRequestModelList;
     ProviderRequestListAdapter requestListAdapter;
-    ImageView ivOpenOptionsMenu;
+    ImageView  ivLogout;
     FlagErrors flagErrors;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,27 +83,16 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
         providerRequestsPresenter.getRequests(token);
         noRequestMessage.setVisibility(View.GONE);
 
-        PopupMenu pm = new PopupMenu(requireActivity(), ivOpenOptionsMenu);
-        pm.getMenuInflater().inflate(R.menu.provider_request_logout_menu, pm.getMenu());
-        pm.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public boolean onMenuItemClick(MenuItem item){
-                if (item.getItemId() == R.id.provider_request_logout_btn) {
-                    sessionManager.setAccessToken(null);
-                    sessionManager.setLoggedInUser(null);
-                    sessionManager.setIsUserLoggedIn(null);
-                    sessionManager.setProviderUuid(null);
-                    startActivity(new Intent(requireActivity(), LoginActivity.class));
-                    requireActivity().finish();
-                    return true;
-                }
-                return true;
-            }
+
+        ivLogout.setOnClickListener(v->{
+            sessionManager.setAccessToken(null);
+            sessionManager.setLoggedInUser(null);
+            sessionManager.setIsUserLoggedIn(null);
+            sessionManager.setProviderUuid(null);
+            startActivity(new Intent(requireActivity(), LoginActivity.class));
+            requireActivity().finish();
         });
-        ivOpenOptionsMenu.setOnClickListener(v->{
-            pm.show();
-        });
+
 
 
         return view;
@@ -112,8 +101,8 @@ public class ProviderRequestFragment extends Fragment implements ProviderRequest
     private void initViews(View v){
         recyclerView = v.findViewById(R.id.rv_provider_service_request_list);
         noRequestMessage = v.findViewById(R.id.tv_provider_requests_no_request_message);
-        ivOpenOptionsMenu = v.findViewById(R.id.iv_provider_requests_open_options_menu);
         fmProgressBar = v.findViewById(R.id.progress_overlay_holder_provider_get_requests);
+        ivLogout = v.findViewById(R.id.btn_logout_provider_service_request);
     }
 
     @Override

@@ -23,14 +23,12 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProviderHomeActivity extends AppCompatActivity {
     BottomNavigationView navigationItemView;
-    SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider_home);
         Objects.requireNonNull(getSupportActionBar()).hide();
-
-        sessionManager = new SessionManager(this);
 
 
         navigationItemView = findViewById(R.id.provider_bottom_navigation_view);
